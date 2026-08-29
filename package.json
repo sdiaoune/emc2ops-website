@@ -1,0 +1,35 @@
+{
+  "name": "emc2ops-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0 --port 3000",
+    "start": "astro preview --host 0.0.0.0 --port 3000",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 3000",
+    "generate:blog": "npm run blog:validate && npm run build",
+    "lp:validate-live": "node scripts/validate-live-lp-assets.mjs",
+    "seo:validate": "node scripts/seo-validate.mjs",
+    "screenshots:capture": "node scripts/capture-pm-ops-money-pages.mjs",
+    "screenshots:validate": "node scripts/validate-product-screenshots.mjs",
+    "content:preflight": "node scripts/content-preflight.mjs",
+    "blog:list": "node scripts/blog-content.mjs --list",
+    "blog:validate": "node scripts/blog-content.mjs",
+    "blog:deploy-guard": "node scripts/verify-blog-deploy-baseline.mjs",
+    "blog:card": "node scripts/render-blog-social-card.mjs",
+    "test:api": "node --test tests/api/*.test.js",
+    "test:unit": "node --test tests/blog-deploy-baseline.test.mjs tests/seo-validate-normalization.test.mjs",
+    "test:public": "playwright test tests/*.spec.js --browser=chromium",
+    "test:dashboard": "node -e \"console.log('Legacy root dashboard.html route is intentionally outside the Astro public-site migration.')\"",
+    "test": "npm run test:api && npm run test:unit && npm run test:public && npm run test:dashboard"
+  },
+  "devDependencies": {
+    "@astrojs/mdx": "^6.0.1",
+    "@playwright/test": "^1.60.0",
+    "astro": "^6.4.2",
+    "sharp": "^0.34.5"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}

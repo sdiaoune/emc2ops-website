@@ -1,0 +1,369 @@
+---
+import { getCollection, render } from "astro:content";
+import ArticleCta from "../../components/ArticleCta.astro";
+import FaqList from "../../components/FaqList.astro";
+import NewsletterSignup from "../../components/NewsletterSignup.astro";
+import RelatedPosts from "../../components/RelatedPosts.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { auditHref } from "../../lib/conversion";
+import {
+  absoluteUrl,
+  articleSchema,
+  articleTitleTag,
+  byOrder,
+  cities,
+  socialImageFor,
+  stripTags,
+  type BlogPost,
+} from "../../lib/site";
+import "../../styles/blog.css";
+
+export async function getStaticPaths() {
+  const posts = byOrder(await getCollection("blog"));
+  return posts.map((post) => ({
+    params: { slug: post.data.slug },
+    props: { post, posts },
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+  posts: BlogPost[];
+}
+
+const { post, posts } = Astro.props;
+const related = post.data.related
+  .map((slug) => posts.find((item) => item.data.slug === slug))
+  .filter(Boolean) as BlogPost[];
+const canonical = absoluteUrl(`/blog/${post.data.slug}/`);
+const { Content } = await render(post);
+const blogAuditHref = auditHref(post.data.slug, "blog");
+
+type MoneyLink = { label: string; href: string; description: string };
+
+const moneyPageLinks = {
+  services: {
+    missedCall: {
+      label: "Missed-call recovery",
+      href: "/services/missed-call-recovery/",
+      description: "Recover missed renter calls with instant text-back, qualification, alerts, and CRM logging.",
+    },
+    leasingFollowUp: {
+      label: "Leasing follow-up automation",
+      href: "/services/leasing-follow-up/",
+      description: "Automate renter follow-up after stale replies, no-shows, incomplete applications, and booked next steps.",
+    },
+    maintenance: {
+      label: "Maintenance intake automation",
+      href: "/services/maintenance-intake-automation/",
+      description: "Capture urgency, access notes, resident context, photos, and routing details before team review.",
+    },
+    crm: {
+      label: "CRM workflow automation",
+      href: "/services/crm-workflow-automation/",
+      description: "Sync notes, statuses, tasks, summaries, and ownership into the operating system of record.",
+    },
+    ownerUpdates: {
+      label: "Owner update automation",
+      href: "/services/owner-update-automation/",
+      description: "Turn workflow events into owner-ready status updates with approval gates where needed.",
+    },
+    vendorDispatch: {
+      label: "Vendor dispatch automation",
+      href: "/services/vendor-dispatch-automation/",
+      description: "Route vendor handoffs, repair context, approvals, and stalled dispatch updates with less manual chasing.",
+    },
+    frontDesk: {
+      label: "AI front desk for property management",
+      href: "/services/ai-front-desk-property-management/",
+      description: "Install AI voice, SMS, routing, and CRM workflows around leasing and operations handoffs.",
+    },
+  },
+  useCases: {
+    apartmentLeadTracking: {
+      label: "Apartment lead tracking automation",
+      href: "/use-cases/apartment-lead-tracking/",
+      description: "Keep renter source, status, owner, next step, and CRM writeback visible from first inquiry.",
+    },
+    leadFollowUp: {
+      label: "Real estate lead follow-up automation",
+      href: "/use-cases/real-estate-lead-follow-up-automation/",
+      description: "Recover missed, stale, and no-show leads with stage-aware follow-up and stop rules.",
+    },
+    howToAutomate: {
+      label: "How to automate property management",
+      href: "/use-cases/how-to-automate-property-management/",
+      description: "Choose the first measurable workflow and define the trigger, exception path, and final record.",
+    },
+    leadToLease: {
+      label: "Lead-to-lease automation",
+      href: "/use-cases/lead-to-lease-automation/",
+      description: "Connect inquiry, tour, application, approval, move-in tasks, and CRM reporting.",
+    },
+    crmCleanup: {
+      label: "CRM follow-up cleanup",
+      href: "/use-cases/real-estate-crm-follow-up-mess/",
+      description: "Clean up stages, notes, duplicate records, tasks, and follow-up ownership rules.",
+    },
+  },
+  integrations: {
+    appfolio: {
+      label: "AppFolio automation",
+      href: "/integrations/appfolio/",
+      description: "Scope AppFolio-adjacent workflows for leasing, maintenance, communication, and CRM handoffs.",
+    },
+    buildium: {
+      label: "Buildium integration automation",
+      href: "/integrations/buildium/",
+      description: "Scope Buildium-adjacent workflows through supported APIs, webhooks, middleware, or approval paths.",
+    },
+    leadsimple: {
+      label: "LeadSimple automation",
+      href: "/integrations/leadsimple/",
+      description: "Connect inbound communication and follow-up workflows to LeadSimple owner or renter pipelines.",
+    },
+  },
+} satisfies Record<string, Record<string, MoneyLink>>;
+
+const topicText = [
+  post.data.slug,
+  post.data.pillar,
+  post.data.keyword,
+  post.data.title,
+  post.data.problem,
+  ...(post.data.related || []),
+].join(" ").toLowerCase();
+
+function topicIncludes(...terms: string[]) {
+  return terms.some((term) => topicText.includes(term));
+}
+
+function uniqLinks(links: MoneyLink[]) {
+  const seen = new Set<string>();
+  return links.filter((link) => {
+    if (seen.has(link.href)) return false;
+    seen.add(link.href);
+    return true;
+  });
+}
+
+function inferredServiceLinks() {
+  const links: MoneyLink[] = [];
+  if (topicIncludes("missed", "after-hours", "after hours")) links.push(moneyPageLinks.services.missedCall);
+  if (topicIncludes("leasing", "lead", "renter", "tour", "showing", "application", "no-show", "stale", "guest card")) {
+    links.push(moneyPageLinks.services.leasingFollowUp);
+  }
+  if (topicIncludes("maintenance", "hvac", "cooling", "heat", "repair", "work order", "resident portal")) {
+    links.push(moneyPageLinks.services.maintenance);
+  }
+  if (topicIncludes("crm", "pms", "zapier", "logging", "deduplication", "pipeline")) links.push(moneyPageLinks.services.crm);
+  if (topicIncludes("owner")) links.push(moneyPageLinks.services.ownerUpdates);
+  if (topicIncludes("vendor", "dispatch", "quote", "technician")) links.push(moneyPageLinks.services.vendorDispatch);
+  if (topicIncludes("ai front desk", "ai voice", "chatbot", "conversation", "support")) links.push(moneyPageLinks.services.frontDesk);
+  return uniqLinks(links.length > 0 ? links : [moneyPageLinks.services.frontDesk]).slice(0, 3);
+}
+
+function inferredUseCaseLinks() {
+  const links: MoneyLink[] = [];
+  if (topicIncludes("apartment", "guest card", "lead tracking", "source attribution", "deduplication")) {
+    links.push(moneyPageLinks.useCases.apartmentLeadTracking);
+  }
+  if (topicIncludes("lead follow", "stale", "missed", "no-show", "response time")) links.push(moneyPageLinks.useCases.leadFollowUp);
+  if (topicIncludes("lead-to-lease", "lead to lease", "tour", "application", "lease signing", "move-in")) {
+    links.push(moneyPageLinks.useCases.leadToLease);
+  }
+  if (topicIncludes("crm", "pipeline", "deduplication", "logging")) links.push(moneyPageLinks.useCases.crmCleanup);
+  links.push(moneyPageLinks.useCases.howToAutomate);
+  return uniqLinks(links).slice(0, 3);
+}
+
+function inferredIntegrationLinks() {
+  const links: MoneyLink[] = [];
+  if (topicIncludes("appfolio")) links.push(moneyPageLinks.integrations.appfolio);
+  if (topicIncludes("buildium")) links.push(moneyPageLinks.integrations.buildium);
+  if (topicIncludes("leadsimple")) links.push(moneyPageLinks.integrations.leadsimple);
+  return uniqLinks(links);
+}
+
+const relatedServices =
+  post.data.relatedServices && post.data.relatedServices.length > 0 ? post.data.relatedServices : inferredServiceLinks();
+const relatedUseCases =
+  post.data.relatedUseCases && post.data.relatedUseCases.length > 0 ? post.data.relatedUseCases : inferredUseCaseLinks();
+const relatedIntegrations = inferredIntegrationLinks();
+---
+
+<SiteLayout
+  title={articleTitleTag(post)}
+  description={post.data.meta}
+  canonical={canonical}
+  type="article"
+  image={socialImageFor(post)}
+  imageAlt={`${post.data.title} social preview from EMC2Ops.`}
+  schema={articleSchema(post)}
+  pageClass="article-page"
+>
+  <SiteHeader />
+  <main>
+    <article class="article">
+      <div class="wrap article-grid">
+        <aside class="toc" aria-label="Article navigation">
+          <strong>{post.data.pillar}</strong>
+          <a href="#answer">Direct answer</a>
+          <a href="#cost">Operational cost</a>
+          <a href="#workflow">Workflow design</a>
+          <a href="#metrics">Metrics</a>
+          <a href="#faq">FAQ</a>
+        </aside>
+
+        <div class="article-body">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a><span>/</span><a href="/blog/">Blog</a><span>/</span>{post.data.keyword}
+          </nav>
+          <p class="eyebrow">{post.data.keyword}</p>
+          <h1>{post.data.h1}</h1>
+          <p class="dek">{post.data.problem}</p>
+
+          <ArticleCta
+            top
+            href={blogAuditHref}
+            title="Want the fastest workflow win?"
+            description="EMC2Ops maps your leasing, maintenance, and CRM handoffs and identifies the first automation worth installing."
+          />
+
+          <NewsletterSignup
+            title="Want the next guide in your inbox?"
+            description="Get new EMC2Ops property management automation posts when they publish."
+            source="blog-article-newsletter"
+          />
+
+          <section id="answer" class="answer-box">
+            <h2>Direct answer for operators</h2>
+            <p>
+              {stripTags(post.data.problem)} For property management companies managing 50+ units,
+              the practical fix is not another inbox. It is a defined workflow that acknowledges the
+              inquiry, captures the required context, routes the next step, and updates the operating
+              system of record.
+            </p>
+          </section>
+
+          {post.data.bodySections && (
+            <section class="article-content">
+              <Content />
+            </section>
+          )}
+
+          <section id="cost">
+            <h2>Where the operational cost shows up</h2>
+            <p>
+              In high-growth rental markets across the United States, including {cities}, response
+              speed and clean handoffs affect leasing capacity, tenant satisfaction, and owner
+              confidence. The cost usually appears in a few repeatable places:
+            </p>
+            <ul>{post.data.stakes.map((item) => <li>{item}</li>)}</ul>
+          </section>
+
+          <section class="visual" aria-label="Workflow diagram">
+            <h2>Simple workflow model</h2>
+            <div class="flow-diagram">
+              <span>Inbound trigger</span><i></i><span>AI intake</span><i></i><span>Human exception</span><i></i><span>CRM update</span>
+            </div>
+          </section>
+
+          <section id="workflow">
+            <h2>What a practical automation system should do</h2>
+            <p>
+              Strong property management automation starts with the operating workflow, not the tool.
+              Before adding AI voice, SMS, Zapier, or CRM logic, define the trigger, the required
+              context, the exception path, and the record that should exist when the workflow finishes.
+            </p>
+            <ol>{post.data.system.map((item) => <li>{item}</li>)}</ol>
+            <h3>Design rules that keep automation useful</h3>
+            <p>
+              Keep the workflow narrow enough to measure. Use short prompts, clear routing, and
+              conservative escalation. Automation should remove repetitive intake and logging while
+              preserving human control for approvals, sensitive conversations, compliance questions,
+              and unusual situations.
+            </p>
+          </section>
+
+          <section id="metrics">
+            <h2>Metrics worth tracking</h2>
+            <p>
+              The best first workflow creates data your team can review weekly. Track metrics that
+              show speed, workload reduction, and conversion movement rather than vanity activity.
+            </p>
+            <div class="metric-list">{post.data.metrics.map((item) => <span>{item}</span>)}</div>
+          </section>
+
+          <section>
+            <h2>How EMC2Ops would approach this rollout</h2>
+            <p>
+              We start by mapping the current path from inbound request to completed next step. Then
+              we identify the highest-intent workflow, define the minimum viable automation, connect
+              the required systems, and monitor the first live conversations for routing quality.
+            </p>
+            <p>
+              The goal is practical ROI: faster response, fewer missed opportunities, cleaner CRM
+              records, and less manual coordination for leasing and operations teams.
+            </p>
+          </section>
+
+          <FaqList id="faq" faqs={post.data.faqs} />
+
+          <ArticleCta
+            href={blogAuditHref}
+            title={post.data.cta}
+            description="Bring your current call, text, CRM, leasing, or maintenance process. We will identify the first workflow to automate."
+          />
+
+          {relatedServices.length > 0 && (
+            <section class="related">
+              <h2>Related EMC2Ops services</h2>
+              <div class="related-grid">
+                {relatedServices.map((link) => (
+                  <a href={link.href}>
+                    <strong>{link.label}</strong>
+                    <span>{link.description}</span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {relatedUseCases.length > 0 && (
+            <section class="related">
+              <h2>Related use cases</h2>
+              <div class="related-grid">
+                {relatedUseCases.map((link) => (
+                  <a href={link.href}>
+                    <strong>{link.label}</strong>
+                    <span>{link.description}</span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {relatedIntegrations.length > 0 && (
+            <section class="related">
+              <h2>Related integration pages</h2>
+              <div class="related-grid">
+                {relatedIntegrations.map((link) => (
+                  <a href={link.href}>
+                    <strong>{link.label}</strong>
+                    <span>{link.description}</span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+
+          <RelatedPosts posts={related} />
+        </div>
+      </div>
+    </article>
+  </main>
+  <SiteFooter />
+</SiteLayout>

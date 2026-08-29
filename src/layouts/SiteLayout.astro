@@ -1,0 +1,110 @@
+---
+import Analytics from "@vercel/analytics/astro";
+import SeoHead from "../components/SeoHead.astro";
+import SalesChatbot from "../components/SalesChatbot.astro";
+import "../styles/theme.css";
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  type?: "website" | "article";
+  image: string;
+  imageAlt: string;
+  themeColor?: string;
+  schema?: unknown;
+  pageClass?: string;
+  author?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  type = "website",
+  image,
+  imageAlt,
+  themeColor,
+  schema,
+  pageClass = "",
+  author,
+} = Astro.props;
+
+const enableAnalytics = process.env.VERCEL === "1" || import.meta.env.PUBLIC_ENABLE_VERCEL_ANALYTICS === "true";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script is:inline>
+      (() => {
+        const storageKey = "emc2ops-theme";
+
+        try {
+          const storedTheme = window.localStorage.getItem(storageKey);
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const theme = storedTheme === "light" || storedTheme === "dark"
+            ? storedTheme
+            : prefersDark
+              ? "dark"
+              : "light";
+
+          document.documentElement.classList.toggle("dark", theme === "dark");
+          document.documentElement.dataset.theme = theme;
+        } catch {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
+    <SeoHead
+      title={title}
+      description={description}
+      canonical={canonical}
+      type={type}
+      image={image}
+      imageAlt={imageAlt}
+      themeColor={themeColor}
+      schema={schema}
+      author={author}
+    />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18196518863"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-18196518863');
+    </script>
+    {enableAnalytics && <Analytics />}
+  </head>
+  <body class={pageClass}>
+    <slot />
+    <SalesChatbot />
+    <script>
+      import { track } from "@vercel/analytics";
+
+      const sourceFromHost = (host) => {
+        if (host.includes("chatgpt.com") || host.includes("openai.com")) return "chatgpt";
+        if (host.includes("copilot.microsoft.com") || host.includes("bing.com")) return "copilot";
+        if (host.includes("perplexity.ai")) return "perplexity";
+        if (host.includes("gemini.google.com")) return "gemini";
+        return "";
+      };
+
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const utmSource = (params.get("utm_source") || "").toLowerCase();
+        const referrerHost = document.referrer ? new URL(document.referrer).hostname.toLowerCase() : "";
+        const source = sourceFromHost(utmSource) || sourceFromHost(referrerHost);
+        const sessionKey = `emc2ops-ai-referral:${window.location.pathname}`;
+
+        if (source && !window.sessionStorage.getItem(sessionKey)) {
+          track("ai_referral_landing", { source, landingPath: window.location.pathname });
+          window.sessionStorage.setItem(sessionKey, "1");
+        }
+      } catch {
+        /* Referral analytics must never block navigation or conversion paths. */
+      }
+    </script>
+  </body>
+</html>

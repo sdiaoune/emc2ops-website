@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  top?: boolean;
+  href?: string;
+  label?: string;
+}
+
+const { title, description, top = false, href = "/book-demo/", label = "Book a 15-minute consultation" } = Astro.props;
+---
+
+<section class:list={["article-cta", { "top-cta": top }]}>
+  <div>
+    <strong>{title}</strong>
+    <span>{description}</span>
+  </div>
+  <a class="btn btn-primary" href={href}>{label}</a>
+</section>

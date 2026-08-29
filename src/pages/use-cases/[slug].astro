@@ -1,0 +1,231 @@
+---
+import FaqList from "../../components/FaqList.astro";
+import BeforeAfterBlock from "../../components/BeforeAfterBlock.astro";
+import FitBlock from "../../components/FitBlock.astro";
+import InstallablesBlock from "../../components/InstallablesBlock.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import WorkflowAuditCta from "../../components/WorkflowAuditCta.astro";
+import WorkflowProofBlock from "../../components/WorkflowProofBlock.astro";
+import WorkflowIntegrationsBlock from "../../components/WorkflowIntegrationsBlock.astro";
+import ProductScreenshot from "../../components/ProductScreenshot.astro";
+import SecurityDepositProductPreview from "../../components/SecurityDepositProductPreview.astro";
+import SecurityDepositDecisionGuide from "../../components/SecurityDepositDecisionGuide.astro";
+import AuditBookingSection from "../../components/AuditBookingSection.astro";
+import { auditHref } from "../../lib/conversion";
+import { absoluteUrl, defaultSocialImage } from "../../lib/site";
+import { useCasePages, useCaseSchema, useCaseUrl, type UseCasePage } from "../../lib/useCases";
+import { productScreenshotForPath } from "../../lib/productScreenshots";
+import { workflowIntegrationsForPath, workflowProofForPath } from "../../lib/workflowProof";
+import "../../styles/service.css";
+
+export function getStaticPaths() {
+  return useCasePages.map((useCase) => ({
+    params: { slug: useCase.slug },
+    props: { useCase },
+  }));
+}
+
+interface Props {
+  useCase: UseCasePage;
+}
+
+const { useCase } = Astro.props;
+const canonical = absoluteUrl(useCaseUrl(useCase));
+const auditUrl = auditHref(useCase.slug, "use-case");
+const isSecurityDepositAutomation = useCase.slug === "security-deposit-automation";
+const productScreenshot = isSecurityDepositAutomation
+  ? undefined
+  : productScreenshotForPath(`/use-cases/${useCase.slug}/`);
+const workflowProof = workflowProofForPath(`/use-cases/${useCase.slug}/`);
+const workflowIntegrations = workflowIntegrationsForPath(`/use-cases/${useCase.slug}/`);
+const isApartmentLeadLanding = useCase.slug === "apartment-lead-tracking";
+const primaryCtaHref = isApartmentLeadLanding ? "#book-demo" : auditUrl;
+const primaryCtaLabel = isApartmentLeadLanding ? "Check available times" : useCase.auditCta.label;
+const middleCtaHref = isApartmentLeadLanding ? "#book-demo" : auditUrl;
+const buyerLanguageTitle = isApartmentLeadLanding
+  ? "Lead sources this workflow brings together"
+  : "Related buyer language";
+const buyerLanguage = isApartmentLeadLanding
+  ? ["Calls", "Website forms", "ILS leads", "Texts", "Walk-ins", "Tour requests"]
+  : useCase.clusterKeywords;
+---
+
+<SiteLayout
+  title={`${useCase.seoTitle} | EMC2Ops`}
+  description={useCase.description}
+  canonical={canonical}
+  image={absoluteUrl(defaultSocialImage)}
+  imageAlt={`${useCase.title} workflow from EMC2Ops.`}
+  schema={useCaseSchema(useCase)}
+  pageClass="service-page"
+>
+  <SiteHeader />
+  <main>
+    <section class="service-hero">
+      <div class="wrap">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span>/</span><a href="/use-cases/">Use Cases</a><span>/</span>{useCase.primaryKeyword}
+        </nav>
+        <p class="eyebrow">{useCase.primaryKeyword}</p>
+        <h1>{useCase.h1}</h1>
+        <p class="dek">{useCase.summary}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={primaryCtaHref}>{primaryCtaLabel}</a>
+          <a class="btn btn-secondary" href="#workflow">See how it works</a>
+        </div>
+        {isApartmentLeadLanding && (
+          <p class="hero-reassurance">15 minutes · No commitment · Times shown in your timezone</p>
+        )}
+      </div>
+    </section>
+
+    <section class="product-proof-section">
+      <div class="wrap">
+        {isSecurityDepositAutomation ? (
+          <SecurityDepositProductPreview />
+        ) : (
+          <ProductScreenshot screenshot={productScreenshot!} />
+        )}
+      </div>
+    </section>
+
+    {isSecurityDepositAutomation && <SecurityDepositDecisionGuide />}
+
+    {isApartmentLeadLanding && (
+      <AuditBookingSection
+        eyebrow="15-minute apartment lead audit"
+        title="See where renter leads disappear before the tour."
+        body="Bring one lead source and the current CRM handoff. We’ll identify the leak and map the first workflow to install."
+        formTitle="Book your apartment lead tracking audit."
+        workflow="apartment-lead-tracking"
+        source="google-ads-landing"
+        agendaItems={[
+          "Show us where renter inquiries enter today.",
+          "Trace one lead through ownership, follow-up, and CRM updates.",
+          "Leave with the first workflow to install and a clear scope.",
+        ]}
+        proofItems={["Lead source capture", "Duplicate cleanup", "Speed-to-lead", "CRM writeback"]}
+      />
+    )}
+
+    <section class="wrap split-section">
+      <div>
+        <h2>Problems this workflow solves</h2>
+        <p>{useCase.intent}</p>
+        <h2>{buyerLanguageTitle}</h2>
+        <div class="metric-list">
+          {buyerLanguage.map((keyword) => <span>{keyword}</span>)}
+        </div>
+      </div>
+      <div class="check-list">
+        {useCase.painPoints.map((point) => <div><span>✓</span><p>{point}</p></div>)}
+      </div>
+    </section>
+
+    <section id="workflow" class="wrap detail-section">
+      <h2>Workflow to install</h2>
+      <ol class="step-list">
+        {useCase.workflow.map((step) => <li>{step}</li>)}
+      </ol>
+    </section>
+
+    {useCase.outcomes && (
+      <section class="wrap split-section">
+        <div>
+          <p class="eyebrow">Operational outcomes</p>
+          <h2>What the installed workflow should make visible</h2>
+          <p>These are workflow states to verify after launch, not guaranteed performance claims.</p>
+        </div>
+        <div class="check-list">
+          {useCase.outcomes.map((outcome) => <div><span>✓</span><p>{outcome}</p></div>)}
+        </div>
+      </section>
+    )}
+
+    <section class="wrap split-section">
+      <div>
+        <h2>{useCase.example.title}</h2>
+        <ol class="step-list compact-steps">
+          {useCase.example.steps.map((step) => <li>{step}</li>)}
+        </ol>
+      </div>
+      <div>
+        <h2>{useCase.template.title}</h2>
+        <div class="template-grid">
+          {useCase.template.rows.map(([field, rule, owner]) => (
+            <div class="template-row">
+              <strong>{field}</strong>
+              <p>{rule}</p>
+              <span>{owner}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <InstallablesBlock items={useCase.installables} intro={useCase.auditFocus} />
+
+    {workflowIntegrations.length > 0 && <WorkflowIntegrationsBlock items={workflowIntegrations} />}
+
+    <WorkflowAuditCta
+      title={useCase.auditCta.title}
+      body={useCase.auditCta.body}
+      href={middleCtaHref}
+      label={useCase.auditCta.label}
+      secondaryHref="#faq"
+      secondaryLabel="Read FAQs"
+    />
+
+    <BeforeAfterBlock before={useCase.beforeAfter.before} after={useCase.beforeAfter.after} />
+
+    {workflowProof && <WorkflowProofBlock proof={workflowProof} />}
+
+    <FitBlock bestFit={useCase.bestFit} notFit={useCase.notFit} />
+
+    <section class="wrap detail-section">
+      <h2>Metrics to track</h2>
+      <div class="metric-list">
+        {useCase.metrics.map((metric) => <span>{metric}</span>)}
+      </div>
+    </section>
+
+    <section class="wrap detail-section">
+      <h2>Related EMC2Ops services</h2>
+      <div class="related-links">
+        {useCase.relatedServices.map((link) => (
+          <a href={link.href}>
+            <strong>{link.label}</strong>
+            <span>Service page</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="wrap detail-section">
+      <h2>Related guides</h2>
+      <div class="related-links">
+        {useCase.relatedGuides.map((link) => (
+          <a href={link.href}>
+            <strong>{link.label}</strong>
+            <span>Blog guide</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section id="faq" class="wrap detail-section">
+      <FaqList faqs={useCase.faqs} />
+    </section>
+
+    <WorkflowAuditCta
+      eyebrow="Next step"
+      title={`Map your ${useCase.title.toLowerCase()} workflow`}
+      body="Use the audit to confirm the trigger, owner, required data, automation rules, stop conditions, and system-of-record update."
+      href={middleCtaHref}
+      label={useCase.auditCta.label}
+    />
+  </main>
+  <SiteFooter />
+</SiteLayout>
