@@ -18,7 +18,7 @@
     "blog:deploy-guard": "node scripts/verify-blog-deploy-baseline.mjs",
     "blog:card": "node scripts/render-blog-social-card.mjs",
     "test:api": "node --test tests/api/*.test.js",
-    "test:unit": "node --test tests/blog-deploy-baseline.test.mjs tests/seo-validate-normalization.test.mjs",
+    "test:unit": "node --test tests/blog-deploy-baseline.test.mjs tests/feed-determinism.test.mjs tests/seo-validate-normalization.test.mjs",
     "test:public": "playwright test tests/*.spec.js --browser=chromium",
     "test:dashboard": "node -e \"console.log('Legacy root dashboard.html route is intentionally outside the Astro public-site migration.')\"",
     "test": "npm run test:api && npm run test:unit && npm run test:public && npm run test:dashboard"

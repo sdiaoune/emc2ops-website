@@ -1,5 +1,5 @@
 import { getCollection } from "astro:content";
-import { absoluteUrl, byOrder, postUpdatedAt, siteName } from "../lib/site";
+import { absoluteUrl, byOrder, postUpdatedAt, siteName, siteUpdatedAt } from "../lib/site";
 
 function escapeXml(value: string) {
   return value
@@ -12,6 +12,10 @@ function escapeXml(value: string) {
 
 export async function GET() {
   const posts = byOrder(await getCollection("blog"));
+  const lastBuildDate = posts.reduce(
+    (latest, post) => Math.max(latest, Date.parse(postUpdatedAt(post))),
+    Date.parse(siteUpdatedAt),
+  );
   const items = posts
     .map((post) => {
       const url = absoluteUrl(`/blog/${post.data.slug}/`);
@@ -35,7 +39,7 @@ export async function GET() {
     <atom:link href="${absoluteUrl("/feed.xml")}" rel="self" type="application/rss+xml" />
     <description>Property management automation guides from EMC2Ops.</description>
     <language>en-us</language>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <lastBuildDate>${new Date(lastBuildDate).toUTCString()}</lastBuildDate>
 ${items}
   </channel>
 </rss>
