@@ -16,6 +16,7 @@
 - Commit every intended website change and push it to `main`. Vercel Git integration performs the production deployment.
 - Do not run `vercel --prod` for routine content publishing. Never deploy uncommitted or alternate-branch source.
 - After pushing, verify the Git-backed Vercel deployment is Ready, the expected production URL is live, and the deployed commit SHA equals the pushed Git commit.
+- After the verified production deployment, run `node scripts/submit-indexnow.mjs --from <previous-sha> --to <pushed-sha> --wait-for-deployment <pushed-sha>` and require an accepted IndexNow response before reporting success.
 - End each run with both the canonical checkout and the temporary clone clean. If validation or push fails, do not deploy and do not copy partial work into the canonical checkout.
 
 ## Protected production state

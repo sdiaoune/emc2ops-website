@@ -153,7 +153,6 @@ if (!fs.existsSync(indexNowKeyPath) || fs.readFileSync(indexNowKeyPath, "utf8").
 }
 if (!fs.existsSync(path.join(distDir, "deployment.json"))) failures.push("Production commit marker is missing.");
 if (!fs.existsSync(path.resolve("scripts/submit-indexnow.mjs"))) failures.push("IndexNow submission script is missing.");
-if (!fs.existsSync(path.resolve(".github/workflows/indexnow.yml"))) failures.push("IndexNow deployment workflow is missing.");
 
 if (failures.length > 0) {
   console.error(failures.join("\n"));
