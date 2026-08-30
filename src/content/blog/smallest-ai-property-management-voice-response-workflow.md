@@ -4,7 +4,7 @@ order: 142
 pillar: "Leasing Automation"
 keyword: "property management voice response workflow"
 title: "Smallest.ai's Voice 4.0 Makes Slow Leasing Callbacks Look Even Older"
-seoTitle: "Voice Response Workflow for Property Management After Smallest.ai"
+seoTitle: "Property Voice Workflows After Smallest.ai"
 meta: "Smallest.ai's July 31 funding news is a useful signal for property managers: as voice AI gets faster and more human, slow leasing callbacks, weak call logging, and after-hours gaps become harder to defend."
 publishedAt: "2026-07-31"
 updatedAt: "2026-07-31"

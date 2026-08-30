@@ -4,7 +4,7 @@ order: 56
 pillar: "AI Front Desk"
 keyword: "customer service doom loops property management"
 title: "Customer-Service Doom Loops Are a Property Management Workflow Warning"
-seoTitle: "Property Management AI Workflows Should Avoid Customer-Service Doom Loops"
+seoTitle: "Avoid AI Customer-Service Doom Loops"
 meta: "A June 20 customer-service backlash story is a timely lesson for property managers: automate routine intake and follow-up, but avoid AI doom loops by preserving human escalation and clean workflow boundaries."
 publishedAt: "2026-06-21"
 updatedAt: "2026-06-21"

@@ -4,7 +4,7 @@ order: 66
 pillar: "AI Front Desk"
 keyword: "AI support readiness property management"
 title: "Adobe's AI Support Readiness Gap Is a Front Desk Warning for Property Managers"
-seoTitle: "AI Support Readiness for Property Management Front Desk Workflows"
+seoTitle: "AI Front Desk Readiness for Property Managers"
 meta: "Adobe's June 25 AI support findings are a timely warning for property managers: AI front desk workflows need clean data, routing, escalation, and CRM or PMS logging before they scale."
 publishedAt: "2026-06-25"
 updatedAt: "2026-06-25"

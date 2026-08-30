@@ -4,7 +4,7 @@ order: 67
 pillar: "AI Front Desk"
 keyword: "shadow AI property management"
 title: "Thomson Reuters' Shadow AI Warning Is a Property Management Workflow Lesson"
-seoTitle: "Shadow AI in Property Management: A Workflow Lesson From Thomson Reuters"
+seoTitle: "Shadow AI: A Property Management Workflow Lesson"
 meta: "Thomson Reuters' June 22 findings on unsanctioned AI use are a timely warning for property managers: if staff are improvising with AI, sanctioned front-desk workflows need to replace copy-paste operations."
 publishedAt: "2026-06-26"
 updatedAt: "2026-06-26"

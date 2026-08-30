@@ -4,7 +4,7 @@ order: 152
 pillar: "Leasing Automation"
 keyword: "after hours leasing voice response workflow"
 title: "Google Assistant's Shutdown Date Is a Missed-Call Workflow Warning for Property Managers"
-seoTitle: "Google Assistant's Shutdown Date and Property Management Missed-Call Workflows"
+seoTitle: "Google Assistant Shutdown: Missed-Call Workflow"
 meta: "Reports that Google will begin removing Google Assistant access on September 4, 2026 are a practical warning for property managers: voicemail-first leasing and after-hours call handling now look older faster."
 publishedAt: "2026-08-05"
 updatedAt: "2026-08-05"

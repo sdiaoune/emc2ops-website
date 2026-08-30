@@ -4,7 +4,7 @@ order: 110
 pillar: "AI Front Desk"
 keyword: "property management ai workflow implementation"
 title: "OpenAI's Northslope Deal Is a Property Management Workflow Lesson"
-seoTitle: "OpenAI's Northslope Deal Is a Property Management Workflow Lesson"
+seoTitle: "OpenAI Northslope: Property Workflow Lessons"
 meta: "OpenAI's Northslope acquisition shows property managers the real AI edge is workflow installation, not demos, especially in leasing follow-up and CRM write-back."
 publishedAt: "2026-07-12"
 updatedAt: "2026-07-12"

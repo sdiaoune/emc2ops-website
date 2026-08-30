@@ -4,7 +4,7 @@ order: 64
 pillar: "Leasing Automation"
 keyword: "apartment fee disclosure property management workflows"
 title: "Apartment Fee Backlash Is a Leasing Workflow Warning for Property Managers"
-seoTitle: "Apartment Fee Backlash Is a Leasing Workflow Warning for Property Managers"
+seoTitle: "Apartment Fee Disclosures: A Leasing Workflow Guide"
 meta: "A June 24 renter-fee investigation is a timely lesson for property managers: fee pressure becomes an operations problem when leasing, application, resident messaging, and CRM logging workflows are unclear."
 publishedAt: "2026-06-25"
 updatedAt: "2026-06-25"

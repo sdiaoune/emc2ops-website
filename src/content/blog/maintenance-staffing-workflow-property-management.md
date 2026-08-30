@@ -4,7 +4,7 @@ order: 88
 pillar: "Resident Operations"
 keyword: "maintenance staffing workflow automation property management"
 title: "Multifamily's Maintenance Staffing Crunch Is a Workflow Triage Warning for Property Managers"
-seoTitle: "Maintenance Staffing Workflow Automation for Property Managers"
+seoTitle: "Maintenance Staffing Workflow Automation"
 meta: "The latest multifamily staffing warning points to a property management workflow problem: protect technician time by automating maintenance intake, resident updates, vendor handoffs, and PMS logging."
 publishedAt: "2026-07-06"
 updatedAt: "2026-07-06"

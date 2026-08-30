@@ -4,7 +4,7 @@ order: 72
 pillar: "AI Front Desk"
 keyword: "heat wave property management maintenance workflows"
 title: "Europe's Heat Wave Is an After-Hours Maintenance Workflow Warning for Property Managers"
-seoTitle: "Heat Wave Property Management Maintenance Workflows for 50+ Doors"
+seoTitle: "Heat-Wave Workflows for Property Managers"
 meta: "Europe's late-June heat wave is a timely warning for property managers: if HVAC complaints, resident updates, vendor dispatch, and escalation still depend on voicemail and morning inbox cleanup, the workflow is already behind."
 publishedAt: "2026-06-28"
 updatedAt: "2026-06-28"

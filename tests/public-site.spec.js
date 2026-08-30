@@ -685,7 +685,7 @@ test("article page renders SEO, FAQ, breadcrumbs, and related links", async ({ p
     "/book-demo/?workflow=missed-call-text-back-property-management&source=blog",
   );
   await expect(page.locator(".faq details")).toHaveCount(7);
-  await expect(page.locator(".related").filter({ hasText: "Related property management automation guides" }).locator("a")).toHaveCount(3);
+  await expect(page.locator(".related").filter({ hasText: "Related property management automation guides" }).locator("a")).toHaveCount(5);
   await expect(page.locator(".related").filter({ hasText: "Related EMC2Ops services" }).locator("a")).toHaveCount(2);
   await expect(page.locator(".related").filter({ hasText: "Related use cases" }).locator("a")).toHaveCount(2);
 

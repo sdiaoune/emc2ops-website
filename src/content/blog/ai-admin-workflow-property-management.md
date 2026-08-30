@@ -4,7 +4,7 @@ order: 80
 pillar: "AI Front Desk"
 keyword: "leasing coordinator workflow automation property management"
 title: "AI Is Coming for Admin Work. Property Managers Should Fix Leasing Handoffs First."
-seoTitle: "Leasing Coordinator Workflow Automation for Property Managers"
+seoTitle: "Leasing Coordinator Workflow Automation"
 meta: "A July 2 AI admin-work news hook for property managers: stop using leasing coordinators as human middleware between calls, tours, calendars, and the CRM."
 publishedAt: "2026-07-02"
 updatedAt: "2026-07-02"

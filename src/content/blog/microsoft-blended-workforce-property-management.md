@@ -4,7 +4,7 @@ order: 60
 pillar: "AI Front Desk"
 keyword: "microsoft blended workforce property management"
 title: "Microsoft's Blended Workforce Push Is a Better AI Front Desk Lesson for Property Managers"
-seoTitle: "Microsoft Blended Workforce AI Front Desk Lesson for Property Managers"
+seoTitle: "Microsoft's Blended Workforce: PM Lessons"
 meta: "Microsoft's June 22 Dynamics 365 update is a useful property management signal: if AI and humans share the front desk, operators need visible staffing, escalation, and quality controls instead of disconnected inboxes."
 publishedAt: "2026-06-23"
 updatedAt: "2026-06-23"

@@ -4,7 +4,7 @@ order: 44
 pillar: "AI Front Desk"
 keyword: "Anthropic Fable Mythos access property management"
 title: "Anthropic's Fable and Mythos Shutdown Is an AI Front Desk Wake-Up Call"
-seoTitle: "Anthropic Fable Mythos Access and Property Management AI Workflows"
+seoTitle: "Anthropic Fable and Mythos for Property Managers"
 meta: "Anthropic's sudden Fable 5 and Mythos 5 access suspension is a reminder for property managers: build AI front desk workflows that can survive model, policy, and vendor changes."
 publishedAt: "2026-06-12"
 updatedAt: "2026-06-12"

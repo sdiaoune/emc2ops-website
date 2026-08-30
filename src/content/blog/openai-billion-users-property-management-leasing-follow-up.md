@@ -4,7 +4,7 @@ order: 150
 pillar: "Leasing Automation"
 keyword: "instant leasing follow up workflow property management"
 title: "OpenAI's Billion-User Milestone Is a Leasing Follow-Up Warning for Property Managers"
-seoTitle: "OpenAI's Billion-User Milestone and Leasing Follow-Up Workflows"
+seoTitle: "OpenAI Growth: Leasing Follow-Up Lessons"
 meta: "OpenAI says its models now reach more than 1 billion active users and 2 million businesses. For property managers, that is a leasing follow-up warning: delayed callbacks and weak after-hours capture now feel older faster."
 publishedAt: "2026-08-04"
 updatedAt: "2026-08-04"

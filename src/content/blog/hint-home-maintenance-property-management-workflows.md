@@ -4,7 +4,7 @@ order: 140
 pillar: "Maintenance Operations"
 keyword: "property management maintenance communication workflow"
 title: "Hint's Home-Maintenance Launch Is a Maintenance-Workflow Signal for Property Managers"
-seoTitle: "Hint's Home-Maintenance Launch and Property Management Workflows"
+seoTitle: "Hint Home Maintenance: Workflow Lessons"
 meta: "Hint's July 29, 2026 launch is a practical signal for property managers: residents and owners will expect proactive maintenance intake, clearer status updates, organized records, and faster human escalation."
 publishedAt: "2026-07-30"
 updatedAt: "2026-07-30"

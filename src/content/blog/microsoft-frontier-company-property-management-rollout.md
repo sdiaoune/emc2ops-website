@@ -4,7 +4,7 @@ order: 84
 pillar: "AI Front Desk"
 keyword: "property management ai workflow rollout"
 title: "Microsoft's $2.5B AI Deployment Push Is a Property Management Rollout Lesson"
-seoTitle: "Microsoft AI Deployment Lesson for Property Management Rollouts"
+seoTitle: "Microsoft AI Rollouts for Property Managers"
 meta: "Microsoft's new Frontier Company and AWS's forward-deployed engineering push show where AI value is moving: into real workflow rollout. Property managers should treat that as a cue to fix leasing, intake, and logging operations."
 publishedAt: "2026-07-04"
 updatedAt: "2026-07-04"

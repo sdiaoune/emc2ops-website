@@ -4,7 +4,7 @@ order: 114
 pillar: "Leasing Automation"
 keyword: "property management follow-up drafting workflow"
 title: "Superhuman's Auto Drafts Are a Leasing Follow-Up Workflow Signal for Property Managers"
-seoTitle: "Property Management Follow-Up Drafting Workflow for Leasing Teams"
+seoTitle: "Leasing Follow-Up Drafting Workflow"
 meta: "Superhuman's July 14 auto-draft launch is a practical signal for property managers: routine leasing follow-up, tour scheduling, and owner updates should move from manual drafting to controlled workflows."
 publishedAt: "2026-07-14"
 updatedAt: "2026-07-14"

@@ -825,7 +825,7 @@ export function serviceSchema(service: ServicePage) {
         },
         serviceOutput: service.outcomes,
         potentialAction: {
-          "@type": "ContactAction",
+          "@type": "ScheduleAction",
           target: `${siteUrl}${auditHref(service.slug, "service")}`,
           name: service.auditCta.label,
         },

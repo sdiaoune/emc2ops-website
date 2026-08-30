@@ -4,7 +4,7 @@ order: 53
 pillar: "AI Front Desk"
 keyword: "Oracle OPERA Cloud property management"
 title: "Oracle's OPERA Cloud Assistant Launch Clarifies Where Property Management AI Should Live"
-seoTitle: "Oracle OPERA Cloud Assistant and Property Management AI Workflows"
+seoTitle: "Oracle OPERA Cloud: Property Workflows"
 meta: "Oracle's June 16 OPERA Cloud Assistant launch is a useful signal for property managers: the next AI win is not another bot tab, but workflow automation embedded where staff already work."
 publishedAt: "2026-06-19"
 updatedAt: "2026-06-19"

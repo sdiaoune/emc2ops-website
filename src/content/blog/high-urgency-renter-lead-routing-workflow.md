@@ -4,7 +4,7 @@ order: 144
 pillar: "Leasing Automation"
 keyword: "high urgency renter lead routing workflow"
 title: "Apartment List's July Market Turn Is a High-Urgency Lead-Routing Test for Property Managers"
-seoTitle: "High-Urgency Renter Lead Routing Workflow for Property Managers"
+seoTitle: "High-Urgency Renter Lead Routing Workflow"
 meta: "Apartment List's July 22, 2026 rental-market recap and AppFolio's 2026 renter data point to the same lesson: when more renters are moving with urgency, property managers need tighter lead routing, owner assignment, and follow-up discipline."
 publishedAt: "2026-08-01"
 updatedAt: "2026-08-01"

@@ -34,9 +34,19 @@ interface Props {
 }
 
 const { post, posts } = Astro.props;
-const related = post.data.related
+const explicitlyRelated = post.data.related
   .map((slug) => posts.find((item) => item.data.slug === slug))
   .filter(Boolean) as BlogPost[];
+const pillarPosts = posts.filter(
+  (item) => item.data.pillar === post.data.pillar && item.data.slug !== post.data.slug,
+);
+const postIndex = posts.findIndex((item) => item.data.slug === post.data.slug);
+const chronologicalNeighbors = posts.length > 2
+  ? [posts[(postIndex - 1 + posts.length) % posts.length], posts[(postIndex + 1) % posts.length]]
+  : [];
+const related = [...chronologicalNeighbors, ...explicitlyRelated, ...pillarPosts.slice(0, 3)]
+  .filter((item, index, items) => item.data.slug !== post.data.slug && items.findIndex((candidate) => candidate.data.slug === item.data.slug) === index)
+  .slice(0, 6);
 const canonical = absoluteUrl(`/blog/${post.data.slug}/`);
 const { Content } = await render(post);
 const blogAuditHref = auditHref(post.data.slug, "blog");
@@ -240,12 +250,8 @@ const relatedIntegrations = inferredIntegrationLinks();
 
           <section id="answer" class="answer-box">
             <h2>Direct answer for operators</h2>
-            <p>
-              {stripTags(post.data.problem)} For property management companies managing 50+ units,
-              the practical fix is not another inbox. It is a defined workflow that acknowledges the
-              inquiry, captures the required context, routes the next step, and updates the operating
-              system of record.
-            </p>
+            <p>{stripTags(post.data.problem)}</p>
+            <p><strong>Best first move:</strong> {stripTags(post.data.system[0])}</p>
           </section>
 
           {post.data.bodySections && (
@@ -257,9 +263,9 @@ const relatedIntegrations = inferredIntegrationLinks();
           <section id="cost">
             <h2>Where the operational cost shows up</h2>
             <p>
-              In high-growth rental markets across the United States, including {cities}, response
-              speed and clean handoffs affect leasing capacity, tenant satisfaction, and owner
-              confidence. The cost usually appears in a few repeatable places:
+              Review these failure points against <strong>{post.data.metrics[0]}</strong> and
+              <strong> {post.data.metrics[1]}</strong>. Teams operating across {cities} can use the same
+              measures while keeping property-specific policies and exceptions separate.
             </p>
             <ul>{post.data.stakes.map((item) => <li>{item}</li>)}</ul>
           </section>
@@ -273,26 +279,18 @@ const relatedIntegrations = inferredIntegrationLinks();
 
           <section id="workflow">
             <h2>What a practical automation system should do</h2>
-            <p>
-              Strong property management automation starts with the operating workflow, not the tool.
-              Before adding AI voice, SMS, Zapier, or CRM logic, define the trigger, the required
-              context, the exception path, and the record that should exist when the workflow finishes.
-            </p>
             <ol>{post.data.system.map((item) => <li>{item}</li>)}</ol>
-            <h3>Design rules that keep automation useful</h3>
             <p>
-              Keep the workflow narrow enough to measure. Use short prompts, clear routing, and
-              conservative escalation. Automation should remove repetitive intake and logging while
-              preserving human control for approvals, sensitive conversations, compliance questions,
-              and unusual situations.
+              The control test is concrete: staff should be able to see why the workflow moved, what
+              evidence it used, who owns the exception, and which event stops the next automated step.
             </p>
           </section>
 
           <section id="metrics">
             <h2>Metrics worth tracking</h2>
             <p>
-              The best first workflow creates data your team can review weekly. Track metrics that
-              show speed, workload reduction, and conversion movement rather than vanity activity.
+              Use the same definitions before and after launch. A faster event is only an improvement
+              when the intended next step is completed and the operating record agrees.
             </p>
             <div class="metric-list">{post.data.metrics.map((item) => <span>{item}</span>)}</div>
           </section>
@@ -300,13 +298,12 @@ const relatedIntegrations = inferredIntegrationLinks();
           <section>
             <h2>How EMC2Ops would approach this rollout</h2>
             <p>
-              We start by mapping the current path from inbound request to completed next step. Then
-              we identify the highest-intent workflow, define the minimum viable automation, connect
-              the required systems, and monitor the first live conversations for routing quality.
+              We would start with this operating step: <strong>{stripTags(post.data.system[0])}</strong>
             </p>
             <p>
-              The goal is practical ROI: faster response, fewer missed opportunities, cleaner CRM
-              records, and less manual coordination for leasing and operations teams.
+              The first review should compare <strong>{post.data.metrics[0]}</strong> with
+              <strong> {post.data.metrics.at(-1)}</strong>, then inspect exceptions before the workflow
+              expands to another property, channel, or stage.
             </p>
           </section>
 

@@ -4,7 +4,7 @@ order: 49
 pillar: "AI Front Desk"
 keyword: "Respond.io property management"
 title: "Respond.io's Funding Is a Signal Property Managers Need One Conversation Workflow, Not Five Inboxes"
-seoTitle: "Respond.io Funding and Property Management Conversation Workflows"
+seoTitle: "Respond.io: Property Management Workflows"
 meta: "Respond.io's June 15-16 funding news is a useful signal for property managers: renters increasingly expect one continuous conversation across text, chat, calls, and after-hours follow-up."
 publishedAt: "2026-06-16"
 updatedAt: "2026-06-16"

@@ -4,7 +4,7 @@ order: 51
 pillar: "Leasing Automation"
 keyword: "intent beats volume property management"
 title: "Why 'Intent Beats Volume' Is the Better Leasing Lesson for Property Managers"
-seoTitle: "Intent Beats Volume for Property Management Leasing Workflows"
+seoTitle: "Leasing Workflows: Intent Beats Volume"
 meta: "A fresh real estate AI follow-up story points to a better operating rule for property managers: trigger leasing workflows from real renter intent, not larger outbound lists."
 publishedAt: "2026-06-20"
 updatedAt: "2026-06-20"

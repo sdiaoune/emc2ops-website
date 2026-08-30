@@ -4,7 +4,7 @@ order: 59
 pillar: "Leasing Operations"
 keyword: "property management leasing call routing automation"
 title: "Property Management Leasing Call Routing Automation: Stop Letting Prospects Land in the Wrong Queue"
-seoTitle: "Property Management Leasing Call Routing Automation for Faster Lead Response"
+seoTitle: "Leasing Call Routing for Property Managers"
 meta: "Route leasing calls by property, portfolio, language, after-hours status, and lead intent so prospects reach the right workflow without front-office bottlenecks."
 publishedAt: "2026-06-22"
 updatedAt: "2026-06-22"

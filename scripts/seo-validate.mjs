@@ -24,6 +24,22 @@ function stripTags(value) {
   return value.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
 }
 
+function decodeHtml(value) {
+  return value
+    .replace(/&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&amp;/g, "&");
+}
+
+function schemaTypes(value) {
+  if (Array.isArray(value)) return value.flatMap(schemaTypes);
+  if (!value || typeof value !== "object") return [];
+  return [
+    ...(Array.isArray(value["@type"]) ? value["@type"] : value["@type"] ? [value["@type"]] : []),
+    ...Object.values(value).flatMap(schemaTypes),
+  ];
+}
+
 const htmlFiles = walk(distDir).filter((file) => file.endsWith(".html"));
 const urls = new Set(htmlFiles.map(pageUrl));
 const sitemap = fs.readFileSync(sitemapPath, "utf8");
@@ -55,19 +71,22 @@ const forbiddenVisibleLabels = [
 ];
 const failures = [];
 const warnings = [];
+const pageRecords = [];
+const unsupportedSchemaTypes = new Set(["ContactAction", "PrivacyPolicy", "TermsOfService"]);
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, "utf8");
   const url = pageUrl(file);
-  const title = firstMatch(html, /<title>(.*?)<\/title>/s);
+  const title = decodeHtml(firstMatch(html, /<title>(.*?)<\/title>/s));
   const description = firstMatch(html, /<meta name="description" content="(.*?)"/s);
   const canonical = firstMatch(html, /<link rel="canonical" href="(.*?)"/s);
   const h1s = [...html.matchAll(/<h1\b[^>]*>(.*?)<\/h1>/gs)].map((match) => stripTags(match[1]));
   const hasNoindex = /<meta name="robots" content="[^"]*noindex/i.test(html);
 
   if (!title) failures.push(`${url} is missing a title tag.`);
-  if (title.length > 65) warnings.push(`${url} title is ${title.length} characters.`);
+  if (!hasNoindex && title.length > 70) failures.push(`${url} title is ${title.length} characters; expected at most 70.`);
   if (!description) failures.push(`${url} is missing a meta description.`);
+  if (!hasNoindex && description.length < 100) failures.push(`${url} description is ${description.length} characters; expected at least 100.`);
   if (description.length > 160) warnings.push(`${url} description is ${description.length} characters.`);
   if (!canonical) failures.push(`${url} is missing a canonical tag.`);
   if (h1s.length !== 1) failures.push(`${url} has ${h1s.length} H1 tags.`);
@@ -85,7 +104,10 @@ for (const file of htmlFiles) {
 
   for (const script of html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)) {
     try {
-      JSON.parse(script[1]);
+      const schema = JSON.parse(script[1]);
+      for (const type of schemaTypes(schema)) {
+        if (unsupportedSchemaTypes.has(type)) failures.push(`${url} uses unsupported schema type ${type}.`);
+      }
     } catch {
       failures.push(`${url} has invalid JSON-LD.`);
     }
@@ -102,7 +124,36 @@ for (const file of htmlFiles) {
       failures.push(`${url} links to missing internal URL ${href}.`);
     }
   }
+
+  pageRecords.push({ url, html, hasNoindex });
 }
+
+const indexablePages = pageRecords.filter((page) => !page.hasNoindex && sitemapUrls.has(page.url));
+const inboundSources = new Map(indexablePages.map((page) => [page.url, new Set()]));
+for (const page of indexablePages) {
+  const targets = new Set(
+    [...page.html.matchAll(/<a\b[^>]*href="([^"]+)"/g)]
+      .map((match) => match[1])
+      .filter((href) => href.startsWith("/") && !href.startsWith("//"))
+      .map(normalizeInternalHref)
+      .filter(Boolean),
+  );
+  for (const target of targets) {
+    if (target !== page.url && inboundSources.has(target)) inboundSources.get(target).add(page.url);
+  }
+}
+for (const [url, sources] of inboundSources) {
+  if (sources.size < 2) failures.push(`${url} has only ${sources.size} followed internal-link source(s); expected at least 2.`);
+}
+
+const indexNowKey = "f2b98b61da415ce13aeda36cf5cf4d7a5969a332b27ed7bf05c2f973ed002de6";
+const indexNowKeyPath = path.join(distDir, `${indexNowKey}.txt`);
+if (!fs.existsSync(indexNowKeyPath) || fs.readFileSync(indexNowKeyPath, "utf8").trim() !== indexNowKey) {
+  failures.push("IndexNow verification key is missing from the production build.");
+}
+if (!fs.existsSync(path.join(distDir, "deployment.json"))) failures.push("Production commit marker is missing.");
+if (!fs.existsSync(path.resolve("scripts/submit-indexnow.mjs"))) failures.push("IndexNow submission script is missing.");
+if (!fs.existsSync(path.resolve(".github/workflows/indexnow.yml"))) failures.push("IndexNow deployment workflow is missing.");
 
 if (failures.length > 0) {
   console.error(failures.join("\n"));

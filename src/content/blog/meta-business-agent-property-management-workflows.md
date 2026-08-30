@@ -4,7 +4,7 @@ order: 45
 pillar: "AI Front Desk"
 keyword: "Meta Business Agent property management"
 title: "Meta's Business Agent Rollout Is a Messaging Workflow Signal for Property Managers"
-seoTitle: "Meta Business Agent and Property Management Messaging Workflows"
+seoTitle: "Meta Business Agent: Property Workflows"
 meta: "Meta's Business Agent rollout is a useful signal for property managers: renters increasingly expect fast, conversational messaging, but the real win comes from structured after-hours capture, scheduling, logging, and human escalation."
 publishedAt: "2026-06-13"
 updatedAt: "2026-06-13"

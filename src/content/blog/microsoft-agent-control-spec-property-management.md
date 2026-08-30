@@ -4,7 +4,7 @@ order: 39
 pillar: "AI Front Desk"
 keyword: "Microsoft Agent Control Specification property management"
 title: "Microsoft's Agent Control Spec Is a Better Property Management AI Checklist"
-seoTitle: "Microsoft Agent Control Specification for Property Management Workflows"
+seoTitle: "Microsoft Agent Control for Property Managers"
 meta: "Microsoft's new Agent Control Specification is a useful signal for property managers: AI front desk workflows need approval gates, audit trails, and clear stop conditions before they touch real operations."
 publishedAt: "2026-06-09"
 updatedAt: "2026-06-09"

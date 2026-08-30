@@ -118,6 +118,17 @@ function main() {
     [post.keyword, post.title, post.seoTitle, post.h1, post.problem, post.body].filter(Boolean).join(" "),
   );
 
+  const seoTitle = String(post.seoTitle || post.title || "").trim();
+  if (seoTitle.length > 60) {
+    errors.push(`${post.filePath}: seoTitle has ${seoTitle.length} characters; expected at most 60.`);
+  }
+  if (String(post.meta || "").trim().length < 120) {
+    errors.push(`${post.filePath}: meta description is too short; expected at least 120 characters.`);
+  }
+  if (String(post.meta || "").trim().length > 160) {
+    errors.push(`${post.filePath}: meta description is too long; expected at most 160 characters.`);
+  }
+
   if (bodyWords < 900) errors.push(`${post.filePath}: body has ${bodyWords} words; expected at least 900.`);
   if (blogLinks.length < 6) {
     errors.push(`${post.filePath}: body has ${blogLinks.length} internal blog links; expected at least 6.`);

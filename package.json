@@ -10,6 +10,7 @@
     "generate:blog": "npm run blog:validate && npm run build",
     "lp:validate-live": "node scripts/validate-live-lp-assets.mjs",
     "seo:validate": "node scripts/seo-validate.mjs",
+    "indexnow:dry-run": "node scripts/submit-indexnow.mjs --dry-run",
     "screenshots:capture": "node scripts/capture-pm-ops-money-pages.mjs",
     "screenshots:validate": "node scripts/validate-product-screenshots.mjs",
     "content:preflight": "node scripts/content-preflight.mjs",

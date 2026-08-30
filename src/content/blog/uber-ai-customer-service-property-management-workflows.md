@@ -4,7 +4,7 @@ order: 134
 pillar: "AI Front Desk"
 keyword: "property management leasing response workflow"
 title: "Uber's AI Customer-Service Cuts Are a Leasing Workflow Warning for Property Managers"
-seoTitle: "Uber AI Customer-Service Cuts and Property Management Leasing Workflows"
+seoTitle: "Uber AI Cuts: Leasing Workflow Lessons"
 meta: "Uber's July 22-23 AI customer-service layoff story is a practical warning for property managers: do not treat AI as a support replacement project when the real job is fixing leasing response, front-desk routing, and human escalation."
 publishedAt: "2026-07-27"
 updatedAt: "2026-07-27"

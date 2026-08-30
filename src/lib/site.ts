@@ -339,11 +339,12 @@ export function legalPageSchema({
       organizationSchema(),
       websiteSchema(),
       {
-        "@type": ["WebPage", pageType],
+        "@type": "WebPage",
         "@id": `${url}#webpage`,
         url,
         name: title,
         description,
+        genre: pageType === "PrivacyPolicy" ? "Privacy policy" : "Terms of service",
         dateModified: updatedAt,
         inLanguage: "en-US",
         isPartOf: { "@id": `${siteUrl}/#website` },

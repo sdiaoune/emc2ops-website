@@ -424,7 +424,7 @@ export function integrationSchema(integration: IntegrationPage) {
         description: integration.summary,
         areaServed: "United States",
         potentialAction: {
-          "@type": "ContactAction",
+          "@type": "ScheduleAction",
           target: `${siteUrl}${auditHref(integration.slug, "integration")}`,
           name: integration.auditCta.label,
         },

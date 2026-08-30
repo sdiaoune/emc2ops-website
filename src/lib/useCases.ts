@@ -1310,7 +1310,7 @@ export function useCaseSchema(useCase: UseCasePage) {
         },
         serviceOutput: useCase.metrics,
         potentialAction: {
-          "@type": "ContactAction",
+          "@type": "ScheduleAction",
           target: `${siteUrl}${auditHref(useCase.slug, "use-case")}`,
           name: useCase.auditCta.label,
         },

@@ -4,7 +4,7 @@ order: 146
 pillar: "Leasing Automation"
 keyword: "agent-ready leasing inquiry workflow"
 title: "Meta's Personal Agent Push Is a Leasing Workflow Warning for Property Managers"
-seoTitle: "Meta Personal AI Agents and Leasing Workflows for Property Managers"
+seoTitle: "Meta Personal Agents for Leasing Workflows"
 meta: "Meta's July 29, 2026 personal-agent push is a useful warning for property managers: if renters expect one message to produce a next step, leasing intake, routing, scheduling, and CRM write-back need tighter workflows."
 publishedAt: "2026-08-02"
 updatedAt: "2026-08-02"

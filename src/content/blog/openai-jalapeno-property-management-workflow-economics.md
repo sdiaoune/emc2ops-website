@@ -4,7 +4,7 @@ order: 70
 pillar: "AI Front Desk"
 keyword: "OpenAI Jalapeno property management workflows"
 title: "OpenAI's New Chip Makes 'AI Is Too Expensive for After-Hours Leasing' a Weaker Excuse"
-seoTitle: "OpenAI Jalapeno Chip and Property Management AI Workflow Economics"
+seoTitle: "OpenAI Jalapeno: Workflow Economics"
 meta: "OpenAI and Broadcom's Jalapeno inference chip is a timely signal for property managers: the economics of AI front desk workflows are improving, so slow missed-call recovery and after-hours leasing are harder to defend."
 publishedAt: "2026-06-27"
 updatedAt: "2026-06-27"

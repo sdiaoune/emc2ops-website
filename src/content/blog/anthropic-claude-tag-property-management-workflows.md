@@ -4,7 +4,7 @@ order: 62
 pillar: "AI Front Desk"
 keyword: "Anthropic Claude Tag property management workflows"
 title: "Anthropic's Claude Tag Is a Better Workflow Lesson Than Another Property Management Chatbot"
-seoTitle: "Anthropic Claude Tag and Property Management AI Workflow Design"
+seoTitle: "Claude Tag Workflows for Property Managers"
 meta: "Anthropic's June 23 Claude Tag launch in Slack is a useful signal for property managers: the next step for AI front desks is shared, visible workflow execution with clean handoffs, not private chatbot replies."
 publishedAt: "2026-06-24"
 updatedAt: "2026-06-24"
