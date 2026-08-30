@@ -143,7 +143,7 @@ test("sales assistant routes intent, answers questions, and offers booking", asy
   await expect(panel).toBeVisible();
   await expect(panel).toContainText("EMC2Ops Assistant");
   await expect(panel).toContainText("Find my best first workflow");
-  await expect(panel.locator('a[href="/book-demo/?source=website-chat"]')).toHaveCount(2);
+  await expect(panel.locator('a[href="/book-demo/#source=website-chat"]')).toHaveCount(2);
 
   await panel.locator('[data-chat-action="workflow"]').click();
   await expect(panel).toContainText("Where is work slipping most often today?");
@@ -417,7 +417,7 @@ test("buyer-intent funnel saves the lead, schedules in the same card, and celebr
   });
 });
 
-test("booking page uses workflow and source query context", async ({ page }) => {
+test("booking page uses workflow and source fragment context", async ({ page }) => {
   await page.route("**/api/audit-slots/", async (route) => {
     await route.fulfill({
       contentType: "application/json",
@@ -425,7 +425,7 @@ test("booking page uses workflow and source query context", async ({ page }) => 
     });
   });
 
-  await page.goto("/book-demo/?workflow=lead-to-lease-automation&source=use-case");
+  await page.goto("/book-demo/#workflow=lead-to-lease-automation&source=use-case");
 
   await expect(page.locator("#booking-context")).toBeVisible();
   await expect(page.locator("#booking-context")).toContainText(
@@ -447,7 +447,7 @@ test("booking page records workflow and source context in analytics", async ({ p
     });
   });
 
-  await page.goto("/book-demo/?workflow=lead-to-lease-automation&source=use-case");
+  await page.goto("/book-demo/#workflow=lead-to-lease-automation&source=use-case");
 
   const bookingPageView = await page.evaluate(() => window.dataLayer
     .map((entry) => Array.from(entry))
@@ -504,7 +504,7 @@ test("security deposit automation page preserves evidence and manager approval b
   await expect(page.locator("main")).toContainText("AI may organize evidence and draft neutral, source-linked observations");
   await expect(page.locator("main")).not.toContainText("At Home");
   await expect(
-    page.locator('a[href="/book-demo/?workflow=security-deposit-automation&source=use-case"]').first(),
+    page.locator('a[href="/book-demo/#workflow=security-deposit-automation&source=use-case"]').first(),
   ).toBeVisible();
 
   const schema = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
@@ -566,7 +566,7 @@ test("services, use-case, and integration detail pages render conversion section
       `${publicOrigin}${pageInfo.path}`,
     );
     expect(sitemap).toContain(`<loc>${publicOrigin}${pageInfo.path}</loc>`);
-    await expect(page.locator(`a[href="/book-demo/?workflow=${pageInfo.workflow}&source=${pageInfo.source}"]`).first()).toBeVisible();
+    await expect(page.locator(`a[href="/book-demo/#workflow=${pageInfo.workflow}&source=${pageInfo.source}"]`).first()).toBeVisible();
     await expect(page.locator("main")).toContainText("What EMC2Ops installs");
     await expect(page.locator("main")).toContainText("Before / After");
     await expect(page.locator("main")).toContainText("Best fit / Not a fit");
@@ -574,6 +574,22 @@ test("services, use-case, and integration detail pages render conversion section
     await expect(page.locator("main")).not.toContainText("Search intent this page answers");
     await expect(page.locator("main")).not.toContainText("Cluster keywords");
     await expectNoBrokenInternalLinks(page, request, pageInfo.path);
+  }
+});
+
+test("Ahrefs-flagged service pages publish unique operator briefs", async ({ page }) => {
+  const briefs = [
+    ["/services/maintenance-intake-automation/", "What a dispatch-ready maintenance request actually contains"],
+    ["/services/owner-update-automation/", "The owner update staff should not have to rewrite"],
+    ["/services/ai-front-desk-property-management/", "What happens in a real front-desk conversation"],
+  ];
+
+  for (const [path, heading] of briefs) {
+    await page.goto(path);
+    const brief = page.locator("section").filter({ hasText: heading });
+    await expect(brief.locator("h2")).toHaveText(heading);
+    await expect(brief.locator(".installable-card")).toHaveCount(3);
+    await expect(brief).toContainText("Human boundary:");
   }
 });
 
@@ -682,7 +698,7 @@ test("article page renders SEO, FAQ, breadcrumbs, and related links", async ({ p
   await expect(page.locator(".newsletter-signup h2")).toContainText("Want the next guide");
   await expect(page.locator(".article-cta .btn-primary").first()).toHaveAttribute(
     "href",
-    "/book-demo/?workflow=missed-call-text-back-property-management&source=blog",
+    "/book-demo/#workflow=missed-call-text-back-property-management&source=blog",
   );
   await expect(page.locator(".faq details")).toHaveCount(7);
   await expect(page.locator(".related").filter({ hasText: "Related property management automation guides" }).locator("a")).toHaveCount(5);

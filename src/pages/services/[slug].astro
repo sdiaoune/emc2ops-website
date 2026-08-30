@@ -85,6 +85,25 @@ const workflowIntegrations = workflowIntegrationsForPath(`/services/${service.sl
 
     <InstallablesBlock items={service.installables} intro="Each install is scoped around concrete triggers, captured fields, automations, writebacks, stop rules, and escalation paths." />
 
+    {
+      service.operatorBrief && (
+        <section class="wrap detail-section" aria-labelledby="operator-brief-heading">
+          <p class="eyebrow">Operator brief</p>
+          <h2 id="operator-brief-heading">{service.operatorBrief.title}</h2>
+          <p class="section-lede">{service.operatorBrief.intro}</p>
+          <div class="installable-grid">
+            {service.operatorBrief.scenarios.map((scenario) => (
+              <article class="installable-card">
+                <h3>{scenario.title}</h3>
+                <p>{scenario.description}</p>
+              </article>
+            ))}
+          </div>
+          <p><strong>Human boundary:</strong> {service.operatorBrief.boundary}</p>
+        </section>
+      )
+    }
+
     {workflowIntegrations.length > 0 && <WorkflowIntegrationsBlock items={workflowIntegrations} />}
 
     <section id="workflow" class="wrap detail-section">

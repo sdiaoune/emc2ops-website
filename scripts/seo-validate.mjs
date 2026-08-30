@@ -40,6 +40,12 @@ function schemaTypes(value) {
   ];
 }
 
+function schemaNodes(value) {
+  if (Array.isArray(value)) return value.flatMap(schemaNodes);
+  if (!value || typeof value !== "object") return [];
+  return [value, ...Object.values(value).flatMap(schemaNodes)];
+}
+
 const htmlFiles = walk(distDir).filter((file) => file.endsWith(".html"));
 const urls = new Set(htmlFiles.map(pageUrl));
 const sitemap = fs.readFileSync(sitemapPath, "utf8");
@@ -69,8 +75,12 @@ const forbiddenVisibleLabels = [
   "Search cluster strategy",
   "query clusters",
 ];
+const protectedOperatorBriefs = new Map([
+  ["/services/maintenance-intake-automation/", "What a dispatch-ready maintenance request actually contains"],
+  ["/services/owner-update-automation/", "The owner update staff should not have to rewrite"],
+  ["/services/ai-front-desk-property-management/", "What happens in a real front-desk conversation"],
+]);
 const failures = [];
-const warnings = [];
 const pageRecords = [];
 const unsupportedSchemaTypes = new Set(["ContactAction", "PrivacyPolicy", "TermsOfService"]);
 
@@ -87,12 +97,19 @@ for (const file of htmlFiles) {
   if (!hasNoindex && title.length > 70) failures.push(`${url} title is ${title.length} characters; expected at most 70.`);
   if (!description) failures.push(`${url} is missing a meta description.`);
   if (!hasNoindex && description.length < 100) failures.push(`${url} description is ${description.length} characters; expected at least 100.`);
-  if (description.length > 160) warnings.push(`${url} description is ${description.length} characters.`);
+  if (description.length > 160) failures.push(`${url} description is ${description.length} characters; expected at most 160.`);
   if (!canonical) failures.push(`${url} is missing a canonical tag.`);
   if (h1s.length !== 1) failures.push(`${url} has ${h1s.length} H1 tags.`);
+  if (/href="\/book-demo\/\?/i.test(html)) {
+    failures.push(`${url} links to a crawlable booking query variant; use fragment attribution instead.`);
+  }
   if (!hasNoindex && !sitemapUrls.has(url)) failures.push(`${url} is indexable but missing from sitemap.`);
   for (const label of forbiddenVisibleLabels) {
     if (stripTags(html).includes(label)) failures.push(`${url} exposes internal SEO label "${label}".`);
+  }
+  const protectedOperatorBrief = protectedOperatorBriefs.get(url);
+  if (protectedOperatorBrief && (!stripTags(html).includes(protectedOperatorBrief) || !stripTags(html).includes("Human boundary:"))) {
+    failures.push(`${url} is missing its protected operator brief.`);
   }
   if (url.startsWith("/blog/") && url !== "/blog/" && !moneyPageUrls.some((moneyUrl) => html.includes(`href="${moneyUrl}"`))) {
     failures.push(`${url} does not link to a service, use-case, or integration money page.`);
@@ -107,6 +124,20 @@ for (const file of htmlFiles) {
       const schema = JSON.parse(script[1]);
       for (const type of schemaTypes(schema)) {
         if (unsupportedSchemaTypes.has(type)) failures.push(`${url} uses unsupported schema type ${type}.`);
+      }
+      for (const node of schemaNodes(schema)) {
+        const types = Array.isArray(node["@type"]) ? node["@type"] : [node["@type"]];
+        if (types.includes("Dataset") && !node.description) {
+          failures.push(`${url} declares a Dataset without the description Google requires.`);
+        }
+        if (types.includes("SoftwareApplication")) {
+          const qualifyingFields = ["offers", "aggregateRating", "applicationCategory", "operatingSystem"].filter(
+            (field) => node[field],
+          );
+          if (qualifyingFields.length < 2) {
+            failures.push(`${url} declares an incomplete SoftwareApplication rich-result item.`);
+          }
+        }
       }
     } catch {
       failures.push(`${url} has invalid JSON-LD.`);
@@ -157,10 +188,6 @@ if (!fs.existsSync(path.resolve("scripts/submit-indexnow.mjs"))) failures.push("
 if (failures.length > 0) {
   console.error(failures.join("\n"));
   process.exit(1);
-}
-
-if (warnings.length > 0) {
-  console.warn(warnings.join("\n"));
 }
 
 console.log(`SEO validation passed for ${htmlFiles.length} HTML pages.`);

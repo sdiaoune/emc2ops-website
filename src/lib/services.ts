@@ -9,6 +9,12 @@ export interface ServicePage {
   description: string;
   summary: string;
   auditFocus: string;
+  operatorBrief?: {
+    title: string;
+    intro: string;
+    scenarios: Array<{ title: string; description: string }>;
+    boundary: string;
+  };
   auditCta: AuditCta;
   installables: InstallableItem[];
   beforeAfter: BeforeAfter;
@@ -276,6 +282,30 @@ export const servicePages: ServicePage[] = [
       "EMC2Ops installs maintenance intake workflows that gather the issue, urgency, access notes, supported photos or video, and resident availability before routing a usable work-order record.",
     auditFocus:
       "We review request channels, required work-order details, emergency indicators, access notes, photo handling, vendor routing, and approval rules.",
+    operatorBrief: {
+      title: "What a dispatch-ready maintenance request actually contains",
+      intro:
+        "A resident message that says “the sink is leaking” is not yet a usable work order. The coordinator still needs the exact fixture, when the leak started, whether water is actively spreading, access permission, pets, prior repair history, and evidence the vendor can review before accepting the job.",
+      scenarios: [
+        {
+          title: "The 10:47 p.m. no-cooling message",
+          description:
+            "The workflow checks the unit and property, asks for the indoor temperature and symptoms, compares the answer with the approved emergency policy, and routes the request to the on-call path or the next-business-day queue. It does not invent an emergency classification.",
+        },
+        {
+          title: "The photo that changes the route",
+          description:
+            "A clear image can separate a dripping supply line from water around an appliance, but staff still control the diagnosis and dispatch rule. The useful automation step is attaching the right media to the right record so the coordinator and vendor see the same evidence.",
+        },
+        {
+          title: "The access note a vendor needs",
+          description:
+            "“Anytime Tuesday” is incomplete when a resident has a dog, requires a call before entry, or has not granted permission. A good intake path records those constraints before scheduling so the handoff does not create another round of calls.",
+        },
+      ],
+      boundary:
+        "Maintenance automation should gather facts, apply documented routing rules, and make ownership visible. Staff retain control over emergency decisions, habitability questions, repair approval, vendor choice, resident disputes, and any request where the evidence conflicts.",
+    },
     auditCta: {
       label: "Book my maintenance intake audit",
       title: "Want cleaner maintenance requests before staff touch them?",
@@ -498,6 +528,30 @@ export const servicePages: ServicePage[] = [
       "EMC2Ops helps property teams send proactive owner updates from real workflow data instead of rewriting the same status notes manually.",
     auditFocus:
       "We identify repeatable owner-update moments, the source data behind them, which messages need approval, and how completed updates should be logged.",
+    operatorBrief: {
+      title: "The owner update staff should not have to rewrite",
+      intro:
+        "Most owner updates are assembled from facts the team already recorded: the last leasing activity, the repair status, the approval still needed, the person responsible, and the promised next check-in. The waste comes from finding those facts again and turning them into a readable message every time an owner asks.",
+      scenarios: [
+        {
+          title: "A vacant unit with active leasing",
+          description:
+            "An owner-ready note can state the inquiry count, tours completed, applications in progress, current asking rent, and next follow-up date. It should not claim a likely lease or recommend a pricing change unless the responsible manager has approved that judgment.",
+        },
+        {
+          title: "A repair waiting on approval",
+          description:
+            "The useful update names the issue, evidence received, quote amount, approval threshold, resident impact, and decision deadline. The workflow can prepare and log that summary; the owner or manager still makes the spending decision.",
+        },
+        {
+          title: "A closeout that slipped",
+          description:
+            "When a vendor misses the promised completion date, the next message should explain what changed, who is following up, and when the owner will hear back. A generic “still in progress” email hides the operating problem instead of reducing it.",
+        },
+      ],
+      boundary:
+        "Owner-update automation is best for verified status and agreed next steps. Financial interpretation, disputes, complaints, legal questions, material delays, and relationship-sensitive explanations remain review-required messages.",
+    },
     auditCta: {
       label: "Book my owner update audit",
       title: "Want owner updates without rewriting status notes?",
@@ -698,6 +752,30 @@ export const servicePages: ServicePage[] = [
       "EMC2Ops builds a practical AI front desk around the workflows your property team already runs every day.",
     auditFocus:
       "We choose the first front-desk workflow, then map voice or SMS triggers, captured context, staff handoff rules, CRM writebacks, and monitoring.",
+    operatorBrief: {
+      title: "What happens in a real front-desk conversation",
+      intro:
+        "An AI front desk earns its place when the conversation leaves the next person with a usable record. A fast answer alone is not enough. The workflow needs to know what happened, which property is involved, what the visitor is trying to do, who owns the exception, and which event ends automation.",
+      scenarios: [
+        {
+          title: "A renter calls after the leasing office closes",
+          description:
+            "The front desk can identify the community, collect move timing and unit interest, offer approved tour availability, and create the guest-card or CRM task. Pricing exceptions, accommodation requests, and questions about screening criteria go to staff with the conversation context attached.",
+        },
+        {
+          title: "A resident reports water on the floor",
+          description:
+            "The system should switch out of the leasing path, verify the unit and contact information, collect concise maintenance facts, and activate the property’s documented escalation rule. It should never improvise safety instructions or decide that an emergency is routine.",
+        },
+        {
+          title: "An owner asks why a repair is delayed",
+          description:
+            "The front desk can acknowledge the request and surface the recorded status, but a relationship-sensitive explanation may need the portfolio manager. The handoff should include the open work order, last vendor update, pending approval, and promised response time.",
+        },
+      ],
+      boundary:
+        "The right first release is one narrow conversation with a defined record and handoff—not a universal bot. EMC2Ops measures completion, exceptions, staff takeover, and writeback quality before adding another channel or audience.",
+    },
     auditCta: {
       label: "Book my AI front desk audit",
       title: "Want an AI front desk that starts with one useful workflow?",

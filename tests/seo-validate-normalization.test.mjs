@@ -4,7 +4,7 @@ import { normalizeInternalHref } from "../scripts/lib/normalize-internal-href.mj
 
 test("normalizes attributed internal booking links to their generated pathname", () => {
   assert.equal(
-    normalizeInternalHref("/book-demo/?workflow=leasing-follow-up&amp;source=service"),
+    normalizeInternalHref("/book-demo/#workflow=leasing-follow-up&amp;source=service"),
     "/book-demo/",
   );
 });

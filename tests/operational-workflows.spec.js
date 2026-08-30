@@ -94,7 +94,7 @@ for (const useCase of [
       useCase.screenshotAlt,
     );
     await expect(
-      page.locator(`a[href="/book-demo/?workflow=${useCase.workflow}&source=use-case"]`).first(),
+      page.locator(`a[href="/book-demo/#workflow=${useCase.workflow}&source=use-case"]`).first(),
     ).toBeVisible();
 
     for (const copy of useCase.requiredCopy) {
@@ -116,7 +116,7 @@ test("new use cases are discoverable and preserve booking context", async ({ pag
   await page.route("**/api/audit-slots/", async (route) => {
     await route.fulfill({ contentType: "application/json", body: JSON.stringify({ slots: [] }) });
   });
-  await page.goto("/book-demo/?workflow=resident-owner-vendor-communication-automation&source=use-case");
+  await page.goto("/book-demo/#workflow=resident-owner-vendor-communication-automation&source=use-case");
   await expect(page.locator("#workflow-context")).toHaveValue("resident-owner-vendor-communication-automation");
   await expect(page.locator("#source-context")).toHaveValue("use-case");
   await expect(page.locator("#audit-form [name=workflowProblem]")).toHaveValue("Owner or vendor updates");

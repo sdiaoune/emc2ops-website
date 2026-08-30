@@ -25,4 +25,4 @@ export interface WorkflowTemplate {
 }
 
 export const auditHref = (workflow: string, source: string) =>
-  `/book-demo/?workflow=${encodeURIComponent(workflow)}&source=${encodeURIComponent(source)}`;
+  `/book-demo/#workflow=${encodeURIComponent(workflow)}&source=${encodeURIComponent(source)}`;

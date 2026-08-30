@@ -408,9 +408,9 @@ export function integrationSchema(integration: IntegrationPage) {
         description: integration.description,
         isPartOf: { "@id": `${siteUrl}/#website` },
         about: {
-          "@type": "SoftwareApplication",
+          "@type": "Thing",
           name: integration.name,
-          applicationCategory: "Property management software",
+          description: `${integration.name} property management software`,
         },
         breadcrumb: { "@id": `${url}#breadcrumb` },
         inLanguage: "en-US",

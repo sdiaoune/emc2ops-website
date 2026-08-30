@@ -179,9 +179,11 @@ const {
   const selectedSlotSummary = document.querySelector("#selected-slot-summary");
   const selectedSlotLabel = document.querySelector("#selected-slot-label");
   const workflowProblemSelect = auditForm?.querySelector("[name='workflowProblem']");
-  const bookingParams = new URLSearchParams(window.location.search);
-  const requestedWorkflow = bookingParams.get("workflow") || auditForm?.dataset.workflow || "";
-  const requestedSource = bookingParams.get("source") || auditForm?.dataset.source || "";
+  const bookingQueryParams = new URLSearchParams(window.location.search);
+  const bookingHashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+  const bookingParam = (name) => bookingHashParams.get(name) || bookingQueryParams.get(name) || "";
+  const requestedWorkflow = bookingParam("workflow") || auditForm?.dataset.workflow || "";
+  const requestedSource = bookingParam("source") || auditForm?.dataset.source || "";
   const visitorTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
   const INITIAL_VISIBLE_SLOT_COUNT = 8;
   const SLOT_BATCH_SIZE = 8;

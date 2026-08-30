@@ -36,7 +36,7 @@ const description = story.summary;
     <section class="wrap detail-section"><h2>Measured results</h2><div class="authority-grid">{story.metrics.map((metric) => <article class="authority-card"><h3>{metric.label}</h3><p><strong>Baseline:</strong> {metric.baseline}</p><p><strong>Result:</strong> {metric.result}</p><p>{metric.definition}</p></article>)}</div></section>
     <section class="wrap split-section"><blockquote class="notice-card"><strong>Client feedback</strong><p>“{story.quote}”</p><cite>{story.quoteAttribution}</cite></blockquote><div><h2>Integrations</h2><p>{story.integrations.join(", ")}</p></div></section>
     <section class="wrap split-section"><div><h2>Methodology</h2><ul>{story.methodology.map((item) => <li>{item}</li>)}</ul></div><div><h2>Limitations</h2><ul>{story.limitations.map((item) => <li>{item}</li>)}</ul></div></section>
-    <section class="wrap detail-section"><div class="conversion-cta"><div><h2>Define your baseline before automating.</h2><p>EMC2Ops starts with one measurable operating problem and a documented exception path.</p></div><div class="conversion-cta-actions"><a class="btn btn-primary" href="/book-demo/?workflow=customer-story&source=customers">Book a consultation</a></div></div></section>
+    <section class="wrap detail-section"><div class="conversion-cta"><div><h2>Define your baseline before automating.</h2><p>EMC2Ops starts with one measurable operating problem and a documented exception path.</p></div><div class="conversion-cta-actions"><a class="btn btn-primary" href="/book-demo/#workflow=customer-story&source=customers">Book a consultation</a></div></div></section>
   </main>
   <SiteFooter />
 </SiteLayout>

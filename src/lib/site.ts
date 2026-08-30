@@ -238,7 +238,14 @@ export function blogIndexSchema(posts: BlogPost[] = []) {
         inLanguage: "en-US",
         hasPart: [
           { "@type": "DataFeed", name: "EMC2Ops RSS feed", url: absoluteUrl("/feed.xml") },
-          { "@type": "Dataset", name: "EMC2Ops blog post index", url: absoluteUrl("/blog/posts.json") },
+          {
+            "@type": "Dataset",
+            name: "EMC2Ops blog post index",
+            description: "A machine-readable index of EMC2Ops property management automation articles, including titles, summaries, dates, topics, and canonical URLs.",
+            url: absoluteUrl("/blog/posts.json"),
+            creator: { "@id": `${siteUrl}/#organization` },
+            license: absoluteUrl("/terms/"),
+          },
         ],
       },
       posts.length > 0 && {

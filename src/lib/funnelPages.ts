@@ -14,7 +14,7 @@ export const funnelPages = [
     volume: 1900,
     eyebrow: "Property management systems, without the operational gaps",
     headline: "A property management system that closes the gaps between calls, tasks, and follow-up.",
-    description: "Keep the PMS you already use. EMC2Ops connects missed calls, leasing follow-up, maintenance intake, owner updates, vendor handoffs, and CRM writeback—with human review where it matters.",
+    description: "Keep your current PMS while EMC2Ops connects missed calls, leasing, maintenance, owner updates, vendor handoffs, and CRM writeback with human review.",
   },
   {
     slug: "property-management-application",
@@ -62,7 +62,7 @@ export const funnelPages = [
     volume: 480,
     eyebrow: "Tools for the workflows that drain your week",
     headline: "Property management tools that give your team hours back.",
-    description: "Start with one expensive workflow—missed calls, slow leasing response, maintenance intake, owner reporting, or vendor dispatch—and prove the result before expanding.",
+    description: "Start with one costly workflow—missed calls, leasing response, maintenance intake, owner reporting, or vendor dispatch—and prove the result first.",
   },
   {
     slug: "real-estate-management-tools",
