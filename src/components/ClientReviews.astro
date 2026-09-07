@@ -9,12 +9,43 @@ import "../styles/client-reviews.css";
 
 interface Props {
   id?: string;
+  variant?: "default" | "homepage";
 }
 
-const { id = "client-reviews" } = Astro.props;
+const { id = "client-reviews", variant = "default" } = Astro.props;
 const headingId = `${id}-heading`;
+const quotedReview = clientReviews.find((review) => review.feedbackKind === "quote");
+const summaries = clientReviews.filter((review) => review.feedbackKind === "summary");
+// Paragraph breaks add no words or punctuation to the original quotation.
+const quoteParagraphs = (quotedReview?.feedback.match(/[^.!?]+[.!?]+(?:\s|$)|[^.!?]+$/g) ?? []).reduce<string[]>((paragraphs, sentence) => {
+  const text = sentence.trim();
+  const previous = paragraphs.at(-1);
+  if (previous && previous.length + text.length < 180) paragraphs[paragraphs.length - 1] = `${previous} ${text}`;
+  else paragraphs.push(text);
+  return paragraphs;
+}, []);
 ---
 
+{variant === "homepage" ? (
+<section class="client-reviews-section home-section homepage-reviews" id={id} aria-labelledby={headingId}>
+  <span id="reviews" class="anchor-alias"></span>
+  <div class="wrap">
+    <div class="section-intro"><h2 id={headingId}>What do clients say about the work?</h2><p>These clients hired Soya and EMC2Ops for a property management application, scheduling, and systems integration. Their feedback describes the work, not measured leasing gains.</p></div>
+    <div class="homepage-reviews-grid">
+      {quotedReview && <article class="client-review-card quoted-review" data-feedback-kind="quote">
+        <blockquote>{quoteParagraphs.map((paragraph) => <p>{paragraph}</p>)}</blockquote>
+        <div class="review-attribution"><strong>{quotedReview.client}</strong><span>{quotedReview.organization}</span></div>
+        <a class="text-link" href="/about/">About Soya and EMC2Ops <span aria-hidden="true">→</span></a>
+      </article>}
+      <div class="review-summaries">{summaries.map((review) => <article class="client-review-card summary-review" data-feedback-kind="summary">
+        <h3>{review.client}</h3><div class="review-project">{review.project}</div>
+        <p>{review.feedback}</p><small>Review summary · {review.location}</small>
+      </article>)}</div>
+    </div>
+    <div class="review-totals" aria-label={`${clientReviewAverage.toFixed(1)} out of 5 stars across ${clientReviewRatingCount} rated reviews; ${clientReviewCount} client testimonials total`}><span aria-hidden="true">★</span> <strong>{clientReviewAverage.toFixed(1)}</strong> · {clientReviewRatingCount} rated reviews · {clientReviewCount} testimonials</div>
+  </div>
+</section>
+) : (
 <section class="client-reviews-section" id={id} aria-labelledby={headingId}>
   <div class="wrap">
     <div class="client-reviews-head">
@@ -77,3 +108,4 @@ const headingId = `${id}-heading`;
     </div>
   </div>
 </section>
+)}

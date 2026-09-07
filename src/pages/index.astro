@@ -5,565 +5,262 @@ import SiteLayout from "../layouts/SiteLayout.astro";
 import ClientReviews from "../components/ClientReviews.astro";
 import ProductScreenshot from "../components/ProductScreenshot.astro";
 import { homepageBuyerFaqs, homepageSetupFaqs } from "../lib/homepageFaq";
+import { homepageMetadata } from "../lib/homepageContent";
+import { customerLaunchInputs, implementationDeliverables, launchApprovalChecks, rolloutSteps } from "../lib/homepageImplementation";
 import { productScreenshotForPath } from "../lib/productScreenshots";
 import { absoluteUrl, defaultSocialImage, homeSchema } from "../lib/site";
-import "../styles/landing.css";
+import "../styles/homepage.css";
 
-const title = "EMC2Ops | Missed Leasing Call Recovery for Property Managers";
-const description = "EMC2Ops installs missed leasing call recovery workflows for property managers: instant SMS text-back, renter qualification, routing, and CRM logging.";
 const productScreenshot = productScreenshotForPath("/");
+const recoverySteps = [
+  ["Missed call", "Your phone provider records an unanswered leasing call and starts the response process."],
+  ["Text reply", "With required messaging consent in place, the caller receives a branded text and an approved question."],
+  ["Renter details", "The assistant asks about property interest, move date, budget, pets, and tour preferences."],
+  ["Staff assignment", "Your chosen staff member receives the request. A person handles sensitive questions and uncertain answers."],
+  ["Record updated", "The connected system saves the conversation summary, status, responsible person, and next action."],
+];
 ---
-
 <SiteLayout
-  title={title}
-  description={description}
+  pageClass="homepage"
+  title={homepageMetadata.title}
+  description={homepageMetadata.description}
   canonical={absoluteUrl("/")}
   image={absoluteUrl(defaultSocialImage)}
-  imageAlt="EMC2Ops property management automation workflow for capturing after-hours leasing leads."
+  imageAlt="PM Ops dashboard illustrating custom property management automation."
   schema={homeSchema()}
   author="EMC2Ops"
 >
   <SiteHeader variant="landing" />
-<main>
-    <section class="hero">
+  <main id="main-content">
+    <section class="hero" aria-labelledby="home-heading">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <div class="eyebrow">Missed leasing call recovery for property managers</div>
-          <h1>Turn missed leasing calls into text-back, qualification, and routed next steps.</h1>
-          <p class="lead">EMC2Ops installs one measurable workflow first: when a renter call is missed after hours, during tours, or while the team is busy, they get an immediate SMS path and your team gets a clean summary.</p>
+          <h1 id="home-heading">Custom automations for property management companies.</h1>
+          <p class="lead">Already know what you want to automate? Tell us the workflow that’s slowing your team down. We design, build, integrate, test, and maintain the automation for you—around your existing processes and software.</p>
+          <ul class="hero-takeaways" aria-label="Your implementation partner">
+            <li>No developers to hire.</li><li>No automation platform to learn.</li><li>No DIY implementation.</li>
+          </ul>
           <div class="hero-actions">
-            <a href="/book-demo/" class="btn btn-primary">Book a 15-minute consultation</a>
-            <a href="#demo" class="btn btn-secondary">Watch the Demo</a>
+            <a href="/book-demo/#workflow=custom-property-management-automation&amp;source=homepage" class="btn btn-primary">Book a 15-minute consultation</a>
+            <a href="#use-cases" class="demo-link">See automation examples</a>
           </div>
+          <p class="consultation-note">Bring your workflow. We’ll outline a plan to build your solution.</p>
         </div>
-
-        <div class="dashboard product-hero-media">
+        <div class="product-hero-media">
           <ProductScreenshot screenshot={productScreenshot} variant="hero" priority useDesktopOnMobile />
-        </div>
-
-        <div class="offer-strip" aria-label="Core EMC2Ops services">
-          <div class="offer-chip"><span class="icon">01</span><div><strong>Immediate text-back</strong><span>Missed callers get a branded SMS in seconds</span></div></div>
-          <div class="offer-chip"><span class="icon">02</span><div><strong>Renter qualification</strong><span>Move timing, property fit, budget, pets, and intent captured</span></div></div>
-          <div class="offer-chip"><span class="icon">03</span><div><strong>Team and CRM routing</strong><span>Showing requests, transcripts, summaries, and tasks sent to the right place</span></div></div>
-        </div>
-        <div class="proof">
-          <span><i class="dot"></i> Built around your current phone/SMS and CRM stack</span>
-          <span><i class="dot"></i> Scoped around one measurable first workflow</span>
-          <span><i class="dot"></i> Human handoff stays in the team’s control</span>
+          <dl class="screenshot-callouts">
+            <div><dt>Conversation:</dt>{" "}<dd>Read the request and its summary.</dd></div>
+            <div><dt>Status:</dt>{" "}<dd>See which items need attention.</dd></div>
+            <div><dt>Assigned owner:</dt>{" "}<dd>See the staff member responsible for follow-up.</dd></div>
+          </dl>
         </div>
       </div>
     </section>
 
     <aside class="customer-results" aria-label="Customer operating scale">
       <dl class="wrap customer-results-list">
-        <div class="customer-result">
-          <dt>3,000+</dt>
-          <dd>Units served <span>Across 200+ properties</span></dd>
-        </div>
-        <div class="customer-result">
-          <dt>300+</dt>
-          <dd>Security deposits processed per month</dd>
-        </div>
-        <div class="customer-result">
-          <dt>500+</dt>
-          <dd>Work order tickets processed per month</dd>
-        </div>
+        <div class="customer-result"><dt>3,000+</dt> <dd>Units served <span>Across 200+ properties</span></dd></div>
+        <div class="customer-result"><dt>300+</dt> <dd>Security deposits processed per month</dd></div>
+        <div class="customer-result"><dt>500+</dt> <dd>Work order tickets processed per month</dd></div>
       </dl>
+      <div class="wrap scale-caption">Operating-scale figures, not measured increases in conversions or time saved.</div>
     </aside>
 
-    <section id="overview">
+    <section id="services" class="home-section" aria-labelledby="offer-heading">
+      <span id="offer" class="anchor-alias"></span><span id="pricing" class="anchor-alias"></span>
+      <div class="wrap offer-layout">
+        <div class="section-intro"><h2 id="offer-heading">One partner. Your complete automation.</h2><p>From workflow design to ongoing maintenance, we build around the way your team works. One scoped engagement covers the work your solution needs.</p><a class="text-link" href="/services/custom-property-management-automation/">Explore custom automation implementation</a></div>
+        <ul class="offer-features" role="list">
+          <li><h3>Design and build</h3><p>Workflow mapping, approved voice and text responses, intake, qualification, follow-up, scheduling, and staff routing built for your process.</p></li>
+          <li><h3>Connect your systems</h3><p>Authorized integrations, customer-record updates, email and text notifications, and reporting connect the tools your team already uses.</p></li>
+          <li><h3>Test and launch</h3><p>End-to-end testing, approval gates, documentation, team handoff, and a 30-day post-launch optimization window support the agreed rollout.</p></li>
+          <li><h3>Maintain and improve</h3><p>Monitoring, maintenance, support, reporting improvements, and additional automations are included as defined in your ongoing scope.</p></li>
+        </ul>
+        <p class="offer-scope">Your written proposal defines the capabilities, systems, usage costs, and ongoing work included. There is no one-size-fits-all package or unlimited-work promise.</p>
+      </div>
+    </section>
+
+    <section id="use-cases" class="home-section home-section-muted" aria-labelledby="examples-heading">
       <div class="wrap">
-        <div class="section-head">
-          <h2>What you are buying: an installed property management automation system.</h2>
-          <p>We do the implementation work: workflow mapping, AI prompts, SMS and voice logic, CRM connections, appointment routing, reporting, testing, and post-launch optimization.</p>
+        <div class="section-intro"><h2 id="examples-heading">What do you want to automate?</h2><p>These are examples, not a limit on what you can bring us. Services explain what we build; use cases show how an operational problem is solved.</p></div>
+        <div class="table-scroll" role="region" aria-label="Property management automation examples" tabindex="0">
+          <table class="comparison-table workflow-table">
+            <caption>Five workflow areas, built around your processes</caption>
+            <thead><tr><th scope="col">Workflow</th><th scope="col">Example</th><th scope="col">Explore</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Leasing and follow-up</th><td>Inquiry to qualified renter, confirmed showing, and assigned next task.</td><td><a href="/use-cases/lead-to-lease-automation/">Explore leasing automation</a></td></tr>
+              <tr><th scope="row">Maintenance and vendors</th><td>Request intake, staff review, vendor coordination, and completion records.</td><td><a href="/use-cases/maintenance-request-to-completion/">Explore maintenance workflows</a></td></tr>
+              <tr><th scope="row">Resident and owner communication</th><td>Approved updates, reminders, and requests routed to the responsible person.</td><td><a href="/use-cases/resident-owner-vendor-communication-automation/">Explore communication workflows</a></td></tr>
+              <tr><th scope="row">CRM and records</th><td>Clean customer relationship management records with reliable handoffs and next actions.</td><td><a href="/use-cases/real-estate-crm-follow-up-mess/">Explore record automation</a></td></tr>
+              <tr><th scope="row">Security deposits</th><td>Evidence collection, charge review, approved disposition, and a recorded handoff.</td><td><a href="/use-cases/security-deposit-automation/">Explore deposit workflows</a></td></tr>
+            </tbody>
+          </table>
         </div>
+        <nav class="service-paths" aria-label="Explore all automation options"><a href="/services/">See what we build</a><a href="/use-cases/">See how workflows work</a><a href="/services/security-deposit-automation/">Security deposit implementation</a></nav>
+      </div>
+    </section>
 
-        <div class="cards">
-          <article class="card">
-            <span class="icon">1</span>
-            <h3>AI front desk setup</h3>
-            <p>We configure AI voice and SMS intake that answers common questions, collects renter details, handles missed calls, and escalates when a human should take over.</p>
-          </article>
+    <section id="overview" class="home-section" aria-labelledby="workflow-heading">
+      <span id="pain" class="anchor-alias"></span>
+      <div class="wrap">
+        <div class="section-intro">
+          <h2 id="workflow-heading">One example: recovering a missed leasing call</h2>
+          <p>Your phone provider reports the missed call; the configured process checks permission and sends the first text. Staff receive a summary and the next task.</p>
+        </div>
+        <ol class="workflow-steps" role="list" aria-label="Five-step missed-call recovery process">
+          {recoverySteps.map(([title, body]) => <li><h3>{title}</h3><p>{body}</p></li>)}
+        </ol>
+        <p class="process-terms">SMS means short message service: a text message. An artificial intelligence (AI) assistant uses your approved questions to gather details; it does not make leasing decisions.</p>
+        <div id="demo" class="demo-showcase">
+          <figure class="demo-video">
+            <video controls playsinline preload="metadata" poster="/social-assets/emc2ops-missed-call-recovery-demo-landing-poster.jpg" aria-label="EMC2Ops missed-call recovery product demonstration">
+              <source src="/social-assets/emc2ops-missed-call-recovery-demo-landing.mp4" type="video/mp4" />
+              Your browser does not support embedded video. <a href="/social-assets/emc2ops-missed-call-recovery-demo-landing.mp4">Download the demonstration.</a>
+            </video>
+            <figcaption>See the workflow in action. This demonstration uses fictional renter data.</figcaption>
+          </figure>
+          <div class="conversation-example">
+            <h3>A sample renter conversation</h3>
+            <p class="example-label">Fictional example for illustration—not an actual customer conversation.</p>
+            <ol class="conversation-messages">
+              <li><span>Property team:</span>{" "}<p>Thanks for calling Maple Row Apartments. What move-in date do you have in mind? Reply STOP to opt out.</p></li>
+              <li class="renter-message"><span>Renter:</span>{" "}<p>October 1. I’m looking for a two-bedroom apartment.</p></li>
+              <li><span>Property team:</span>{" "}<p>Thanks. What’s your monthly budget, and would you prefer a weekday or weekend tour? I’ll pass your request to the leasing team.</p></li>
+            </ol>
+            <div class="example-capture"><strong>Details captured:</strong> Move date: October 1. Bedrooms: two. Budget and tour preference: awaiting reply.</div>
+            <p class="example-note">Staff confirm availability and the tour. The automated reply does not promise a unit, approve an applicant, or book an unconfirmed appointment.</p>
+          </div>
+        </div>
+        <details id="proof" class="measurement-block example-details"><summary>Measurement definitions for this example</summary>
+          <h3>How will you measure the result?</h3>
+          <p>Review response time, two-way replies, and record completeness for the same date range. Keep sent messages, renter replies, confirmed tours, and signed leases separate.</p>
+          <dl class="measurement-list">
+            <div><dt>Reply target: 10 seconds.</dt>{" "}<dd>Time from the missed-call event until the messaging provider accepts the text. This is a target, not a delivery guarantee.</dd></div>
+            <div><dt>Recovered inquiry:</dt>{" "}<dd>One unique missed-call inquiry where the renter replies to the text. Sending a text without a reply does not count.</dd></div>
+            <div><dt>Record completeness:</dt>{" "}<dd>The percentage of reviewed records with all required renter details, a responsible staff member, and a next action.</dd></div>
+          </dl>
+          <p id="message-status" class="source-note"><strong>Acceptance is not delivery.</strong> The sending service has received the request; a delivery receipt reports a later carrier or handset status. Neither confirms that the renter read the text. See <a href="https://www.twilio.com/docs/messaging/api/message-resource#message-status-values">Twilio’s message-status definitions</a>.</p>
+          <div class="measurement-example">
+            <h3>How would a recovery rate be calculated?</h3>
+            <p>Divide unique inquiries with a two-way reply by unique missed-call inquiries in the same reporting period. Count repeat calls about the same inquiry only once.</p>
+            <p><strong>Fictional calculation, not client results:</strong> 8 two-way replies from 20 unique missed-call inquiries = 40% recovery. This example is not a forecast or target.</p>
+          </div>
+          <a href="/resources/missed-call-recovery-roi-calculator/" class="text-link">Estimate results using your own call data <span aria-hidden="true">→</span></a>
+        </details>
+        <aside id="messaging-safeguards" class="messaging-safeguards" aria-labelledby="messaging-heading"><details class="example-details"><summary id="messaging-heading">Messaging safeguards for voice and text workflows</summary>
+          <h3>What must be in place before sending texts?</h3>
+          <p>Your business approves permission to text, how people stop messages, and the number’s registration requirements. EMC2Ops configures and tests those instructions before launch.</p>
+          <dl class="safeguard-terms">
+            <div><dt>Consent:</dt>{" "}<dd>The person agrees to messages from your business for the stated purpose. A missed call is not blanket permission for marketing texts.</dd></div>
+            <div><dt>Opt-out:</dt>{" "}<dd>A request such as STOP ends further automated follow-up. The process records the request so it is not restarted by another step.</dd></div>
+            <div><dt>Carrier registration:</dt>{" "}<dd>Business and message details submitted for review through the messaging provider. Requirements vary with the number type and destination.</dd></div>
+          </dl>
+          <p class="source-note">Reference the <a href="https://www.twilio.com/en-us/legal/messaging-policy">Twilio messaging policy</a>, its <a href="https://www.twilio.com/docs/messaging/compliance/a2p-10dlc/collect-business-info">US business-registration requirements</a>, and <a href="https://consumercomplaints.fcc.gov/hc/en-us/articles/115002234203-Unwanted-Calls-Texts-Phone">Federal Communications Commission guidance</a>. Configuration is not legal or carrier approval.</p>
+        </details></aside>
+      </div>
+    </section>
 
-          <article class="card">
-            <span class="icon">2</span>
-            <h3>Workflow and routing buildout</h3>
-            <p>We turn leasing, maintenance, owner, and vendor communication into clear workflows with the right questions, routing rules, notifications, and handoffs.</p>
-          </article>
-
-          <article class="card">
-            <span class="icon">3</span>
-            <h3>CRM and reporting integration</h3>
-            <p>We connect calls, texts, appointments, summaries, tasks, tags, and pipeline updates to your existing tools so the team can see what happened next.</p>
-          </article>
+    <section id="implementation" class="home-section" aria-labelledby="implementation-heading">
+      <span id="evidence" class="anchor-alias"></span>
+      <div class="wrap">
+        <div class="section-intro"><h2 id="implementation-heading">From your workflow to a working solution</h2><p>Bring the process, systems, and result you have in mind. We turn those requirements into a tested automation, with clear ownership before and after launch.</p><a class="text-link checklist-download" href="/resources/emc2ops-launch-checklist.txt" download="emc2ops-launch-checklist.txt">Download the launch checklist (text)</a></div>
+        <div class="responsibility-grid">
+          <div><h3>Your team supplies</h3><ul class="customer-checklist">{customerLaunchInputs.map((item) => <li>{item}</li>)}</ul></div>
+          <div><h3>EMC2Ops delivers</h3><ul>{implementationDeliverables.map((item) => <li>{item}</li>)}</ul></div>
+        </div>
+        <ol class="rollout-steps" role="list" aria-label="Five implementation stages">{rolloutSteps.map(([title, body]) => <li><h3>{title}</h3>{" "}<p>{body}</p></li>)}</ol>
+        <div class="launch-approval"><h3>What must pass before launch?</h3><ul>{launchApprovalChecks.map((item) => <li>{item}</li>)}</ul></div>
+        <div class="implementation-answers">
+          <div class="cost-note"><h3>What determines the price?</h3><p>We quote the work to build, the systems to connect, and the support to provide. Call and message volume also affects usage charges; the proposal identifies separate provider costs.</p><h3>When will it be ready?</h3><p>Your written scope sets the launch window after access and registration requirements are checked. Test results and your approval determine when the system goes live.</p><a class="text-link" href="/services/custom-property-management-automation/">Review the implementation service <span aria-hidden="true">→</span></a></div>
+          <div id="language-testing" class="cost-note"><h3>How is another language approved?</h3><p>English is the default. To assess another language, we test the selected voice or text service with property-specific questions and answers your team has reviewed.</p><p>Review names, dates, numbers, requests to stop messages, and a question the assistant cannot answer. Your team confirms the wording and who receives uncertain requests.</p></div>
         </div>
       </div>
     </section>
 
-    <section id="integrations">
+    <section id="integrations" class="home-section" aria-labelledby="integrations-heading">
       <div class="wrap">
-        <div class="section-head">
-          <h2>Works with the systems your property team already uses.</h2>
-          <p>We support the platforms property managers rely on for leasing, operations, CRM, and follow-up workflows.</p>
+        <div class="section-intro"><h2 id="integrations-heading">How does it connect to your existing tools?</h2><p>We connect supported records directly or send your staff a summary to review. Your software plan and access permissions determine which route is available.</p></div>
+        <div class="terms-guide">
+          <h3>Terms used in the connection comparison</h3>
+          <dl>
+            <div><dt>CRM — customer relationship management:</dt>{" "}<dd>Software for storing prospect conversations, status, and follow-up tasks.</dd></div>
+            <div><dt>PMS — property management system:</dt>{" "}<dd>Software for managing property, resident, and operational records.</dd></div>
+            <div><dt>API — application programming interface:</dt>{" "}<dd>A defined way for two software systems to exchange information.</dd></div>
+            <div><dt>Access permissions:</dt>{" "}<dd>Rules specifying which records a connected account may read or update.</dd></div>
+          </dl>
         </div>
+        <div class="table-scroll" role="region" aria-label="Integration access and fallback comparison" tabindex="0">
+          <table class="integration-table">
+            <caption>Connection options are confirmed during scoping</caption>
+            <thead><tr><th scope="col">System</th><th scope="col">Workflow and access required</th><th scope="col">If direct access is limited</th></tr></thead>
+            <tbody>
+              <tr><th scope="row"><a href="/integrations/appfolio/">AppFolio</a></th><td>Route leasing or operational requests using the supported connection and fields your account permits. We verify available access with your team.</td><td>A shared-inbox summary, approved form, or staff task keeps the handoff reviewable.</td></tr>
+              <tr><th scope="row"><a href="/integrations/buildium/">Buildium</a></th><td>Update supported records through Buildium’s Open API. Your team confirms plan access and authorizes the credentials and records needed.</td><td>Capture details in a form or inbox and assign staff to complete the record update.</td></tr>
+              <tr><th scope="row"><a href="/integrations/leadsimple/">LeadSimple</a></th><td>Send inquiry details, stages, and next actions through an authorized connection. Your team chooses the destination fields and people responsible.</td><td>Use a reviewable import or staff task when the required direct action is unavailable.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="source-note">For platform requirements, see <a href="https://www.buildium.com/features/open-api/">Buildium’s Open API overview</a> and <a href="https://www.appfolio.com/stack">AppFolio Stack</a>. A listed platform is not a promise of unrestricted access or vendor endorsement.</p>
+        <p class="source-note">For broader privacy planning, the National Institute of Standards and Technology provides a voluntary <a href="https://www.nist.gov/privacy-framework">Privacy Framework</a> to help organizations manage privacy risks.</p>
+      </div>
+    </section>
 
-        <div class="integration-grid" aria-label="Supported property management and CRM platforms">
-          <div class="integration-logo">
-            <img src="/assets/integrations/appfolio.png" alt="AppFolio logo" width="42" height="42" loading="lazy" />
-            <span>AppFolio</span>
-          </div>
-          <div class="integration-logo">
-            <img src="/assets/integrations/buildium.png" alt="Buildium logo" width="42" height="42" loading="lazy" />
-            <span>Buildium</span>
-          </div>
-          <div class="integration-logo">
-            <img src="/assets/integrations/leadsimple.png" alt="LeadSimple logo" width="42" height="42" loading="lazy" />
-            <span>LeadSimple</span>
-          </div>
-          <div class="integration-logo">
-            <img src="/assets/integrations/yardi.png" alt="Yardi logo" width="42" height="42" loading="lazy" />
-            <span>Yardi</span>
-          </div>
-          <div class="integration-logo">
-            <img src="/assets/integrations/rent-manager.png" alt="Rent Manager logo" width="42" height="42" loading="lazy" />
-            <span>Rent Manager</span>
-          </div>
-          <div class="integration-logo">
-            <img src="/assets/integrations/entrata.png" alt="Entrata logo" width="42" height="42" loading="lazy" />
-            <span>Entrata</span>
-          </div>
-          <div class="integration-logo">
-            <img src="/assets/integrations/knock.png" alt="Knock logo" width="42" height="42" loading="lazy" />
-            <span>Knock</span>
-          </div>
-          <div class="integration-logo">
-            <img src="/assets/integrations/hubspot.png" alt="HubSpot logo" width="42" height="42" loading="lazy" />
-            <span>HubSpot</span>
-          </div>
-          <div class="integration-logo">
-            <img src="/assets/integrations/salesforce.png" alt="Salesforce logo" width="42" height="42" loading="lazy" />
-            <span>Salesforce</span>
-          </div>
+    <ClientReviews variant="homepage" />
+
+    <section id="faq" class="home-section home-section-muted" aria-labelledby="faq-heading">
+      <div class="wrap faq-layout">
+        <div class="section-intro"><h2 id="faq-heading">Questions before you get started.</h2><p>Start with these answers about fit, boundaries, and setup. Each workflow is scoped around your team’s tools and the decisions that should stay with people.</p><a class="text-link" href="/compare/">Compare your options <span aria-hidden="true">→</span></a></div>
+        <div>
+          <div class="faq-grid buyer-faq-grid">{homepageBuyerFaqs.map((faq, index) => <details class="faq-item" open={index === 0}><summary><span>{faq.question}</span></summary><div class="faq-answer"><p>{faq.answer}</p>{faq.cta && <a href={faq.cta.href} class="text-link" data-faq-cta>{faq.cta.label} <span aria-hidden="true">→</span></a>}</div></details>)}</div>
+          <div class="faq-secondary"><h3>More setup questions</h3><div class="faq-grid setup-faq-grid">{homepageSetupFaqs.map((faq) => <details class="faq-item compact"><summary><span>{faq.question}</span></summary><div class="faq-answer"><p>{faq.answer}</p>{faq.cta && <a href={faq.cta.href} class="text-link" data-faq-cta>{faq.cta.label} <span aria-hidden="true">→</span></a>}</div></details>)}</div></div>
         </div>
       </div>
     </section>
 
-    <section id="pain">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Built for the problems property teams feel every day.</h2>
-          <p>Slow response times cost showings, tenant satisfaction, owner trust, and staff capacity. EMC2Ops targets the operational bottlenecks that leak revenue.</p>
-        </div>
-
-        <div class="pain-grid">
-          <article class="pain-card">
-            <strong>Missed leasing calls</strong>
-            <p>Respond instantly when prospects call after hours, during tours, or while your team is overloaded.</p>
-          </article>
-          <article class="pain-card">
-            <strong>Tenant maintenance requests</strong>
-            <p>Collect issue details, photos, urgency, property/unit information, and route requests to the right person.</p>
-          </article>
-          <article class="pain-card">
-            <strong>Owner updates</strong>
-            <p>Send automated status updates so owners are not constantly asking your team for progress.</p>
-          </article>
-          <article class="pain-card">
-            <strong>Vendor dispatching</strong>
-            <p>Trigger technician notifications and collect completion updates without manual back-and-forth.</p>
-          </article>
-          <article class="pain-card">
-            <strong>Stale lead follow-up</strong>
-            <p>Automatically follow up with prospects who never booked, no-showed, or stopped replying.</p>
-          </article>
-          <article class="pain-card">
-            <strong>Manual CRM updates</strong>
-            <p>Log conversations, tags, statuses, tasks, and appointment details into your existing systems.</p>
-          </article>
-        </div>
-      </div>
+    <section id="contact" class="home-section closing-section" aria-labelledby="closing-heading">
+      <span id="landing-pages" class="anchor-alias"></span>
+      <div class="wrap closing-content"><div><h2 id="closing-heading">Tell us what you want to automate.</h2><p>Bring your workflow to a 15-minute consultation. We’ll outline a plan to build your solution around your existing processes and software.</p><ul class="closing-recap"><li>One partner to design, build, integrate, and maintain.</li><li>Your team stays in control of approvals and exceptions.</li></ul></div><a href="/book-demo/#workflow=custom-property-management-automation&amp;source=homepage" class="btn btn-primary">Book a 15-minute consultation</a></div>
     </section>
 
-    <section id="services">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Service packages built around the work your team repeats.</h2>
-          <p>This is not a generic chatbot subscription. EMC2Ops implements the actual operating workflows that affect leasing response, tenant experience, owner confidence, and admin capacity.</p>
-        </div>
-
-        <div class="cards">
-          <article class="card">
-            <span class="icon" aria-hidden="true">MC</span>
-            <h3><a href="/services/missed-call-recovery/">Missed Call Recovery</a></h3>
-            <p>Automatically respond to missed calls with AI-powered SMS, capture intent, and route qualified leads into your booking flow.</p>
-          </article>
-
-          <article class="card">
-            <span class="icon" aria-hidden="true">LF</span>
-            <h3><a href="/services/leasing-follow-up/">Tenant + Lead Follow-Up</a></h3>
-            <p>Send personalized follow-ups across SMS and email so prospects, tenants, owners, and vendors get timely updates.</p>
-          </article>
-
-          <article class="card">
-            <span class="icon" aria-hidden="true">CRM</span>
-            <h3><a href="/services/crm-workflow-automation/">CRM Workflow Automation</a></h3>
-            <p>Sync calls, messages, notes, lead status, appointments, maintenance requests, and reminders into your CRM.</p>
-          </article>
-
-          <article class="card">
-            <span class="icon" aria-hidden="true">AI</span>
-            <h3><a href="/services/ai-front-desk-property-management/">AI Front Desk for Property Management</a></h3>
-            <p>Install AI voice, SMS, routing, and CRM workflows around the leasing and operations paths your team already runs.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="use-cases">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Use cases matched to how property managers search for help.</h2>
-          <p>Start with the problem your team is already trying to solve, then connect it to the right automation workflow.</p>
-        </div>
-
-        <div class="cards">
-          <article class="card">
-            <span class="icon" aria-hidden="true">LT</span>
-            <h3><a href="/use-cases/apartment-lead-tracking/">Apartment Lead Tracking</a></h3>
-            <p>Capture renter source, qualification details, ownership, and CRM next steps from first inquiry through booked tour.</p>
-          </article>
-
-          <article class="card">
-            <span class="icon" aria-hidden="true">LF</span>
-            <h3><a href="/use-cases/real-estate-lead-follow-up-automation/">Real Estate Lead Follow-Up Automation</a></h3>
-            <p>Automate speed-to-lead, stale lead recovery, no-show follow-up, and stop rules when staff take over.</p>
-          </article>
-
-          <article class="card">
-            <span class="icon" aria-hidden="true">CRM</span>
-            <h3><a href="/use-cases/real-estate-crm-follow-up-mess/">CRM Follow-Up Cleanup</a></h3>
-            <p>Fix messy follow-up with cleaner ownership, stages, tasks, deduplication, and CRM logging rules.</p>
-          </article>
-
-          <article class="card">
-            <span class="icon" aria-hidden="true">L2L</span>
-            <h3><a href="/use-cases/lead-to-lease-automation/">Lead-to-Lease Automation</a></h3>
-            <p>Connect inquiry, tour, application, approval, and move-in handoff so renter next steps stay visible.</p>
-          </article>
-
-          <article class="card">
-            <span class="icon" aria-hidden="true">PM</span>
-            <h3><a href="/use-cases/how-to-automate-property-management/">How to Automate Property Management</a></h3>
-            <p>Start with one measurable workflow, define the exception path, and expand once the system proves useful.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="offer">
-      <div class="wrap">
-        <div class="big-offer">
-          <div>
-            <div class="eyebrow">Core offer</div>
-            <h2>Your first AI front desk workflow, built around a measurable operating problem.</h2>
-            <p class="lead">A done-for-you response system that turns missed calls, tenant questions, maintenance issues, and stale leasing leads into clean, trackable next steps.</p>
-            <a href="/book-demo/" class="btn btn-primary">Book a 15-minute consultation</a>
-          </div>
-
-          <div class="offer-list">
-            <div class="offer-item"><span class="check">✓</span><span>Missed call text-back automation with property-specific qualification questions.</span></div>
-            <div class="offer-item"><span class="check">✓</span><span>AI voice or SMS assistant for leasing intake, FAQs, maintenance triage, and appointment routing.</span></div>
-            <div class="offer-item"><span class="check">✓</span><span>CRM updates, pipeline tags, appointment reminders, team alerts, and tenant/owner notifications.</span></div>
-            <div class="offer-item"><span class="check">✓</span><span>Reporting dashboard showing recovered leads, booked showings, response speed, and workflow volume.</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="proof">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>What the first workflow is built to improve.</h2>
-          <p>The first automation should be easy to measure. EMC2Ops focuses on response speed, booked next steps, and the amount of repetitive admin work removed from property teams.</p>
-        </div>
-
-        <div class="proof-grid">
-          <article class="proof-card">
-            <strong>10 sec</strong>
-            <p>Target response time after a missed call or inbound lead form.</p>
-          </article>
-          <article class="proof-card">
-            <strong>24/7</strong>
-            <p>Automated intake for after-hours leasing calls, tenant questions, and maintenance requests.</p>
-          </article>
-          <article class="proof-card">
-            <strong>1 CRM</strong>
-            <p>Conversations, statuses, notes, and tasks logged into your current workflow.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <ClientReviews />
-
-    <section id="evidence">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Use evidence to decide what to automate first.</h2>
-          <p>Review completed client feedback, model the missed-call opportunity with your own assumptions, and compare implementation approaches before choosing a platform.</p>
-        </div>
-        <div class="cards">
-          <article class="card"><span class="icon" aria-hidden="true">CP</span><h3><a href="/customers/">Customer proof</a></h3><p>See verified reviews, property-management story standards, and the line between delivery experience and vertical outcomes.</p></article>
-          <article class="card"><span class="icon" aria-hidden="true">ROI</span><h3><a href="/resources/missed-call-recovery-roi-calculator/">Missed-call recovery calculator</a></h3><p>Estimate recovered conversations, qualified renters, tours, leases, and optional value using your own data.</p></article>
-          <article class="card"><span class="icon" aria-hidden="true">VS</span><h3><a href="/compare/">Buying comparisons</a></h3><p>Compare AI front desks, call centers, custom workflows, and off-the-shelf software by operating fit.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="demo">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="eyebrow">Product preview</div>
-          <h2>See the missed-call recovery control room in action.</h2>
-          <p>This short walkthrough shows the first workflow we install: recover the call, qualify the renter, route the risky replies, and sync the CRM record.</p>
-        </div>
-
-        <div class="demo-showcase">
-          <div class="demo-video-shell">
-            <video
-              class="demo-video"
-              src="/social-assets/emc2ops-missed-call-recovery-demo-landing.mp4"
-              poster="/social-assets/emc2ops-missed-call-recovery-demo-landing-poster.jpg"
-              controls
-              playsinline
-              preload="metadata"
-              aria-label="EMC2Ops missed-call recovery product demo"
-            ></video>
-          </div>
-
-          <div class="workflow-panel card demo-panel">
-            <div>
-              <strong>Missed-call recovery pilot</strong>
-              <span class="muted">Built for property managers who want the first workflow to prove ROI before a larger AI rollout.</span>
-            </div>
-            <ul>
-              <li>Instant SMS reply after missed leasing calls</li>
-              <li>Budget, move date, pets, and tour intent captured</li>
-              <li>Human handoff for sensitive or uncertain replies</li>
-              <li>Clean notes, tags, transcript, and next step logged to CRM</li>
-            </ul>
-            <a href="/book-demo/" class="btn btn-primary">Book a 15-minute consultation</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Start with one workflow, then expand once it proves useful.</h2>
-          <p>Exact scope depends on your CRM, call volume, integrations, phone/SMS setup, and compliance needs. The consultation helps identify which automation should come first.</p>
-        </div>
-
-        <div class="pricing">
-          <article class="price-card">
-            <h3>Launch</h3>
-            <p>For a single high-friction workflow.</p>
-            <a class="price price-link" href="/book-demo/">Get a Quote</a>
-            <ul>
-              <li>Missed call SMS workflow</li>
-              <li>Basic lead qualification</li>
-              <li>Email/SMS notifications</li>
-              <li>1 CRM integration</li>
-            </ul>
-          </article>
-
-          <article class="price-card featured">
-            <h3>Growth</h3>
-            <p>For property teams ready to automate intake and follow-up.</p>
-            <a class="price price-link" href="/book-demo/">Get a Quote</a>
-            <ul>
-              <li>AI voice or SMS assistant</li>
-              <li>Leasing follow-up sequences</li>
-              <li>Showing booking workflow</li>
-              <li>CRM sync + reporting dashboard</li>
-              <li>30-day optimization</li>
-            </ul>
-          </article>
-
-          <article class="price-card">
-            <h3>Ops Partner</h3>
-            <p>For teams that want ongoing workflow iteration.</p>
-            <a class="price price-link" href="/book-demo/">Get a Quote</a>
-            <ul>
-              <li>Workflow monitoring</li>
-              <li>New automations monthly</li>
-              <li>Reporting improvements</li>
-              <li>Support and iteration</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="landing-pages">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Common buying paths.</h2>
-          <p>Most property management teams start with the workflow that is easiest to measure: missed calls, leasing follow-up, maintenance intake, or CRM cleanup.</p>
-        </div>
-
-        <div class="landing-links">
-          <a class="landing-link" href="/blog/property-management-ai-automation-vs-chatbots/">
-            <strong>Property management AI intake</strong>
-            <span>Capture leasing, tenant, owner, and vendor context from inbound conversations.</span>
-          </a>
-          <a class="landing-link" href="/blog/missed-call-text-back-property-management/">
-            <strong>Missed-call text-back</strong>
-            <span>Respond when a prospect calls after hours or while the team is unavailable.</span>
-          </a>
-          <a class="landing-link" href="/blog/property-management-maintenance-intake-automation/">
-            <strong>Tenant communication AI</strong>
-            <span>Collect maintenance details and route questions into the right operating path.</span>
-          </a>
-          <a class="landing-link" href="/blog/automate-property-management-lead-follow-up/">
-            <strong>Leasing follow-up</strong>
-            <span>Qualify stale leads, trigger reminders, and move booked next steps into the CRM.</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="newsletter">
-      <div class="wrap">
-        <div class="newsletter-band">
-          <div>
-            <div class="eyebrow">Newsletter</div>
-            <h2>Get property management automation ideas in your inbox.</h2>
-            <p>Short notes on missed-call recovery, leasing follow-up, tenant intake, CRM cleanup, and operational AI workflows.</p>
-          </div>
-
-          <form class="newsletter-form" id="newsletter-form">
-            <label>
-              Email
-              <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
-            </label>
-            <input name="source" type="hidden" value="website-newsletter" />
-            <label class="hidden-field">
-              Leave this blank
-              <input name="websiteConfirm" tabindex="-1" autocomplete="off" />
-            </label>
-            <button class="btn btn-primary" type="submit">Subscribe</button>
-            <p class="form-status" id="newsletter-form-status" role="status" aria-live="polite"></p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq">
-      <div class="wrap">
-        <div class="section-head">
-          <h2>Questions property managers ask before installing AI.</h2>
-          <p>Clear answers on call handling, rollout effort, human handoff, fit, customization, alternatives, languages, pricing, integrations, and compliance.</p>
-        </div>
-
-        <div class="faq-grid buyer-faq-grid">
-          {homepageBuyerFaqs.map((faq, index) => (
-            <details class="faq-item" open={index === 0}>
-              <summary>
-                <span class="faq-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
-                <span>{faq.question}</span>
-              </summary>
-              <div class="faq-answer">
-                <p>{faq.answer}</p>
-                {faq.cta && <a class="faq-link" href={faq.cta.href}>{faq.cta.label} <span aria-hidden="true">→</span></a>}
-              </div>
-            </details>
-          ))}
-        </div>
-
-        <div class="faq-secondary">
-          <h3>More setup questions</h3>
-          <div class="faq-grid setup-faq-grid">
-            {homepageSetupFaqs.map((faq) => (
-              <details class="faq-item compact">
-                <summary><span>{faq.question}</span></summary>
-                <div class="faq-answer"><p>{faq.answer}</p></div>
-              </details>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="wrap">
-        <div class="cta">
-          <h2>Ready to see what your first workflow should be?</h2>
-          <p>Send us your current intake process and we’ll identify where automation can save time, speed up response, and increase booked showings.</p>
-          <a href="/book-demo/" class="btn btn-primary">Book a 15-minute consultation</a>
-        </div>
+    <section id="newsletter" class="home-section newsletter-section" aria-labelledby="newsletter-heading">
+      <div class="wrap newsletter-layout">
+        <div><h2 id="newsletter-heading">Get property management automation ideas</h2><p>Occasional practical notes on leasing intake, follow-up, and operational workflows. Unsubscribe whenever they are no longer useful.</p></div>
+        <form id="newsletter-form">
+          <label for="newsletter-email">Email address</label>
+          <div class="newsletter-fields"><input id="newsletter-email" name="email" type="email" placeholder="you@company.com" required autocomplete="email" /><button class="btn btn-primary" type="submit">Subscribe</button></div>
+          <input name="source" type="hidden" value="website-newsletter" />
+          <label hidden>Leave this empty<input name="websiteConfirm" tabindex="-1" autocomplete="off" /></label>
+          <p id="newsletter-form-status" class="form-status" role="status" aria-live="polite"></p>
+          <noscript><p>JavaScript is needed to submit this form. All website information remains available without it.</p></noscript>
+        </form>
       </div>
     </section>
   </main>
-
-  <div class="mobile-sticky">
-    <a href="/book-demo/" class="btn btn-primary">Book a 15-minute consultation</a>
-  </div>
-
   <SiteFooter variant="landing" />
   <script is:inline>
     const newsletterForm = document.querySelector("#newsletter-form");
     const newsletterFormStatus = document.querySelector("#newsletter-form-status");
-    const demoSection = document.querySelector("#demo");
-    const updateStickyCta = () => {
-      document.body.classList.toggle("sticky-visible", window.scrollY > 520);
-    };
-
-    updateStickyCta();
-    window.addEventListener("scroll", updateStickyCta, { passive: true });
-
-    if (demoSection && "IntersectionObserver" in window) {
-      const demoObserver = new IntersectionObserver((entries) => {
-        const isDemoVisible = entries.some((entry) => entry.isIntersecting);
-        document.body.classList.toggle("demo-active", isDemoVisible);
-      }, { rootMargin: "-20% 0px -10% 0px", threshold: 0.01 });
-
-      demoObserver.observe(demoSection);
-    }
-
     newsletterForm?.addEventListener("submit", async (event) => {
       event.preventDefault();
       const submitButton = newsletterForm.querySelector("button[type='submit']");
-      const formData = new FormData(newsletterForm);
-      const payload = Object.fromEntries(formData.entries());
+      const payload = Object.fromEntries(new FormData(newsletterForm).entries());
       payload.pageUrl = window.location.href;
-
       newsletterFormStatus.textContent = "Subscribing...";
       newsletterFormStatus.className = "form-status";
       submitButton.disabled = true;
-
       try {
         const response = await fetch("/api/newsletter-subscribe", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
+          method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload)
         });
         const result = await response.json().catch(() => ({}));
-
-        if (!response.ok) {
-          throw new Error(result.error || "We could not subscribe that email.");
-        }
-
+        if (!response.ok) throw new Error(result.error || "We could not subscribe that email.");
         newsletterForm.reset();
         newsletterFormStatus.textContent = "Subscribed. Check your inbox for future notes.";
         newsletterFormStatus.className = "form-status success";
       } catch (error) {
         newsletterFormStatus.textContent = error.message || "Something went wrong. Please try again in a moment.";
         newsletterFormStatus.className = "form-status error";
-      } finally {
-        submitButton.disabled = false;
-      }
+      } finally { submitButton.disabled = false; }
     });
   </script>
 </SiteLayout>

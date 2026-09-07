@@ -3,6 +3,7 @@ import { auditHref, type AuditCta, type BeforeAfter, type InstallableItem } from
 
 export interface ServicePage {
   slug: string;
+  updatedAt?: string;
   eyebrow: string;
   title: string;
   seoTitle: string;
@@ -29,6 +30,239 @@ export interface ServicePage {
 }
 
 export const servicePages: ServicePage[] = [
+{
+  "slug": "custom-property-management-automation",
+  "eyebrow": "Custom automation",
+  "title": "Custom automation built around your property management company",
+  "seoTitle": "Custom Property Management Automation",
+  "description": "EMC2Ops designs, builds, integrates, tests, and maintains custom property management automations around your existing processes and software.",
+  "updatedAt": "2026-09-06",
+  "summary": "Already know what you want to automate? Bring us the workflow. We design, build, integrate, test, and maintain the solution around your existing processes and software. No developers to hire, platform to learn, or DIY implementation.",
+  "auditFocus": "Define the trigger, input records, business rules, approvals, destination systems, and desired outcome. A custom engagement can connect several steps without replacing your property management system.",
+  "auditCta": {
+    "label": "Book a 15-minute consultation",
+    "title": "Bring the workflow you want to automate.",
+    "body": "Tell us the process, software, and desired result. We will outline a plan to build your solution and confirm the access, approvals, and ongoing support it needs."
+  },
+  "installables": [
+    {
+      "title": "A documented workflow",
+      "description": "We map the current process, required fields, decisions, software access, exception owners, and acceptance checks before configuring the automation."
+    },
+    {
+      "title": "The automation itself",
+      "description": "Approved rules handle intake, record updates, follow-up, notifications, scheduling, or voice and text assistance as needed for your scope."
+    },
+    {
+      "title": "Connected systems",
+      "description": "Authorized integrations move the agreed fields between tools. If direct access is unavailable, a reviewed form, inbox, import, or staff task carries the handoff."
+    },
+    {
+      "title": "Testing and launch",
+      "description": "Sample records exercise normal work, missing information, duplicates, denied access, and connection failures. Your designated owner approves the test evidence."
+    },
+    {
+      "title": "Documentation and handoff",
+      "description": "Your team receives operating instructions, escalation contacts, measurement definitions, and a walkthrough of the approved workflow."
+    },
+    {
+      "title": "Maintenance and improvement",
+      "description": "The engagement includes a 30-day post-launch optimization window. Monitoring, support, reporting, and further automations follow the agreed ongoing scope."
+    }
+  ],
+  "beforeAfter": {
+    "before": [
+      "Staff re-enter the same details across forms, spreadsheets, inboxes, and property records.",
+      "A process depends on someone remembering the next step.",
+      "Failures and exceptions have no consistent owner."
+    ],
+    "after": [
+      "Approved inputs move through a documented process with recorded outputs.",
+      "Rules assign the next action and send the agreed reminders.",
+      "Exceptions enter a review queue with an owner and a recovery path."
+    ]
+  },
+  "bestFit": [
+    "Property management companies that can describe the process and outcome they want.",
+    "Teams with authorized access to the required systems and someone to approve business rules.",
+    "Operators looking for implementation and maintenance rather than a do-it-yourself platform."
+  ],
+  "notFit": [
+    "Work that requires unavailable software permissions or prohibited access.",
+    "Replacing professional judgment, emergency response, or legal decisions with unchecked automation.",
+    "An unlimited development engagement without a defined scope."
+  ],
+  "outcomes": [
+    "A solution configured to your approved workflow, not a generic software subscription.",
+    "Clear responsibility for approvals, exceptions, system access, and support.",
+    "Test evidence and a maintenance plan your team can review before launch."
+  ],
+  "workflow": [
+    "Scope: supply the current process, sample input and output records, system names, restrictions, and a decision-maker.",
+    "Design: agree field mappings, rules, approvals, destinations, failure handling, and success measures.",
+    "Build: configure the trigger, automation steps, authorized integrations, and staff notifications.",
+    "Test: follow a sample record through normal completion, duplicate handling, missing details, and failed connections.",
+    "Approve and launch: your owner signs off; we enable the agreed scope and observe the initial runs.",
+    "Maintain: review errors and results, resolve in-scope issues, and agree future workflow improvements."
+  ],
+  "metrics": [
+    "Completion rate: eligible runs that reach the approved end state divided by eligible runs in the same date range.",
+    "Exception rate: runs requiring human review divided by eligible runs; record the reason and resolution.",
+    "Processing time: elapsed time from accepted input to the recorded destination output.",
+    "Data completeness: reviewed output records containing every required field, owner, and next action."
+  ],
+  "faqs": [
+    {
+      "question": "Can you automate a process that is not on your website?",
+      "answer": "Yes. The listed services are examples. Describe the trigger, current steps, software, and result you want. We confirm feasibility, required access, human approvals, and support before committing to a build."
+    },
+    {
+      "question": "Do we need to replace our property management software?",
+      "answer": "Not solely to add automation. We work with supported connections and authorized records in your existing tools. Direct access is confirmed during scoping; a reviewed handoff is an option when the required action is unavailable."
+    },
+    {
+      "question": "What should we bring to the consultation?",
+      "answer": "Bring the process you want to automate, the software involved, a sample input and desired output, and the decisions that must remain with staff. Do not send resident personal information in the initial inquiry."
+    },
+    {
+      "question": "What determines cost and timing?",
+      "answer": "Your proposal defines the workflow complexity, integrations, testing, rollout, and ongoing support. Access dependencies and approvals affect the schedule. Provider usage costs are identified separately; work starts against an agreed scope."
+    },
+    {
+      "question": "Who maintains the automation?",
+      "answer": "EMC2Ops maintains the solution within the agreed support scope. The handoff identifies monitoring, issue reporting, ownership, and change procedures. New processes and expanded requirements are scoped before implementation."
+    }
+  ],
+  "relatedUseCases": [
+    {
+      "label": "Maintenance request to completion",
+      "href": "/use-cases/maintenance-request-to-completion/",
+      "description": "Connect intake, vendor coordination, completion evidence, and closure."
+    },
+    {
+      "label": "Security deposit workflow",
+      "href": "/use-cases/security-deposit-automation/",
+      "description": "Collect evidence and route disposition decisions for human review."
+    },
+    {
+      "label": "Resident, owner, and vendor communication",
+      "href": "/use-cases/resident-owner-vendor-communication-automation/",
+      "description": "Keep updates, approvals, and next actions tied to the operating record."
+    }
+  ],
+  "relatedPosts": []
+},
+{
+  "slug": "security-deposit-automation",
+  "eyebrow": "Security deposit automation",
+  "title": "Security deposit automation, built and maintained for your team",
+  "seoTitle": "Security Deposit Automation Services",
+  "description": "Connect deposit evidence, charge review, approval, disposition preparation, and refund tracking with a custom EMC2Ops implementation for property managers.",
+  "updatedAt": "2026-09-06",
+  "summary": "EMC2Ops builds the connections and review process behind security deposit operations. Bring your move-out records, approved policies, and current systems; we configure evidence collection, staff approval, disposition preparation, and recorded handoffs.",
+  "auditFocus": "The service covers implementation: data mapping, evidence links, review rules, access controls, testing, and maintenance. Your authorized staff decide allowable charges, approve the disposition, and authorize payment.",
+  "auditCta": {
+    "label": "Book a 15-minute consultation",
+    "title": "Plan your security deposit automation.",
+    "body": "Tell us the process, software, and desired result. We will outline a plan to build your solution and confirm the access, approvals, and ongoing support it needs."
+  },
+  "installables": [
+    {
+      "title": "Case and record mapping",
+      "description": "Connect the property, unit, resident reference, move-out date, deposit balance, and source record ID so each case can be traced."
+    },
+    {
+      "title": "Evidence collection",
+      "description": "Attach approved inspection links, photos, invoices, and notes to the correct case. Flag missing evidence for a person to resolve."
+    },
+    {
+      "title": "Review and approval gates",
+      "description": "Route proposed charges and exceptions to your authorized reviewer. Do not release a disposition or payment without the approvals your policy requires."
+    },
+    {
+      "title": "Disposition preparation",
+      "description": "Prepare the approved itemization and communication from reviewed data. Preserve the source values, reviewer, approval time, and final version."
+    },
+    {
+      "title": "System handoffs",
+      "description": "Write supported statuses to authorized records or create a reviewable task when access is limited. Track refund handoff separately from confirmed payment."
+    },
+    {
+      "title": "Testing and support",
+      "description": "Test missing invoices, duplicate cases, revised charges, rejected approvals, and failed updates. Document operating instructions and maintain the agreed workflow."
+    }
+  ],
+  "beforeAfter": {
+    "before": [
+      "Staff rebuild cases from disconnected inspection photos, ledgers, and spreadsheets.",
+      "Proposed charges circulate without a consistent evidence or approval trail.",
+      "A sent task can be mistaken for a completed refund."
+    ],
+    "after": [
+      "One case links the source records, supporting evidence, and review state.",
+      "Authorized staff approve the itemization before the next step proceeds.",
+      "Preparation, approval, handoff, and confirmed completion have distinct states."
+    ]
+  },
+  "bestFit": [
+    "Teams processing recurring deposit cases with documented review responsibilities.",
+    "Operators with approved policies and authorized access to evidence and accounting records."
+  ],
+  "notFit": [
+    "Automated legal determinations or charge approval without human review.",
+    "Promising a universal legal deadline or transferring money without separate authorization."
+  ],
+  "outcomes": [
+    "A repeatable path from source records to an approved disposition.",
+    "Reviewable evidence and a named owner for exceptions.",
+    "Clear separation between refund preparation, payment handoff, and confirmed payment."
+  ],
+  "workflow": [
+    "Scope the source fields, reviewer responsibilities, approved templates, deadline rules, and output records.",
+    "Connect authorized records and attach evidence using a stable case identifier.",
+    "Configure missing-data checks and route proposed charges to the authorized reviewer.",
+    "Prepare the disposition from approved values; send only through the agreed approval gate.",
+    "Record the handoff and update payment status only from a confirmed source.",
+    "Test revised and rejected cases, document the process, and monitor errors after launch."
+  ],
+  "metrics": [
+    "Case readiness: cases with every required field and evidence item divided by reviewed cases.",
+    "Review time: elapsed time from a complete case entering review to recorded approval or rejection.",
+    "Exception rate: cases blocked by missing evidence, disputed values, or connection failures divided by processed cases.",
+    "Refund tracking completeness: approved cases with a recorded payment handoff and confirmed source status."
+  ],
+  "faqs": [
+    {
+      "question": "Does the system decide deductions or legal deadlines?",
+      "answer": "No. Your authorized team approves charge policies, deadline rules, and case decisions. Automation organizes evidence and executes the approved process; it is not legal advice and does not replace qualified review."
+    },
+    {
+      "question": "Can this connect to our property management system?",
+      "answer": "We verify supported records and your account permissions during scoping. Direct connections require authorized access. Where an action is unavailable, a reviewed export, form, or assigned task can preserve the handoff."
+    },
+    {
+      "question": "Does this automatically send refunds?",
+      "answer": "Not by default. Preparing a refund, assigning payment work, and confirming payment are separate states. Any payment-system action requires explicit scope, permissions, and your approval controls."
+    },
+    {
+      "question": "What does EMC2Ops deliver?",
+      "answer": "We deliver the agreed field mappings, evidence workflow, approval gates, integrations, tests, documentation, and maintenance arrangement. The operational use-case guide shows how staff move an individual case through review."
+    }
+  ],
+  "relatedUseCases": [
+    {
+      "label": "Security deposit review walkthrough",
+      "href": "/use-cases/security-deposit-automation/",
+      "description": "See the operational workflow, fictional example, and human review responsibilities."
+    },
+    {
+      "label": "Resident and owner communication",
+      "href": "/use-cases/resident-owner-vendor-communication-automation/",
+      "description": "Keep approved messages and replies connected to the case."
+    }
+  ],
+  "relatedPosts": []
+},
   {
     slug: "missed-call-recovery",
     eyebrow: "Missed-call recovery",
@@ -273,6 +507,7 @@ export const servicePages: ServicePage[] = [
   },
   {
     slug: "maintenance-intake-automation",
+    updatedAt: "2026-09-06",
     eyebrow: "Maintenance intake",
     title: "Maintenance intake automation for property managers",
     seoTitle: "Maintenance Intake Automation",
@@ -394,6 +629,7 @@ export const servicePages: ServicePage[] = [
       },
     ],
     relatedUseCases: [
+      { label: "Maintenance request to completion", href: "/use-cases/maintenance-request-to-completion/", description: "Follow the complete journey through vendor coordination, completion evidence, and approved closure." },
       {
         label: "Resident, owner, and vendor communication automation",
         href: "/use-cases/resident-owner-vendor-communication-automation/",
@@ -628,6 +864,7 @@ export const servicePages: ServicePage[] = [
       },
     ],
     relatedUseCases: [
+      { label: "Maintenance request to completion", href: "/use-cases/maintenance-request-to-completion/", description: "Follow the complete journey through vendor coordination, completion evidence, and approved closure." },
       {
         label: "How to automate property management",
         href: "/use-cases/how-to-automate-property-management/",
@@ -643,6 +880,7 @@ export const servicePages: ServicePage[] = [
   },
   {
     slug: "vendor-dispatch-automation",
+    updatedAt: "2026-09-06",
     eyebrow: "Vendor dispatch",
     title: "Vendor dispatch automation for property managers",
     seoTitle: "Vendor Dispatch Automation",
@@ -884,6 +1122,7 @@ export function serviceSchema(service: ServicePage) {
         url,
         name: service.title,
         description: service.description,
+        ...(service.updatedAt ? { dateModified: service.updatedAt } : {}),
         isPartOf: { "@id": `${siteUrl}/#website` },
         about: { "@id": `${url}#service` },
         breadcrumb: { "@id": `${url}#breadcrumb` },

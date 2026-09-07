@@ -9,27 +9,27 @@ export type HomepageFaq = {
 
 export const homepageBuyerFaqs: HomepageFaq[] = [
   {
-    question: "Will EMC2Ops answer my calls live or text callers after a missed call?",
+    question: "Can you build a workflow that is not listed, including live calls or missed-call replies?",
     answer:
-      "Either option can be configured. With AI voice, the system can answer inbound calls live and follow an approved intake path. With missed-call text-back, your phone or telephony provider triggers a branded SMS after an unanswered call so the conversation can continue by message. In either channel, EMC2Ops can qualify the request, route the next step, and log the summary, status, and owner in your configured CRM workflow. We recommend the smallest channel change that can solve the gap and measure the result.",
+      "Yes. Bring the process, systems, and result you have in mind. We design and build custom automations, including live voice answering and missed-call text follow-up. Scoping confirms the access, rules, approvals, and support your solution needs.",
     cta: {
-      label: "See the missed-call workflow",
-      href: "/services/missed-call-recovery/",
+      label: "Explore custom implementation",
+      href: "/services/custom-property-management-automation/",
     },
   },
   {
     question: "How quickly can we launch—and how much work will my team do?",
     answer:
-      "There is no one-size-fits-all launch date; EMC2Ops confirms the window after reviewing the workflow, phone setup, integration access, and approval requirements. Your team provides the current call path, approved messaging, qualification rules, CRM fields, escalation contacts, and one workflow owner. We handle mapping, configuration, integration, testing, reporting setup, and launch monitoring. To reduce risk, the first release can be limited to one property, number, or request type, tested against edge cases, and expanded only after the routing and system writebacks are stable.",
+      "Your written scope sets the launch window after access and registration requirements are checked. Prepare property information, software permissions, and a decision-maker. EMC2Ops builds and tests the process; your designated owner reviews the results before launch.",
     cta: {
       label: "Review the rollout approach",
       href: "/blog/property-management-ai-implementation-timeline/",
     },
   },
   {
-    question: "What happens after the first reply?",
+    question: "What happens after the first reply or workflow step?",
     answer:
-      "The reply enters a controlled workflow—not an open-ended chatbot conversation. EMC2Ops can match the renter to the right property or lead record, collect approved details such as move date, budget, pets, property fit, and tour intent, answer approved questions, then book or route the next step. The workflow can write the summary, transcript link when supported, status, owner, and next action to your CRM. Opt-outs, sensitive questions, uncertain answers, duplicate records, and staff takeover trigger stop or escalation rules instead of more automated messages.",
+      "The workflow follows your approved rules: collect more information, update a record, request approval, or assign a staff task. For leasing, that can include an approved booking path. Opt-outs and staff takeover stop automated messages; uncertain cases reach a person.",
     cta: {
       label: "See the lead-to-lease path",
       href: "/use-cases/lead-to-lease-automation/",
@@ -38,16 +38,16 @@ export const homepageBuyerFaqs: HomepageFaq[] = [
   {
     question: "Which property types and portfolio sizes are the best fit?",
     answer:
-      "Fit depends more on workflow repetition than door count. EMC2Ops is strongest for property managers, multifamily teams, and rental operators with recurring leasing or resident inquiries, missed calls during busy periods, manual follow-up, inconsistent CRM records, and clear owners for exceptions. That can be a smaller team proving one workflow or a larger operation standardizing routing across properties. It is usually not a good first fit when volume is too low to measure, property information has no reliable source, or nobody can own escalations. We assess those conditions before recommending a build.",
+      "The best fit is a property management, apartment, or rental team with repeatable operational work and someone responsible for approvals. Door count alone does not determine fit. First confirm that property information is reliable and staff can handle exceptions.",
     cta: {
-      label: "Find your best first workflow",
-      href: "/book-demo/",
+      label: "Check the launch requirements",
+      href: "/#implementation",
     },
   },
   {
     question: "How is the AI customized for each property and brand?",
     answer:
-      "EMC2Ops customizes the workflow within approved, testable boundaries. Brand-level rules can set the greeting, tone, qualification standards, and handoff experience, while property-level fields can cover office hours, amenities, approved FAQs, routing contacts, CRM fields, and escalation paths. Your team approves the source material, conversation logic, and acceptance tests before launch. Customization does not give the AI permission to invent availability, pricing, policy, legal interpretations, or exceptions; when a reliable answer is not available, the workflow routes the question to a person.",
+      "We use your property facts, brand wording, renter questions, and staff instructions. Your team tests and approves sample answers. The assistant must refer questions about unconfirmed availability, prices, policies, or legal issues to a person instead of inventing an answer.",
     cta: {
       label: "Compare custom and off-the-shelf AI",
       href: "/compare/custom-automation-vs-off-the-shelf-property-management-ai/",
@@ -56,7 +56,7 @@ export const homepageBuyerFaqs: HomepageFaq[] = [
   {
     question: "Who handles exceptions after hours?",
     answer:
-      "Your designated on-call or next-business-day team handles situations that require human judgment or action; EMC2Ops handles the approved intake and routing around that process. The workflow can collect essential details, classify the message using your definitions, notify the correct destination, create a record, and stop automation when the issue is urgent, sensitive, or uncertain. You decide what can wait, what should escalate, and what callers are told if nobody is immediately available. Automated 24/7 intake is not the same as staffed 24/7 resolution, and it does not replace emergency services.",
+      "Your designated on-call team handles urgent exceptions; the next-business-day team handles requests assigned to normal hours. The system records and routes each request. Automated 24/7 intake means collecting requests, not guaranteed staffed resolution or a replacement for emergency services.",
     cta: {
       label: "Map an after-hours workflow",
       href: "/blog/after-hours-leasing-automation/",
@@ -65,7 +65,7 @@ export const homepageBuyerFaqs: HomepageFaq[] = [
   {
     question: "Why choose EMC2Ops instead of EliseAI, a chatbot, a call center, or PMS-native AI?",
     answer:
-      "Choose based on the operating gap. EliseAI and PMS-native assistants can be strong choices for broad, standardized workflows inside their supported platforms. Call centers provide live human coverage, while basic chatbots mainly answer questions. EMC2Ops is a services-led implementation partner for teams that need one controlled workflow mapped, connected, tested, and measured across their existing phone, SMS, CRM or PMS, calendar, and routing rules. It can coexist with tools you already own. If a native feature already solves the workflow end to end, we would rather identify that than add another unnecessary system.",
+      "Choose EMC2Ops for implementation across tools you already use. Compare a built-in property-system assistant, EliseAI, a chatbot, or a call center when one product or staffed service covers the requirement. Existing tools do not need replacing solely to add automation.",
     cta: {
       label: "Compare the buying options",
       href: "/compare/",
@@ -74,19 +74,19 @@ export const homepageBuyerFaqs: HomepageFaq[] = [
   {
     question: "Which languages are supported?",
     answer:
-      "English is the default implementation language. Support for Spanish or another language is evaluated for the specific voice or SMS channel, AI model, telephony provider, approved content, and workflow you plan to use. Model availability alone is not treated as production readiness: the actual conversation path must be tested, policy content must have an approved source in that language, and ambiguous or sensitive cases need a defined human fallback. We confirm the production-tested language scope before launch instead of promising a blanket language count.",
+      "English is the default. Additional languages require testing with the selected voice or text service and property-specific answers. Your team reviews wording and accuracy before support is confirmed; unclear or sensitive questions still go to a person.",
     cta: {
-      label: "Ask about a specific language",
-      href: "/book-demo/",
+      label: "See the language testing steps",
+      href: "/#language-testing",
     },
   },
   {
     question: "How does pricing work?",
     answer:
-      "EMC2Ops pricing is quote-based and tied to the workflow being deployed. Cost depends on the CRM or property-management system, call and message volume, channels, workflow count, integration access, phone or SMS configuration, reporting, compliance requirements, and the level of ongoing monitoring or optimization. Before implementation begins, you receive a written scope showing what is included, the assumptions and exclusions affecting cost, and how additional properties, channels, or workflows would change the engagement. Starting with one measurable workflow keeps the initial commitment and expansion decision grounded in actual operating data.",
+      "Pricing is quote-based. Your proposal separates the implementation, ongoing support, and any additional provider charges. It records included work, assumptions, and exclusions so you can evaluate the scope before approving it. Additional properties or processes are scoped separately.",
     cta: {
-      label: "Get a scoped quote",
-      href: "/book-demo/",
+      label: "Review the custom automation offer",
+      href: "/#pricing",
     },
   },
 ];
@@ -95,22 +95,26 @@ export const homepageSetupFaqs: HomepageFaq[] = [
   {
     question: "Does this replace my team?",
     answer:
-      "No. EMC2Ops handles approved, repeatable intake, qualification, routing, reminders, and logging. Your team keeps ownership of judgment calls, sensitive conversations, approvals, negotiations, emergencies, and any exception that falls outside the tested workflow.",
+      "No. It handles repeatable requests and record updates so staff receive a prepared next task. People retain decisions, negotiations, exceptions, sensitive conversations, and emergency response. Staff takeover stops automated replies rather than running a competing conversation.",
   },
   {
     question: "Can it connect to my CRM or property-management system?",
     answer:
-      "Often, but the connection path depends on the system and the access available to your account. EMC2Ops can use supported APIs, native connectors, middleware such as Zapier, Make, or n8n, webhooks, inbox or form parsing, review queues, or a hybrid approach. We confirm the fields, permissions, writebacks, and fallback behavior during scoping.",
+      "We verify the records and actions your account permits before committing to a direct connection. If access is limited, an agreed inbox, form, or staff task carries the request. The integration comparison explains the options for each platform.",
   },
   {
     question: "What about SMS compliance?",
     answer:
-      "We design consent language, opt-out handling, message flows, quiet-hour behavior, and routing around the requirements of your use case and provider. Your business remains responsible for legal approval, carrier registration, and the accuracy of its policies; EMC2Ops does not present workflow configuration as legal or carrier compliance approval.",
+      "We configure permission-to-text checks, requests to stop messages, and permitted sending hours. Your business approves the policies and satisfies legal and provider requirements. Software setup alone does not establish compliance; review the messaging safeguards before approving launch.",
+    cta: {
+      label: "Review the messaging safeguards",
+      href: "/#messaging-safeguards",
+    },
   },
   {
-    question: "Can it handle maintenance requests?",
+    question: "Can it handle maintenance requests through completion?",
     answer:
-      "It can handle controlled maintenance intake: collect the issue, urgency, property or unit, access details, and photos or links when the channel supports them, then route the record into your staff or vendor process. It does not diagnose repairs, promise dispatch, or replace your emergency-response policy.",
+      "Yes. We can connect intake, staff review, vendor coordination, status updates, completion evidence, and closure records. Your team approves dispatch and verifies completion. Automation does not diagnose faults, perform repairs, or replace emergency procedures.",
   },
 ];
 

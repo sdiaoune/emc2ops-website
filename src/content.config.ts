@@ -20,6 +20,7 @@ const blog = defineCollection({
     metrics: z.array(z.string()),
     cta: z.string(),
     bodySections: z.boolean().optional(),
+    bodyOnly: z.boolean().optional(),
     faqs: z.array(
       z.object({
         question: z.string(),

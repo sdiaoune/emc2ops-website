@@ -48,7 +48,8 @@ const related = [...chronologicalNeighbors, ...explicitlyRelated, ...pillarPosts
   .filter((item, index, items) => item.data.slug !== post.data.slug && items.findIndex((candidate) => candidate.data.slug === item.data.slug) === index)
   .slice(0, 6);
 const canonical = absoluteUrl(`/blog/${post.data.slug}/`);
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const bodyOnly = post.data.bodySections && post.data.bodyOnly;
 const blogAuditHref = auditHref(post.data.slug, "blog");
 
 type MoneyLink = { label: string; href: string; description: string };
@@ -220,10 +221,14 @@ const relatedIntegrations = inferredIntegrationLinks();
       <div class="wrap article-grid">
         <aside class="toc" aria-label="Article navigation">
           <strong>{post.data.pillar}</strong>
-          <a href="#answer">Direct answer</a>
-          <a href="#cost">Operational cost</a>
-          <a href="#workflow">Workflow design</a>
-          <a href="#metrics">Metrics</a>
+          {bodyOnly ? headings.filter((heading) => heading.depth === 2).slice(0, 4).map((heading) => (
+            <a href={`#${heading.slug}`}>{heading.text}</a>
+          )) : <>
+            <a href="#answer">Direct answer</a>
+            <a href="#cost">Operational cost</a>
+            <a href="#workflow">Workflow design</a>
+            <a href="#metrics">Metrics</a>
+          </>}
           <a href="#faq">FAQ</a>
         </aside>
 
@@ -248,11 +253,11 @@ const relatedIntegrations = inferredIntegrationLinks();
             source="blog-article-newsletter"
           />
 
-          <section id="answer" class="answer-box">
+          {!bodyOnly && <section id="answer" class="answer-box">
             <h2>Direct answer for operators</h2>
             <p>{stripTags(post.data.problem)}</p>
             <p><strong>Best first move:</strong> {stripTags(post.data.system[0])}</p>
-          </section>
+          </section>}
 
           {post.data.bodySections && (
             <section class="article-content">
@@ -260,6 +265,7 @@ const relatedIntegrations = inferredIntegrationLinks();
             </section>
           )}
 
+          {!bodyOnly && <>
           <section id="cost">
             <h2>Where the operational cost shows up</h2>
             <p>
@@ -306,6 +312,8 @@ const relatedIntegrations = inferredIntegrationLinks();
               expands to another property, channel, or stage.
             </p>
           </section>
+
+          </>}
 
           <FaqList id="faq" faqs={post.data.faqs} />
 

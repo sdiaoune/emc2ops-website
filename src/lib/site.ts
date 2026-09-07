@@ -1,4 +1,5 @@
 import type { CollectionEntry } from "astro:content";
+import { homepageMetadata } from "./homepageContent";
 import { homepageFaqs } from "./homepageFaq";
 
 export const siteUrl = "https://www.emc2ops.com";
@@ -56,10 +57,13 @@ export function organizationSchema() {
     founder: { "@id": `${siteUrl}/about/#founder` },
     email: "soya@getemc2ops.com",
     description:
-      "EMC2Ops builds done-for-you AI front desk and workflow automation systems for property management companies.",
+      homepageMetadata.description,
     areaServed: { "@type": "Country", name: "United States" },
     knowsAbout: [
       "property management automation",
+      "custom automation implementation",
+      "security deposit automation",
+      "maintenance request to completion",
       "AI front desk workflows",
       "missed-call text-back",
       "leasing follow-up automation",
@@ -154,10 +158,9 @@ export function homeSchema() {
         "@type": "WebPage",
         "@id": `${siteUrl}/#webpage`,
         url: `${siteUrl}/`,
-        name: "EMC2Ops | Done-for-You AI Front Desk for Property Managers",
-        description:
-          "EMC2Ops installs AI front desk workflows for property managers: missed-call text-back, leasing follow-up, maintenance intake, and CRM logging.",
-        dateModified: siteUpdatedAt,
+        name: homepageMetadata.title,
+        description: homepageMetadata.description,
+        dateModified: homepageMetadata.updatedAt,
         isPartOf: { "@id": `${siteUrl}/#website` },
         about: { "@id": `${siteUrl}/#service` },
         primaryImageOfPage: {
@@ -176,17 +179,20 @@ export function homeSchema() {
       {
         "@type": "Service",
         "@id": `${siteUrl}/#service`,
-        name: "Done-for-you AI front desk for property managers",
-        serviceType: "AI voice, SMS, and CRM workflow automation implementation",
+        name: "Custom property management automation",
+        serviceType: "Custom automation design, integration, implementation, and maintenance",
         provider: { "@id": `${siteUrl}/#organization` },
         description:
-          "Done-for-you implementation of missed-call recovery, leasing follow-up, tenant communication, maintenance intake, appointment routing, owner updates, vendor routing, and CRM logging.",
+          homepageMetadata.description,
         areaServed: { "@type": "Country", name: "United States" },
         audience,
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Property management automation services",
           itemListElement: [
+            "Custom property management automation",
+            "Security deposit automation",
+            "Maintenance request-to-completion automation",
             "Missed-call recovery",
             "AI leasing follow-up automation",
             "Maintenance intake automation",
@@ -383,8 +389,9 @@ export function aboutPageSchema() {
         "@id": `${url}#webpage`,
         url,
         name: "About EMC2Ops",
+        dateModified: homepageMetadata.updatedAt,
         description:
-          "EMC2Ops builds AI front desk and workflow automation systems for property management companies.",
+          homepageMetadata.description,
         isPartOf: { "@id": `${siteUrl}/#website` },
         about: { "@id": `${siteUrl}/#organization` },
         inLanguage: "en-US",

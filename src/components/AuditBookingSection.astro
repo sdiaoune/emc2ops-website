@@ -18,7 +18,7 @@ const {
   workflow = "",
   source = "",
   agendaItems = [
-    "Tell us whether you need pricing, a demo, or help choosing the first workflow.",
+    "Bring the workflow you want to automate. We’ll outline a plan to build your solution.",
     "Review the current bottleneck and the tools your team already uses.",
     "Leave with a clear next step and tailored scope when there is a fit.",
   ],
@@ -64,6 +64,10 @@ const {
           <p class="booking-step" id="booking-step">Step 1 of 2: choose a time that works.</p>
           <p class="booking-context" id="booking-context" hidden></p>
 
+            <label class="full-field project-brief">Describe what you want to automate (optional)
+              <textarea name="message" maxlength="2000" rows="4" placeholder="Describe your current process, the software involved, and the result you want. Please do not include resident personal information."></textarea>
+            </label>
+
           <div class="slot-picker" id="slot-picker" aria-live="polite">
             <div class="slot-picker-head">
               <span>Next openings</span>
@@ -105,7 +109,7 @@ const {
                 <input name="company" autocomplete="organization" required />
               </label>
               <label>
-                Biggest workflow problem
+                Workflow you want to automate
                 <select name="workflowProblem" required>
                   <option value="">Select one</option>
                   <option>Missed leasing calls</option>
@@ -113,6 +117,8 @@ const {
                   <option>Maintenance triage</option>
                   <option>CRM follow-up</option>
                   <option>Owner or vendor updates</option>
+                  <option>Security deposit automation</option>
+                  <option>Custom automation</option>
                 </select>
               </label>
             </div>
@@ -138,10 +144,7 @@ const {
                     <option>1,000+ units</option>
                   </select>
                 </label>
-                <label class="full-field">
-                  What should we look at first?
-                  <textarea name="message" placeholder="Example: after-hours calls are missed, leads are not followed up, maintenance requests need better routing..."></textarea>
-                </label>
+
               </div>
             </details>
 
@@ -192,6 +195,9 @@ const {
   let formStarted = false;
 
   const workflowContextMap = {
+    "custom-property-management-automation": { label: "Custom property management automation", problem: "Custom automation" },
+    "security-deposit-automation": { label: "Security deposit automation", problem: "Security deposit automation" },
+    "maintenance-request-to-completion": { label: "Maintenance request to completion", problem: "Maintenance triage" },
     "missed-call-recovery": { label: "Missed-call recovery", problem: "Missed leasing calls" },
     "leasing-follow-up": { label: "Leasing follow-up automation", problem: "CRM follow-up" },
     "maintenance-intake-automation": { label: "Maintenance intake automation", problem: "Maintenance triage" },
@@ -201,7 +207,7 @@ const {
     "ai-front-desk-property-management": { label: "AI front desk for property management", problem: "Missed leasing calls" },
     "apartment-lead-tracking": { label: "Apartment lead tracking", problem: "CRM follow-up" },
     "real-estate-lead-follow-up-automation": { label: "Real estate lead follow-up automation", problem: "CRM follow-up" },
-    "how-to-automate-property-management": { label: "Property management workflow automation", problem: "CRM follow-up" },
+    "how-to-automate-property-management": { label: "Property management workflow automation", problem: "Custom automation" },
     "lead-to-lease-automation": { label: "Lead-to-lease automation", problem: "CRM follow-up" },
     "real-estate-crm-follow-up-mess": { label: "CRM follow-up cleanup", problem: "CRM follow-up" },
     "leasing-intake-routing-automation": { label: "Leasing intake and routing automation", problem: "CRM follow-up" },

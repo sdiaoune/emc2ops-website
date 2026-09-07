@@ -28,6 +28,7 @@ metrics:
   - "system-of-record accuracy"
 cta: "Find the first property management workflow worth automating"
 bodySections: true
+bodyOnly: true
 socialHook: "Reduce property management admin work before adding headcount."
 socialImage: "/blog/social-assets/reduce-administrative-workload-property-management.png"
 faqs:

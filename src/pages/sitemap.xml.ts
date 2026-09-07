@@ -1,4 +1,5 @@
 import { getCollection } from "astro:content";
+import { homepageMetadata } from "../lib/homepageContent";
 import { integrationPages, integrationUrl } from "../lib/integrations";
 import { customerStories, customerStoryUrl } from "../lib/customerStories";
 import { absoluteUrl, byOrder, postUpdatedAt, siteUpdatedAt } from "../lib/site";
@@ -8,9 +9,9 @@ import { useCasePages, useCaseUrl } from "../lib/useCases";
 export async function GET() {
   const posts = byOrder(await getCollection("blog"));
   const urls = [
-    { url: "/", lastmod: siteUpdatedAt },
-    { url: "/about/", lastmod: siteUpdatedAt },
-    { url: "/book-demo/", lastmod: siteUpdatedAt },
+    { url: "/", lastmod: homepageMetadata.updatedAt },
+    { url: "/about/", lastmod: homepageMetadata.updatedAt },
+    { url: "/book-demo/", lastmod: homepageMetadata.updatedAt },
     { url: "/customers/", lastmod: siteUpdatedAt },
     ...customerStories.map((story) => ({ url: customerStoryUrl(story), lastmod: story.updatedAt })),
     { url: "/resources/", lastmod: siteUpdatedAt },
@@ -20,9 +21,9 @@ export async function GET() {
     { url: "/compare/ai-front-desk-vs-call-center/", lastmod: siteUpdatedAt },
     { url: "/compare/custom-automation-vs-off-the-shelf-property-management-ai/", lastmod: siteUpdatedAt },
     { url: "/security/", lastmod: siteUpdatedAt },
-    { url: "/services/", lastmod: siteUpdatedAt },
-    ...servicePages.map((service) => ({ url: serviceUrl(service), lastmod: siteUpdatedAt })),
-    { url: "/use-cases/", lastmod: siteUpdatedAt },
+    { url: "/services/", lastmod: homepageMetadata.updatedAt },
+    ...servicePages.map((service) => ({ url: serviceUrl(service), lastmod: service.updatedAt || siteUpdatedAt })),
+    { url: "/use-cases/", lastmod: homepageMetadata.updatedAt },
     ...useCasePages.map((useCase) => ({ url: useCaseUrl(useCase), lastmod: useCase.updatedAt || siteUpdatedAt })),
     { url: "/integrations/", lastmod: siteUpdatedAt },
     ...integrationPages.map((integration) => ({ url: integrationUrl(integration), lastmod: siteUpdatedAt })),
@@ -34,7 +35,7 @@ export async function GET() {
     { url: "/sms-consent/", lastmod: siteUpdatedAt },
   ];
   const body = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls
   .map(
     (entry) => `  <url>

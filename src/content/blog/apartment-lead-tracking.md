@@ -3,12 +3,12 @@ slug: "apartment-lead-tracking"
 order: 32
 pillar: "Leasing Automation"
 keyword: "apartment lead tracking workflow"
-title: "Apartment Lead Tracking: How to Stop Losing Renters Between First Inquiry and Tour"
-seoTitle: "Apartment Lead Tracking Workflow Guide"
-meta: "A practical apartment lead tracking workflow for faster response, cleaner source attribution, fewer duplicate leads, and better tour conversion."
+title: "How to Set Up Apartment Lead Tracking: Fields, Stages, and Handoffs"
+seoTitle: "Apartment Lead Tracking Setup Guide"
+meta: "Set up apartment lead tracking with a field checklist, stage definitions, owner assignments, and a worked example for calls, forms, texts, and tours."
 publishedAt: "2026-06-06"
-updatedAt: "2026-06-06"
-h1: "Apartment lead tracking: the simple workflow that stops qualified renters from slipping through"
+updatedAt: "2026-09-07"
+h1: "How to set up apartment lead tracking for your leasing team"
 problem: "Apartment lead tracking breaks down when calls, ILS inquiries, website forms, texts, emails, and tour requests live in separate places. The fix is one lead intake workflow that captures every renter, assigns the next action, prevents duplicate follow-up, and shows which sources turn into tours and leases."
 stakes:
   - "Leasing agents lose time checking multiple inboxes instead of working the next best prospect."
@@ -31,6 +31,7 @@ metrics:
   - "source to signed lease attribution"
 cta: "If apartment leads are spread across calls, texts, ILS alerts, and CRM notes, book a 15-minute workflow audit."
 bodySections: true
+bodyOnly: true
 socialHook: "If apartment lead tracking still depends on separate call logs, ILS alerts, inboxes, and memory, the workflow is the problem—not the number of tools."
 socialImage: "/og-image.png"
 relatedServices:
@@ -77,6 +78,24 @@ That matters because the leasing team does not need more places to check. They n
 - What should happen next?
 
 If your current setup cannot answer those questions in seconds, your team is tracking activity instead of managing the leasing pipeline.
+
+## Set up one record before automating the portfolio
+
+Use this guide to configure and test your process. If you want EMC2Ops to build the connections and maintain the workflow, review the [apartment and multifamily lead tracking implementation](/use-cases/apartment-lead-tracking/).
+
+Start with one property, one intake source, and a small set of fictional records. Agree who owns the lead, which system holds the authoritative status, and what evidence ends each stage. The field template on the implementation page can be adapted to your existing CRM; it does not require a new software purchase.
+
+**Illustrative setup:** an ILS form creates record CC-104 for Cedar Court. A later phone call matches the confirmed contact and property, so it becomes another activity on CC-104. Preserve the original ILS source alongside the call. Assign the leasing owner, record “Tour requested,” and create the next task. Change the stage to “Tour booked” only after calendar confirmation.
+
+Before expanding, test these cases:
+
+- A repeat inquiry keeps the source history and produces one next action.
+- A shared name with conflicting contact details enters review instead of an automatic merge.
+- An opt-out blocks the relevant outreach, including messages already queued.
+- A confirmed tour stops the inquiry reminder and starts the agreed tour workflow.
+- A failed CRM update creates an owned exception; the workflow does not claim completion.
+
+Review the final record after each test. A sent message is not proof that the owner, status, and next task are correct.
 
 ## Why apartment lead tracking fails
 

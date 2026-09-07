@@ -137,8 +137,12 @@ test("AI discovery freshness matches the current site release", async ({ request
     "/use-cases/leasing-intake-routing-automation/",
     "/use-cases/resident-owner-vendor-communication-automation/",
   ]) {
-    const entry = `<loc>${publicOrigin}${route}</loc>\n    <lastmod>${releaseDate}</lastmod>`;
-    expect(builtSitemap).toContain(entry);
+    // A homepage-only release must not falsify modification dates on use cases.
+    const entry = builtSitemap.split("<url>").find((item) => item.includes(`<loc>${publicOrigin}${route}</loc>`));
+    expect(entry).toBeTruthy();
+    const pageDate = entry.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
+    expect(pageDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(pageDate <= releaseDate).toBe(true);
   }
 });
 

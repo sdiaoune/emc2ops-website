@@ -50,6 +50,12 @@ function elementWithClass(html, { className, label, tagName }) {
 
 function normalizeMarkup(value) {
   return value
+    // Booking accepts both forms. Permit only the same attribution and destination.
+    .replace(/href="(\/book-demo\/)\?([^"#]+)"/g, (attribute, destination, query) => {
+      const params = new URLSearchParams(query.replace(/&amp;/g, "&"));
+      if (![...params.keys()].every((key) => key === "workflow" || key === "source")) return attribute;
+      return `href="${destination}#${query}"`;
+    })
     .replace(/>\s+</g, "><")
     .replace(/\s+/g, " ")
     .trim();

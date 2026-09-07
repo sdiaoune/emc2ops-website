@@ -1,0 +1,53 @@
+/* Shared refined-enterprise system. All marketing templates remain static. */
+:root {
+  --bg: #fff; --background: #fff; --foreground: #142a23; --text: var(--foreground);
+  --card: #fff; --panel: #fff; --muted: #586961; --muted-strong: #43574c;
+  --primary: #176047; --accent: #176047; --primary-foreground: #fff;
+  --accent-soft: #f3f7f5; --muted-surface: #f3f7f5; --section-muted-bg: #f3f7f5;
+  --border: #dce5df; --line: #dce5df; --hero-bg: var(--background); --hero-bg-size: auto;
+  --radius: .5rem; --radius-lg: .75rem;
+}
+html.dark { --bg: #101d18; --background: #101d18; --foreground: #eef5f1; --text: #eef5f1; --card: #17271f; --panel: #17271f; --muted: #adbbb2; --muted-strong: #c4d0c9; --primary: #79d3aa; --accent: #79d3aa; --primary-foreground: #10291d; --accent-soft: #1b3025; --muted-surface: #1b3025; --section-muted-bg: #14231b; --border: #34473b; --line: #34473b; --hero-bg: var(--background); }
+body .wrap { width: min(1200px, calc(100% - 64px)); }
+body .btn { min-height: 46px; border-radius: 7px; font-weight: 650; letter-spacing: -.01em; transition: background-color .15s, border-color .15s; }
+body .btn-primary { box-shadow: none; }
+body main h1 { line-height: 1.08; letter-spacing: -.045em; font-weight: 750; }
+body main h2 { line-height: 1.17; letter-spacing: -.03em; font-weight: 700; }
+body main h3 { letter-spacing: -.015em; line-height: 1.35; }
+body main p { line-height: 1.7; }
+body .service-hero { background: var(--background); padding: 80px 0 64px; }
+body .service-hero > .wrap > .eyebrow { display: none; }
+body .service-hero h1 { font-size: clamp(2.3rem, 4.3vw, 4rem); max-width: 920px; }
+body .service-hero .dek { max-width: 790px; font-size: 1.15rem; color: var(--muted-strong); }
+body .detail-section, body .split-section, body .service-grid-section { padding-block: 64px; }
+body .service-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0 48px; }
+body .service-card { min-height: 0; padding: 30px 0; border: 0; border-top: 1px solid var(--border); border-radius: 0; box-shadow: none; background: transparent; }
+body .service-card:hover { transform: none; box-shadow: none; }
+body .service-card h2 { font-size: 1.4rem; }
+body .service-card p { margin-bottom: 22px; }
+body .service-card .read-more { margin-top: 8px; }
+body .installable-card, body .workflow-integration-card, body .step-list li { border: 0; border-top: 1px solid var(--border); border-radius: 0; box-shadow: none; padding: 24px 0; background: transparent; }
+body .installable-grid, body .workflow-integration-grid { gap: 28px; }
+body .step-list { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 28px; }
+body .compact-steps { grid-template-columns: 1fr; }
+body .step-list li { min-height: 0; }
+body .step-list li::before { font-weight: 600; font-size: 1.6rem; }
+body .related-links a, body .decision-grid a { border: 0; border-bottom: 1px solid var(--border); border-radius: 0; box-shadow: none; padding: 24px 0; background: transparent; }
+body .related-links, body .decision-grid { gap: 0 40px; }
+body .related-links a:hover, body .decision-grid a:hover { transform: none; box-shadow: none; background: var(--muted-surface); }
+body .conversion-cta { background: var(--muted-surface); border: 0; border-radius: 0; box-shadow: none; padding: 38px; }
+body .metric-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px 32px; }
+body .metric-list span { border: 0; border-left: 2px solid var(--accent); border-radius: 0; background: transparent; color: var(--muted-strong); font-weight: 500; }
+body .faq details { border: 0; border-bottom: 1px solid var(--border); border-radius: 0; box-shadow: none; background: transparent; padding: 22px 0; margin: 0; }
+body .faq summary { font-weight: 650; }
+body a:focus-visible, body button:focus-visible, body summary:focus-visible { outline: 3px solid var(--ring); outline-offset: 4px; }
+body .breadcrumbs { font-size: .85rem; }
+body .product-proof-section { padding-block: 32px; background: var(--section-muted-bg); }
+@media (max-width: 760px) {
+  body .wrap { width: calc(100% - 36px); }
+  body .service-hero { padding: 44px 0; }
+  body .detail-section, body .split-section, body .service-grid-section { padding-block: 40px; }
+  body .service-grid, body .step-list, body .metric-list { grid-template-columns: 1fr; }
+  body .conversion-cta { padding: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0s !important; animation-duration: 0s !important; } }

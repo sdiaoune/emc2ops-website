@@ -329,5 +329,10 @@ const integrationsByPath: Record<string, WorkflowIntegration[]> = {
 };
 
 export function workflowIntegrationsForPath(pathname: string) {
-  return integrationsByPath[pathname] || [];
+  const aliases: Record<string, string> = {
+    "/services/security-deposit-automation/": "/use-cases/security-deposit-automation/",
+    "/use-cases/maintenance-request-to-completion/": "/services/maintenance-intake-automation/",
+    "/services/custom-property-management-automation/": "/use-cases/resident-owner-vendor-communication-automation/",
+  };
+  return integrationsByPath[aliases[pathname] || pathname] || [];
 }

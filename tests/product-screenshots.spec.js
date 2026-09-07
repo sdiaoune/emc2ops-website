@@ -3,6 +3,8 @@ const { expect, test } = require("@playwright/test");
 const routes = [
   "/",
   "/services/",
+  "/services/custom-property-management-automation/",
+  "/use-cases/maintenance-request-to-completion/",
   "/use-cases/",
   "/integrations/",
   "/book-demo/",

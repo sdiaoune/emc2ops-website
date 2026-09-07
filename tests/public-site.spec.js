@@ -43,8 +43,8 @@ test("home page loads and routes audit CTAs to the booking page", async ({ page 
   });
 
   await page.goto("/");
-  await expect(page.locator("h1")).toContainText("Turn missed leasing calls");
-  await expect(page.locator(".hero-actions .btn-primary")).toHaveAttribute("href", "/book-demo/");
+  await expect(page.locator("h1")).toHaveText("Custom automations for property management companies.");
+  await expect(page.locator(".hero-actions .btn-primary")).toHaveAttribute("href", "/book-demo/#workflow=custom-property-management-automation&source=homepage");
   await expect(page.locator(".hero-actions .btn-primary")).toContainText("Book a 15-minute consultation");
   const customerResults = page.locator(".customer-results");
   await expect(customerResults.locator(".customer-result")).toHaveCount(3);
@@ -66,7 +66,7 @@ test("home page loads and routes audit CTAs to the booking page", async ({ page 
   expect(errors).toEqual([]);
 });
 
-test("home hero fits the visible screen across desktop, tablet, and mobile", async ({ page }) => {
+test("home hero remains readable with visible actions and no overflow at all widths", async ({ page }) => {
   const viewports = [
     { width: 1440, height: 900 },
     { width: 1280, height: 720 },
@@ -86,9 +86,9 @@ test("home hero fits the visible screen across desktop, tablet, and mobile", asy
       const hero = document.querySelector(".hero");
       const results = document.querySelector(".customer-results");
       const copy = document.querySelector(".hero-copy");
-      const eyebrow = document.querySelector(".hero .eyebrow");
+      const heading = document.querySelector(".hero h1");
       const primaryCta = document.querySelector(".hero-actions .btn-primary");
-      const secondaryCta = document.querySelector(".hero-actions .btn-secondary");
+      const secondaryCta = document.querySelector(".hero-actions .demo-link");
       const media = document.querySelector(".product-hero-media");
 
       return {
@@ -96,7 +96,7 @@ test("home hero fits the visible screen across desktop, tablet, and mobile", asy
         heroBottom: Math.round(hero.getBoundingClientRect().bottom),
         copyTop: Math.round(copy.getBoundingClientRect().top),
         resultsTop: Math.round(results.getBoundingClientRect().top),
-        eyebrowVisible: eyebrow.getBoundingClientRect().height > 0,
+        headingVisible: heading.getBoundingClientRect().height > 0,
         primaryCtaVisible: primaryCta.getBoundingClientRect().height > 0,
         secondaryCtaVisible: secondaryCta.getBoundingClientRect().height > 0,
         mediaVisible: media.getBoundingClientRect().height > 0,
@@ -104,12 +104,13 @@ test("home hero fits the visible screen across desktop, tablet, and mobile", asy
       };
     });
 
-    expect(layout.heroBottom, `${viewport.width}x${viewport.height} hero bottom`).toBeLessThanOrEqual(viewport.height + 1);
-    expect(layout.resultsTop, `${viewport.width}x${viewport.height} results position`).toBeLessThanOrEqual(viewport.height + 1);
+    // The approved editorial layout allows natural vertical scrolling instead
+    // of shrinking text and the screenshot to fit a single screen.
+    expect(layout.resultsTop, `${viewport.width}x${viewport.height} results follow hero`).toBeGreaterThanOrEqual(layout.heroBottom - 1);
     if (viewport.width <= 719) {
-      expect(layout.copyTop - layout.heroTop, `${viewport.width}x${viewport.height} mobile top gap`).toBeLessThanOrEqual(24);
+      expect(layout.copyTop - layout.heroTop, `${viewport.width}x${viewport.height} mobile top gap`).toBeLessThanOrEqual(40);
     }
-    expect(layout.eyebrowVisible).toBe(true);
+    expect(layout.headingVisible).toBe(true);
     expect(layout.primaryCtaVisible).toBe(true);
     expect(layout.secondaryCtaVisible).toBe(true);
     expect(layout.mediaVisible).toBe(true);
@@ -142,7 +143,7 @@ test("sales assistant routes intent, answers questions, and offers booking", asy
   const panel = page.locator("#sales-chatbot-panel");
   await expect(panel).toBeVisible();
   await expect(panel).toContainText("EMC2Ops Assistant");
-  await expect(panel).toContainText("Find my best first workflow");
+  await expect(panel).toContainText("Plan my custom automation");
   await expect(panel.locator('a[href="/book-demo/#source=website-chat"]')).toHaveCount(2);
 
   await panel.locator('[data-chat-action="workflow"]').click();
@@ -152,7 +153,7 @@ test("sales assistant routes intent, answers questions, and offers booking", asy
   await expect(panel).toContainText("Book a 15-minute consultation");
   expect(chatPayload.messages.at(-1)).toMatchObject({
     role: "user",
-    text: "Our biggest issue is Missed leasing calls. What would you recommend as the first workflow?",
+    text: "Our biggest issue is Missed leasing calls. How would you build an automation around this process?",
   });
   expect(chatPayload.page.path).toBe("/");
   expect(chatPayload.visitorId).toBeTruthy();
@@ -248,9 +249,10 @@ test("booking page submits the audit form payload", async ({ page }) => {
   });
 
   await page.goto("/book-demo/");
-  await expect(page.locator("h1")).toContainText("Tell us what you need");
+  await expect(page.locator("h1")).toContainText("Tell us what you want to automate");
   await expect(page.locator("#book-demo h2")).toContainText("Use the call for a quote, demo, or workflow audit");
   await expect(page.locator("#booking-details-panel")).toBeHidden();
+  await expect(page.locator('#audit-form textarea[name="message"]')).toBeVisible();
   await expect(page.locator(".slot-day strong").first()).toContainText("Monday, June 29");
   await expect(page.locator(".slot-button")).toHaveCount(8);
   const localTimeLabel = await page.evaluate((start) => new Intl.DateTimeFormat("en-US", {
@@ -595,8 +597,8 @@ test("Ahrefs-flagged service pages publish unique operator briefs", async ({ pag
 
 test("decision hubs use buyer-facing language and valid internal links", async ({ page, request }) => {
   const pages = [
-    { path: "/services/", h1: "Choose the first property management workflow to fix." },
-    { path: "/use-cases/", h1: "Choose the workflow to fix first." },
+    { path: "/services/", h1: "Custom automation services. Built for your workflow." },
+    { path: "/use-cases/", h1: "See how your property management workflow can work." },
     { path: "/integrations/", h1: "Automation workflows for the systems property teams already use." },
   ];
 

@@ -3,6 +3,7 @@ import Analytics from "@vercel/analytics/astro";
 import SeoHead from "../components/SeoHead.astro";
 import SalesChatbot from "../components/SalesChatbot.astro";
 import "../styles/theme.css";
+import "../styles/enterprise.css";
 
 interface Props {
   title: string;
@@ -75,9 +76,9 @@ const enableAnalytics = process.env.VERCEL === "1" || import.meta.env.PUBLIC_ENA
 
       gtag('config', 'AW-18196518863');
     </script>
-    {enableAnalytics && <Analytics />}
   </head>
   <body class={pageClass}>
+    {enableAnalytics && <Analytics />}
     <slot />
     <SalesChatbot />
     <script>

@@ -10,6 +10,13 @@ export interface IntegrationPage {
   description: string;
   summary: string;
   auditFocus: string;
+  implementationExample?: {
+    title: string;
+    intro: string;
+    rows: Array<[string, string, string]>;
+    checks: string[];
+    sources: Array<{ label: string; href: string }>;
+  };
   auditCta: AuditCta;
   supportedWorkflows: string[];
   workflows: string[];
@@ -28,6 +35,54 @@ export interface IntegrationPage {
 export const integrationPages: IntegrationPage[] = [
   {
     slug: "appfolio",
+    implementationExample: {
+      "title": "Choose an AppFolio connection from the handoff you need",
+      "intro": "AppFolio Stack provides integration partnerships and documented APIs. Access to a named operation depends on the approved integration and customer configuration. These examples describe connection choices to verify; EMC2Ops does not claim AppFolio partnership or unrestricted API access.",
+      "rows": [
+            [
+                  "Approved API or Stack integration",
+                  "Use an authorized integration when its documented operations cover the needed record and action.",
+                  "Confirm enrollment, customer authorization, available fields, and read/write capabilities with the provider."
+            ],
+            [
+                  "Middleware around connected tools",
+                  "Connect the phone, form, inbox, or CRM when those tools expose supported events.",
+                  "A Zapier, Make, or n8n workflow does not itself grant AppFolio access. Verify the final handoff separately."
+            ],
+            [
+                  "Staff-reviewed handoff",
+                  "Prepare a structured summary and owned task when a supported direct write is unavailable.",
+                  "Staff verify the source, update AppFolio through their authorized workflow, and record completion."
+            ],
+            [
+                  "Leasing example",
+                  "Capture source, property interest, contact, requested tour, and next action from an approved inquiry channel.",
+                  "Match an existing record before a supported update or reviewed guest-card handoff."
+            ],
+            [
+                  "Maintenance example",
+                  "Collect property/unit context, reported issue, access details, and evidence references.",
+                  "Staff retain emergency routing, spending approval, and verification of completion."
+            ]
+      ],
+      "checks": [
+            "Bring the exact destination object, field names, and required action to scoping. “Connect AppFolio” is not enough to confirm feasibility.",
+            "Record which system owns each status and how the receiving system confirms an update. A sent webhook is not proof of a saved record.",
+            "Test an ordinary handoff, an identity conflict, a denied operation, and a failed update before enabling the workflow.",
+            "Keep owner-facing financial interpretation, screening, lease decisions, and sensitive resident exceptions under the designated staff review.",
+            "If access is limited, show the reviewer the source facts, requested action, due time, and completion check. Do not silently replace the supported connection with browser automation."
+      ],
+      "sources": [
+            {
+                  "label": "AppFolio Stack integration overview",
+                  "href": "https://www.appfolio.com/services/stack"
+            },
+            {
+                  "label": "AppFolio Stack API overview",
+                  "href": "https://www.appfolio.com/stack/partners/api"
+            }
+      ]
+},
     name: "AppFolio",
     logo: "/assets/integrations/appfolio.png",
     title: "AppFolio workflow integration",
@@ -147,6 +202,54 @@ export const integrationPages: IntegrationPage[] = [
   },
   {
     slug: "buildium",
+    implementationExample: {
+      "title": "Example mapping: a maintenance intake reaches the right Buildium record",
+      "intro": "This illustrative mapping is a scoping worksheet, not a promise that every field or write operation is available in your account. Buildium offers an Open API with self-service API keys. Verify each required read and write operation in the current documentation and your account before choosing the connection.",
+      "rows": [
+            [
+                  "Property and unit",
+                  "Map a verified property/unit reference from the intake to the matching account record. Hold ambiguous addresses.",
+                  "Confirm permitted access to the relevant records."
+            ],
+            [
+                  "Resident and contact",
+                  "Match a confirmed resident reference and contact route; do not rely on a name alone.",
+                  "Check identity access and the approved communication channel."
+            ],
+            [
+                  "Request and evidence",
+                  "Carry the issue summary, received time, access instructions, and supported evidence references.",
+                  "Verify which request fields and attachment operations the selected route supports."
+            ],
+            [
+                  "Owner and status",
+                  "Assign an accountable staff owner and record receipt, review, or escalation.",
+                  "Confirm the permitted task/status operation; otherwise create a reviewed handoff."
+            ],
+            [
+                  "Completion reference",
+                  "Record the destination identifier after a confirmed update. A rejected write stays open for review.",
+                  "Test authentication, permissions, response handling, and duplicate prevention."
+            ]
+      ],
+      "checks": [
+            "Leasing: verify prospect capture and the required destination fields before promising automatic guest-card creation.",
+            "Maintenance: verify property/unit matching, request creation or handoff, evidence handling, and staff escalation.",
+            "Owner updates: verify the source facts and prepare a draft for the required reviewer; do not infer financial conclusions.",
+            "Run a read test and a separately authorized write test using approved test records. Limit access to the operations needed and keep credentials out of forms, screenshots, and source control.",
+            "If direct access is unavailable, use an approved form, inbox event, or staff-reviewed import. Document who performs the final update and how it is confirmed."
+      ],
+      "sources": [
+            {
+                  "label": "Buildium Open API overview",
+                  "href": "https://www.buildium.com/features/open-api/"
+            },
+            {
+                  "label": "Buildium developer documentation",
+                  "href": "https://developer.buildium.com/"
+            }
+      ]
+},
     name: "Buildium",
     logo: "/assets/integrations/buildium.png",
     title: "Buildium workflow automation integration",

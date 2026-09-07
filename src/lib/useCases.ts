@@ -37,8 +37,165 @@ export interface UseCasePage {
 }
 
 export const useCasePages: UseCasePage[] = [
+{
+  "slug": "maintenance-request-to-completion",
+  "primaryKeyword": "maintenance workflow automation",
+  "clusterKeywords": [
+    "maintenance request tracking",
+    "vendor coordination",
+    "work order completion"
+  ],
+  "intent": "A property manager wants maintenance requests tracked from intake through verified completion.",
+  "title": "Maintenance request to completion",
+  "seoTitle": "Maintenance Request-to-Completion Automation",
+  "description": "Connect maintenance intake, staff review, vendor coordination, scheduling, updates, completion evidence, and closure with custom property management automation.",
+  "updatedAt": "2026-09-06",
+  "h1": "Connect the maintenance request to the completed work order.",
+  "summary": "Keep the request, approval, vendor assignment, access details, status updates, and completion evidence connected. EMC2Ops builds the workflow; your staff authorize work, contractors perform repairs, and the designated reviewer confirms closure.",
+  "auditFocus": "Bring the process between a resident reporting an issue and your team closing the work order. We map ownership, approvals, supported system updates, and the exceptions that need a person.",
+  "auditCta": {
+    "label": "Book a 15-minute consultation",
+    "title": "Plan your maintenance workflow from request to closure.",
+    "body": "Tell us the process, software, and desired result. We will outline a plan to build your solution and confirm the access, approvals, and ongoing support it needs."
+  },
+  "painPoints": [
+    "Requests lack the unit, issue, access instructions, or supporting photos needed for review.",
+    "Vendor availability and staff approvals live in separate conversations.",
+    "A vendor saying work is done does not consistently lead to evidence review and a closed record."
+  ],
+  "workflow": [
+    "Capture the property, unit, issue, contact details, access instructions, urgency signals, and supported evidence.",
+    "Route urgent or unclear reports to the designated staff contact; follow your emergency procedure instead of promising automated resolution.",
+    "Have staff approve the scope, vendor assignment, spending limits, and required access arrangements.",
+    "Send the authorized vendor a work brief; record acceptance and the confirmed appointment or staff scheduling task.",
+    "Keep resident, vendor, and staff updates tied to the work order; stop reminders when the state changes.",
+    "Collect completion notes, photos, and invoice references; route missing evidence or disputed work for review.",
+    "Let the authorized reviewer confirm closure and update the supported property record or assign a manual update."
+  ],
+  "example": {
+    "title": "Fictional example: a routine repair reaches verified closure",
+    "steps": [
+      "A resident reports a dripping kitchen faucet with a unit number, photo, and access preference.",
+      "Staff review the request, approve the repair scope, and assign an authorized vendor.",
+      "The vendor accepts; the appointment is confirmed and the resident receives the approved update.",
+      "After the repair, the vendor supplies completion notes and a photo. Staff review the evidence before the record is closed."
+    ]
+  },
+  "template": {
+    "title": "Maintenance handoff field template",
+    "rows": [
+      [
+        "Request",
+        "Property, unit, issue, reporter, source time, and access instructions.",
+        "Intake record"
+      ],
+      [
+        "Authorization",
+        "Reviewer, approved scope, vendor, spending limit, and approval time.",
+        "Staff review"
+      ],
+      [
+        "Coordination",
+        "Vendor acceptance, confirmed appointment, and update history.",
+        "Work order"
+      ],
+      [
+        "Completion",
+        "Notes, evidence links, invoice reference, and closure decision.",
+        "Authorized reviewer"
+      ]
+    ]
+  },
+  "installables": [
+    {
+      "title": "Request capture and routing",
+      "description": "Normalize the required fields, detect duplicates, and route missing information or urgency signals to your staff."
+    },
+    {
+      "title": "Vendor and appointment handoffs",
+      "description": "Send approved work details, record acceptance, and coordinate confirmed scheduling without promising unapproved dispatch."
+    },
+    {
+      "title": "Status-aware communication",
+      "description": "Send approved updates and reminders only while applicable; attach replies and changes to the same work order."
+    },
+    {
+      "title": "Completion review and records",
+      "description": "Collect evidence, require closure approval, and update supported systems with retry and manual-review paths."
+    }
+  ],
+  "beforeAfter": {
+    "before": [
+      "Staff chase context across calls, inboxes, and vendor texts.",
+      "A request can stall between approval, assignment, and scheduling.",
+      "Reported completion is not consistently verified before closure."
+    ],
+    "after": [
+      "Each request has an owner, status, required details, and next action.",
+      "Approved handoffs and reminders follow the recorded work-order state.",
+      "Closure follows evidence review and an authorized decision."
+    ]
+  },
+  "metrics": [
+    "Assignment time: accepted request to approved vendor assignment; report urgent and routine requests separately.",
+    "Completion time: approved work order to staff-confirmed closure, with waiting periods identified.",
+    "Evidence completeness: reviewed completion records containing all required notes, photos, and references.",
+    "Reopen rate: closed work orders reopened within the chosen review period divided by closed work orders."
+  ],
+  "bestFit": [
+    "Teams with a documented maintenance process, vendor roster, and authorized reviewers.",
+    "Operators who can provide supported software access and clear emergency routing."
+  ],
+  "notFit": [
+    "Replacing emergency services, professional diagnosis, or a staffed on-call team.",
+    "Dispatching or approving expenditure without the required human authority."
+  ],
+  "relatedServices": [
+    {
+      "label": "Maintenance intake implementation",
+      "href": "/services/maintenance-intake-automation/"
+    },
+    {
+      "label": "Vendor dispatch implementation",
+      "href": "/services/vendor-dispatch-automation/"
+    },
+    {
+      "label": "Custom automation implementation",
+      "href": "/services/custom-property-management-automation/"
+    }
+  ],
+  "relatedGuides": [
+    {
+      "label": "Resident, owner, and vendor communication",
+      "href": "/use-cases/resident-owner-vendor-communication-automation/"
+    },
+    {
+      "label": "Supported integrations",
+      "href": "/integrations/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Is this different from maintenance intake?",
+      "answer": "Yes. Intake prepares a request for staff review. This use case connects that starting point to approved vendor coordination, scheduling, updates, evidence collection, and staff-confirmed closure."
+    },
+    {
+      "question": "Who decides whether work is urgent?",
+      "answer": "Your approved rules flag urgency signals and route the request to designated staff. People assess the situation and follow the emergency procedure. Automated intake is not professional diagnosis or a guarantee of staffed response."
+    },
+    {
+      "question": "Can vendors close work orders automatically?",
+      "answer": "A vendor can submit completion information through the agreed channel. Closure remains behind your required review gate. Missing evidence, disputed repairs, and failed record updates enter an owned exception path."
+    },
+    {
+      "question": "Can we keep our existing maintenance software?",
+      "answer": "Yes, where your account supports the required access. We confirm fields and actions during scoping. A reviewed task, form, or import can carry a handoff when a direct integration is unavailable."
+    }
+  ]
+},
   {
     slug: "apartment-lead-tracking",
+    updatedAt: "2026-09-07",
     primaryKeyword: "apartment lead tracking",
     clusterKeywords: [
       "apartment lead management",
@@ -51,7 +208,7 @@ export const useCasePages: UseCasePage[] = [
     title: "Apartment lead tracking automation",
     seoTitle: "Apartment Lead Tracking for Multifamily Teams",
     description:
-      "Capture apartment and multifamily lead tracking data from calls, forms, texts, ILS sources, and tours with CRM ownership, qualification, and follow-up.",
+      "Track apartment and multifamily leads from calls, forms, and ILS inquiries to tours. See the fields, ownership rules, and CRM workflow EMC2Ops installs.",
     h1: "Apartment lead tracking for calls, forms, texts, and tours",
     summary:
       "See every renter inquiry from source to booked tour—even when it arrives through calls, forms, ILS, or text. EMC2Ops installs the tracking, deduplication, follow-up, routing, and CRM updates for you.",
@@ -76,22 +233,48 @@ export const useCasePages: UseCasePage[] = [
       "Write clean source, status, owner, summary, and next-step fields into the CRM so source-to-tour reporting stays current.",
     ],
     example: {
-      title: "Example: missed apartment inquiry to booked tour",
-      steps: [
-        "A renter submits an ILS form and calls the property 12 minutes later.",
-        "The workflow recognizes the duplicate lead, keeps the original source, and appends the call context.",
-        "AI asks for move date, unit size, budget, pets, and preferred tour window.",
-        "The CRM receives one clean lead record with owner, source, qualification fields, and next task.",
-      ],
-    },
+      "title": "Illustrative example: one multifamily lead from inquiry to tour",
+      "steps": [
+            "A fictional renter asks about a two-bedroom home at Cedar Court through an ILS form, then calls the same property.",
+            "The team confirms the matching contact and property before linking the call to lead CC-104. The ILS remains the first-touch source; the call is another activity, not a second lead.",
+            "Leasing agent Jordan owns CC-104, with the on-duty queue as backup. The stage is Tour requested and the next action is Confirm an available tour time.",
+            "Once the calendar confirms the booking, the record moves to Tour booked and the inquiry reminder stops. If the calendar write fails, the lead remains pending with an owned review task."
+      ]
+},
     template: {
       title: "Apartment lead tracking field template",
       rows: [
-        ["Lead source", "Capture ILS, call, form, referral, walk-in, or text source.", "CRM or lead source"],
-        ["Renter fit", "Store move date, unit interest, budget, pets, and preferred tour time.", "AI intake"],
-        ["Ownership", "Assign property, leasing agent, backup owner, and follow-up due time.", "Routing rule"],
-        ["Outcome", "Log booked tour, stale lead, duplicate, disqualified, or application started.", "CRM update"],
-      ],
+        [
+                "Source and lead ID",
+                "Example: CC-104; first touch ILS form; later touch phone call. Preserve both timestamps.",
+                "CRM record"
+        ],
+        [
+                "Property",
+                "Example: Cedar Court, two-bedroom interest. Review unclear property matches before routing.",
+                "Leasing intake"
+        ],
+        [
+                "Contact and preferences",
+                "Store confirmed contact details, requested move date, preferred channel, and permission status.",
+                "Intake owner"
+        ],
+        [
+                "Owner and backup",
+                "Example: Jordan; on-duty leasing queue if Jordan is unavailable.",
+                "Property routing rule"
+        ],
+        [
+                "Stage and next action",
+                "Tour requested → Tour booked only after calendar confirmation; store the confirmed time and next task.",
+                "Leasing/CRM"
+        ],
+        [
+                "Exception and stop state",
+                "Record staff takeover, opt-out, uncertain identity, or failed writeback; suppress conflicting messages.",
+                "Review queue"
+        ]
+],
     },
     installables: [
       {
@@ -407,6 +590,7 @@ export const useCasePages: UseCasePage[] = [
       "Your team is not ready to define exceptions, approvals, and human review.",
     ],
     relatedServices: [
+      { label: "Custom automation implementation", href: "/services/custom-property-management-automation/" },
       { label: "AI front desk for property management", href: "/services/ai-front-desk-property-management/" },
       { label: "Maintenance intake automation", href: "/services/maintenance-intake-automation/" },
       { label: "Owner update automation", href: "/services/owner-update-automation/" },
@@ -435,6 +619,7 @@ export const useCasePages: UseCasePage[] = [
   },
   {
     slug: "lead-to-lease-automation",
+    updatedAt: "2026-09-07",
     primaryKeyword: "lead-to-lease automation",
     clusterKeywords: [
       "lead to lease automation",
@@ -473,22 +658,44 @@ export const useCasePages: UseCasePage[] = [
       "Create move-in readiness tasks, owner-visible status, and CRM reporting updates once the renter is approved.",
     ],
     example: {
-      title: "Example: inquiry to move-in handoff",
-      steps: [
-        "A renter asks about a unit after hours and receives an immediate qualification path.",
-        "The workflow books a tour, sends reminders, and recovers the lead if they no-show.",
-        "After application start, missing-document follow-up and staff exceptions are routed by status.",
-        "Once approved, move-in readiness tasks and CRM notes are created for the leasing team.",
-      ],
-    },
+      "title": "Illustrative example: inquiry to an approved move-in handoff",
+      "steps": [
+            "A fictional Cedar Court inquiry enters New only when contact, property, source, and an accountable owner are recorded.",
+            "The renter requests a tour. Staff or the supported calendar confirms an available time before the record becomes Tour booked; a request alone does not count as a booking.",
+            "After attendance is recorded, the renter starts an application. Missing-item reminders name only the outstanding items and stop when submission is confirmed.",
+            "Screening, accommodations, pricing exceptions, and approval stay with authorized staff. The workflow records the decision rather than inferring approval.",
+            "After the signed lease and staff approval are confirmed, the move-in coordinator receives a checklist. Missing utilities, payment confirmation, or access arrangements remain visible exceptions."
+      ]
+},
     template: {
       title: "Lead-to-lease stage template",
       rows: [
-        ["Inquiry", "Source, property, unit fit, budget, move date, and channel.", "AI intake"],
-        ["Tour", "Booked time, confirmation, reminder, no-show, and reschedule status.", "Calendar/CRM"],
-        ["Application", "Started, missing items, submitted, exception, or approved.", "Application workflow"],
-        ["Move-in", "Deposit, utilities, lease status, keys, welcome message, and readiness tasks.", "Move-in workflow"],
-      ],
+        [
+                "Inquiry",
+                "Enter: verified contact and property. Exit: assigned owner and agreed next action. Missing identity → review.",
+                "Leasing intake"
+        ],
+        [
+                "Tour",
+                "Enter: tour request. Exit: confirmed booking, then recorded attendance or no-show. Calendar failure → staff task.",
+                "Leasing/calendar owner"
+        ],
+        [
+                "Application",
+                "Enter: application started. Exit: required submission confirmed. Missing items → reminder; sensitive questions → staff.",
+                "Application coordinator"
+        ],
+        [
+                "Approval and lease",
+                "Enter: complete application ready for review. Exit: recorded staff decision and verified lease state. Never infer approval.",
+                "Authorized manager"
+        ],
+        [
+                "Move-in handoff",
+                "Enter: staff-approved lease handoff. Exit: required readiness items verified. Missing evidence keeps the task open.",
+                "Move-in coordinator"
+        ]
+],
     },
     installables: [
       {
@@ -568,6 +775,7 @@ export const useCasePages: UseCasePage[] = [
   },
   {
     slug: "real-estate-crm-follow-up-mess",
+    updatedAt: "2026-09-07",
     primaryKeyword: "real estate CRM cleanup",
     clusterKeywords: [
       "property management CRM cleanup",
@@ -599,28 +807,50 @@ export const useCasePages: UseCasePage[] = [
       "Managers cannot trust reports because fields do not reflect the current lead status.",
     ],
     workflow: [
-      "Audit how leads enter the CRM from calls, forms, texts, ads, ILS sources, and referrals.",
-      "Define ownership, required fields, duplicate rules, stages, and task timing.",
-      "Create automation that logs concise outcomes, next steps, tags, and follow-up tasks.",
-      "Review exception queues instead of asking staff to manually reconcile every conversation.",
-    ],
+      "Export a recoverable snapshot and identify a bounded set of records to review before making changes.",
+      "Review possible duplicates, preserve source and activity history, and hold uncertain matches for a person.",
+      "Define stage entry and exit evidence, required fields, one owner, and the backup queue.",
+      "Reconcile overdue tasks against replies, tours, applications, opt-outs, and staff takeover.",
+      "Pilot the rules on reviewed records, validate the final CRM state, then resume automation for the approved cohort."
+],
     example: {
-      title: "Example: fixing a messy CRM without switching tools",
-      steps: [
-        "The team exports recent leads and finds duplicate records, missing notes, and stale stages.",
-        "The workflow defines which source wins, when to merge or flag duplicates, and what fields are required.",
-        "Automation logs concise summaries and next steps instead of dumping raw conversations into notes.",
-        "Managers review an exception queue instead of manually reconciling every lead record.",
-      ],
-    },
+      "title": "Illustrative example: repairing follow-up in the current CRM",
+      "steps": [
+            "Two fictional records describe the same Cedar Court prospect. Export a recoverable snapshot and pause automated outreach for the review set.",
+            "The CRM administrator confirms identity, preserves the original source and activity history, and resolves the duplicate using the approved rule. Uncertain matches stay separate for review.",
+            "The leasing manager confirms that a tour already happened. The surviving record becomes Tour completed, with a named owner and a post-tour task instead of an overdue inquiry reminder.",
+            "Test one normal inquiry, a duplicate, an opt-out, and staff takeover before resuming the cohort. Verify the correct task, source history, owner, and final record after each test."
+      ]
+},
     template: {
       title: "CRM follow-up cleanup template",
       rows: [
-        ["Source rule", "Which source and timestamp should be trusted when duplicate leads exist?", "CRM admin"],
-        ["Stage rule", "What event moves a lead to new, contacted, booked, no-show, applied, or closed?", "Sales/Leasing lead"],
-        ["Task rule", "What follow-up task should be created when no reply or missing application item exists?", "Automation rule"],
-        ["Note rule", "What summary should be logged, and what raw details should be excluded?", "CRM workflow"],
-      ],
+        [
+                "1. Duplicate review",
+                "Confirm identity and retained history against a recoverable snapshot. Do not merge on a shared name alone.",
+                "CRM administrator"
+        ],
+        [
+                "2. Stage definitions",
+                "Name the evidence that starts and ends each stage. A requested tour is not a confirmed booking.",
+                "Leasing manager"
+        ],
+        [
+                "3. Ownership",
+                "Assign one accountable owner, a backup queue, and a due time; review unowned records.",
+                "Property team lead"
+        ],
+        [
+                "4. Overdue tasks",
+                "Cancel obsolete tasks; keep a current next action that matches the actual stage and permission state.",
+                "Record owner"
+        ],
+        [
+                "5. Validation",
+                "Replay inquiry, duplicate, opt-out, and takeover cases; compare the final record with the approved expectation.",
+                "CRM administrator and manager"
+        ]
+],
     },
     installables: [
       {
@@ -1121,6 +1351,7 @@ export const useCasePages: UseCasePage[] = [
       "You expect the workflow to move money, send legal documents, or write to the PMS without separately approved controls and verified access.",
     ],
     relatedServices: [
+      { label: "Security deposit implementation", href: "/services/security-deposit-automation/" },
       { label: "CRM workflow automation", href: "/services/crm-workflow-automation/" },
       { label: "Owner update automation", href: "/services/owner-update-automation/" },
       { label: "Maintenance intake automation", href: "/services/maintenance-intake-automation/" },

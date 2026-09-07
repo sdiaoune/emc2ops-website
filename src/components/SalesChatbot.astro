@@ -51,7 +51,7 @@ import "../styles/sales-chatbot.css";
     <div class="sales-chatbot__body" data-chat-body>
       <div class="sales-chatbot__intro" data-chat-intro>
         <div class="sales-chatbot__welcome">
-          <p>Hi — I’m the EMC2Ops assistant. I can answer questions, help you find the best first workflow, or get a consultation on the calendar.</p>
+          <p>Hi — I’m the EMC2Ops assistant. I can answer questions, discuss the workflow you want to automate, or get a consultation on the calendar.</p>
           <p>What brings you here?</p>
         </div>
 
@@ -60,7 +60,7 @@ import "../styles/sales-chatbot.css";
             <svg viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18"/><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 14h3M13 14h3M8 17h3M13 17h3"/></svg>
           </span>
           <div>
-            <strong>Ready to map the first workflow?</strong>
+            <strong>Ready to plan your automation?</strong>
             <a href="/book-demo/#source=website-chat" data-chat-book>Book a consultation</a>
           </div>
         </div>
@@ -68,7 +68,7 @@ import "../styles/sales-chatbot.css";
         <div class="sales-chatbot__routes" aria-label="Assistant options">
           <button type="button" data-chat-action="workflow">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M12 7v4M12 11 5 16M12 11l7 5"/></svg>
-            <span>Find my best first workflow</span>
+            <span>Plan my custom automation</span>
             <svg class="sales-chatbot__route-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
           </button>
           <button type="button" data-chat-action="question">
@@ -184,7 +184,7 @@ import "../styles/sales-chatbot.css";
       const card = document.createElement("div");
       card.className = "sales-chatbot__inline-cta";
       const copy = document.createElement("span");
-      copy.textContent = "See what the first workflow could look like for your team.";
+      copy.textContent = "See how we can build around your process and software.";
       const link = document.createElement("a");
       link.href = "/book-demo/#source=website-chat";
       link.textContent = "Book a 15-minute consultation";
@@ -377,7 +377,7 @@ import "../styles/sales-chatbot.css";
           return;
         }
         if (action === "workflow") {
-          addMessage("user", "Help me find my best first workflow.");
+          addMessage("user", "I know what I want to automate. How can EMC2Ops build it?");
           addMessage("assistant", "Where is work slipping most often today?");
           if (choicesNode instanceof HTMLElement) {
             choicesNode.hidden = false;
@@ -403,7 +403,7 @@ import "../styles/sales-chatbot.css";
       choice.addEventListener("click", () => {
         if (!(choice instanceof HTMLElement)) return;
         const workflow = choice.dataset.workflowChoice || choice.textContent || "our workflow";
-        sendQuestion(`Our biggest issue is ${workflow}. What would you recommend as the first workflow?`);
+        sendQuestion(`Our biggest issue is ${workflow}. How would you build an automation around this process?`);
       });
     });
 

@@ -103,6 +103,23 @@ const productScreenshot = productScreenshotForPath(`/integrations/${integration.
       </div>
     </section>
 
+    {integration.implementationExample && (
+      <section class="wrap detail-section">
+        <h2>{integration.implementationExample.title}</h2>
+        <p>{integration.implementationExample.intro}</p>
+        <div class="template-grid">
+          {integration.implementationExample.rows.map(([field, example, requirement]) => (
+            <div class="template-row"><strong>{field}</strong><p>{example}</p><span>{requirement}</span></div>
+          ))}
+        </div>
+        <h3>Confirm before implementation</h3>
+        <ul>{integration.implementationExample.checks.map((check) => <li>{check}</li>)}</ul>
+        <p>Verify current capabilities: {integration.implementationExample.sources.map((source, index) => (
+          <>{index > 0 && " · "}<a href={source.href}>{source.label}</a></>
+        ))}. Reviewed September 7, 2026.</p>
+      </section>
+    )}
+
     <WorkflowAuditCta
       title={integration.auditCta.title}
       body={integration.auditCta.body}

@@ -10,7 +10,7 @@ import { productScreenshotForPath } from "../lib/productScreenshots";
 import "../styles/landing.css";
 
 const title = "Book a 15-Minute Consultation | EMC2Ops";
-const description = "Book a 15-minute EMC2Ops consultation for a tailored quote, workflow demo, or the right first automation for your property team.";
+const description = "Book a 15-minute EMC2Ops consultation to outline a custom automation build around your property management processes, software, and desired result.";
 ---
 
 <SiteLayout
@@ -18,7 +18,7 @@ const description = "Book a 15-minute EMC2Ops consultation for a tailored quote,
   description={description}
   canonical={absoluteUrl("/book-demo/")}
   image={absoluteUrl(defaultSocialImage)}
-  imageAlt="EMC2Ops property management automation workflow for capturing after-hours leasing leads."
+  imageAlt="EMC2Ops property management automation implementation for your existing processes and software."
   schema={standardPageSchema({ path: "/book-demo/", name: "Book an EMC2Ops consultation", description, type: "ContactPage" })}
   author="EMC2Ops"
 >
@@ -27,11 +27,12 @@ const description = "Book a 15-minute EMC2Ops consultation for a tailored quote,
   <main>
     <section class="booking-page-hero">
       <div class="wrap">
-        <div class="eyebrow">Quotes, demos, and workflow guidance</div>
-        <h1>Tell us what you need. We’ll map the right next step.</h1>
-        <p class="lead">Request a tailored quote, see a relevant workflow demo, or get a focused audit of the bottleneck slowing your property team down.</p>
+        <h1>Tell us what you want to automate.</h1>
+        <p class="lead">Bring your process, software, and desired result. In a 15-minute consultation, we’ll outline a plan to build your solution and confirm the next steps.</p>
       </div>
     </section>
+
+    <AuditBookingSection />
 
     <section class="product-proof-section">
       <div class="wrap">
@@ -41,7 +42,7 @@ const description = "Book a 15-minute EMC2Ops consultation for a tailored quote,
 
     <ClientReviews />
 
-    <AuditBookingSection />
+
   </main>
 
   <SiteFooter variant="blog" />

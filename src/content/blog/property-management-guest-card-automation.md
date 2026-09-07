@@ -5,9 +5,9 @@ pillar: "Leasing Automation"
 keyword: "property management guest card automation"
 title: "Property Management Guest Card Automation: Stop Re-Entering Every Prospect by Hand"
 seoTitle: "Property Management Guest Card Automation"
-meta: "Learn how property managers can automate guest card capture, source attribution, renter qualification, and CRM updates without manual re-entry."
+meta: "Build one useful apartment guest card from calls, forms, and ILS leads. See a sample record, field mapping, duplicate review, and leasing handoff rules."
 publishedAt: "2026-06-07"
-updatedAt: "2026-06-07"
+updatedAt: "2026-09-07"
 h1: "Stop rebuilding the same guest card every time a renter reaches out"
 problem: "Guest cards break when renter details arrive through calls, ILS forms, website tours, and text threads but staff still have to retype the same information into the CRM before follow-up can start."
 stakes:
@@ -28,6 +28,7 @@ metrics:
   - "lead source attribution accuracy"
 cta: "If leasing still depends on agents rebuilding guest cards by hand, book a 15-minute workflow audit."
 bodySections: true
+bodyOnly: true
 relatedServices:
   - label: "CRM workflow automation"
     href: "/services/crm-workflow-automation/"
@@ -108,6 +109,30 @@ Start with:
 
 Once those fields arrive cleanly, you can automate tour scheduling, application reminders, deduplication, and reporting with less manual cleanup.
 
+## An inline guest-card example
+
+This is a fictional record for explaining the workflow. It is not a customer record or a required PMS field schema.
+
+| Field | Illustrative value | What to verify |
+| --- | --- | --- |
+| Guest-card reference | CC-104 | Use the destination system’s stable record identifier. |
+| Renter | Morgan, fictional prospect | Confirm contact identity before linking another inquiry. |
+| Property and interest | Cedar Court; two bedrooms | Resolve ambiguous property names before assigning the owner. |
+| Original source | ILS inquiry | Retain the original event time and source evidence. |
+| Latest activity | Phone call asking about a tour | Append the activity without overwriting first-touch attribution. |
+| Move timing | October, as stated by the renter | Record what was supplied; do not infer eligibility or approval. |
+| Owner | Jordan, leasing team; on-duty queue as backup | Exactly one person or queue owns the next step. |
+| Stage and next action | Tour requested; confirm an available slot | Change to booked only after confirmation. |
+| Permission and exception state | Approved channel checked; no unresolved identity conflict | Recheck before follow-up, including queued messages. |
+
+## Resolve the duplicate without losing the renter history
+
+Suppose CC-104 arrives through an ILS form and a second record is created from a phone call. A confirmed matching contact and property can justify linking the activity under your documented rule. Preserve the source history, consolidate the next task, and stop the redundant reminder before resuming follow-up.
+
+If the records share only a name, or the phone number belongs to multiple household members, keep them separate and ask the designated reviewer to resolve the identity. Do not copy one person’s preferences or permission onto another record. The reviewer records which record was retained and why.
+
+Guest cards become useful when they feed [apartment lead tracking](/use-cases/apartment-lead-tracking/) with a clear owner, stage, and next action. Measure duplicate tasks and missing fields as well as the number of cards created.
+
 ## Where human review still belongs
 
 Not every inquiry should flow straight through.
@@ -129,3 +154,8 @@ From there we would set:
 5. The CRM sync rules so staff trust the record they are looking at.
 
 If your leasing agents are still spending their first minutes retyping renter details, the operational problem is not a lack of effort. It is that your guest card is being created too manually to support modern leasing speed.
+
+
+## Check whether guest cards are improving the handoff
+
+Track missing required fields, duplicate renter records, source-attribution accuracy, and staff minutes spent re-entering data. Pair those with time to the first useful leasing response and the share of cards with an owner and next action. A higher creation count is not an improvement if staff still have to repair the records.

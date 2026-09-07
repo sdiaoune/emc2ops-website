@@ -32,7 +32,7 @@ test("mobile header menu opens, closes, and routes to core pages", async ({ page
   await mobileNav.getByRole("link", { name: "Services" }).click();
 
   await expect(page).toHaveURL(/\/services\/$/);
-  await expect(page.locator("h1")).toContainText("Choose the first property management workflow");
+  await expect(page.locator("h1")).toContainText("Custom automation services.");
 
   const serviceToggle = page.locator("[data-mobile-menu-toggle]");
   await serviceToggle.click();

@@ -7,7 +7,7 @@ title: "AppFolio and Claude Show Where Property Management AI Is Actually Going"
 seoTitle: "AppFolio and Claude Property Management Workflows"
 meta: "AppFolio's new Claude connector: the real AI shift is from answering questions to moving work through guarded leasing, maintenance, and owner workflows."
 publishedAt: "2026-06-11"
-updatedAt: "2026-06-11"
+updatedAt: "2026-09-07"
 h1: "AppFolio and Claude point to the next property management AI standard: controlled action, not just faster answers"
 problem: "Property managers have heard AI promises for months, but most teams still have a front desk that answers in fragments, drops context between channels, and relies on staff to manually push work into the next system."
 stakes:
@@ -178,3 +178,8 @@ If your operation still loses leads after hours, misses context on maintenance i
 That is the opportunity for property managers now.
 
 Sources: [AppFolio newsroom announcement on the Realm-X to Claude connector](https://www.appfolio.com/newsroom/appfolio-connects-realm-x-to-anthropics-claude-2026) and [HousingWire coverage of the June 9 launch](https://www.housingwire.com/articles/appfolio-launches-connector-for-realm-x-ai-suite-and-anthropics-claude/).
+
+
+## Check the integration before choosing the workflow
+
+Review the [AppFolio integration options and access checklist](/integrations/appfolio/) to distinguish a supported record update from a middleware event or staff-reviewed handoff. Confirm the exact destination, permissions, and completion evidence before promising automation.

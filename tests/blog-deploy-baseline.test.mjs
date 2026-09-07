@@ -182,3 +182,33 @@ test("blocks a blog deploy that changes homepage layout CSS", async () => {
     );
   });
 });
+
+test("allows only equivalent booking attribution when converting queries to fragments", async () => {
+  const link = (href) => `<a href="${href}">Book a consultation</a>`;
+  await withFixture({
+    livePage: page({ hero: link("/book-demo/?workflow=custom-property-management-automation&amp;source=homepage") }),
+    localPage: page({ hero: link("/book-demo/#workflow=custom-property-management-automation&amp;source=homepage") }),
+    liveCss: ".hero { min-height: 100svh; }",
+    localCss: ".hero { min-height: 100svh; }",
+  }, async ({ distDir, origin }) => {
+    await assert.doesNotReject(verifyBlogDeployBaseline({ distDir, origin }));
+  });
+});
+
+for (const [label, liveHref, localHref] of [
+  ["changed attribution", "/book-demo/?source=homepage", "/book-demo/#source=another-page"],
+  ["changed destination", "/book-demo/?source=homepage", "/another-page/#source=homepage"],
+  ["non-attribution parameters", "/book-demo/?date=2026-09-07", "/book-demo/#date=2026-09-07"],
+]) {
+  test(`blocks booking normalization with ${label}`, async () => {
+    const link = (href) => `<a href="${href}">Book a consultation</a>`;
+    await withFixture({
+      livePage: page({ hero: link(liveHref) }),
+      localPage: page({ hero: link(localHref) }),
+      liveCss: ".hero { min-height: 100svh; }",
+      localCss: ".hero { min-height: 100svh; }",
+    }, async ({ distDir, origin }) => {
+      await assert.rejects(verifyBlogDeployBaseline({ distDir, origin }), /homepage hero differs from production/);
+    });
+  });
+}
