@@ -7,7 +7,7 @@ title: "Buildium Lead Owner Assignment Workflow: Stop Letting New Renters Land i
 seoTitle: "Buildium Lead Owner Assignment Workflow"
 meta: "Learn how property managers can automate Buildium-adjacent lead owner assignment with routing rules, fallback coverage, CRM writeback, and human review."
 publishedAt: "2026-07-04"
-updatedAt: "2026-07-04"
+updatedAt: "2026-09-07"
 h1: "Stop letting Buildium-related leasing leads wait in shared queues with no clear owner"
 problem: "Buildium-adjacent leasing teams lose speed and accountability when new inquiries arrive through calls, ILS leads, web forms, and text threads before one owner, one next action, and one writeback path are assigned."
 stakes:
@@ -69,7 +69,7 @@ If your team uses Buildium somewhere in the leasing path, owner assignment shoul
 
 That still happens in a lot of portfolios. A prospect calls after hours, submits an ILS inquiry ten minutes later, and then replies to a missed-call text the next morning. The conversation exists, but the owner does not. One coordinator assumes the on-site team has it. The site team assumes the leasing pod will pick it up. By the time someone acts, the renter has already moved on to the next property.
 
-For operators managing 50 or more units, this is not a soft accountability problem. It is an intake design problem. The first page to keep in view is the main [apartment lead tracking automation](/use-cases/apartment-lead-tracking/) use case, because owner assignment has to happen at the same moment source, property, and duplicate status are resolved. The second is a realistic [Buildium integration automation](/integrations/buildium/) plan, because the assignment logic only helps if the chosen owner and next step write back to a system the team actually works from.
+For operators managing 50 or more units, this is not a soft accountability problem. It is an intake design problem. The first page to keep in view is the main [apartment lead tracking automation](/use-cases/apartment-lead-tracking/) use case, because owner assignment has to happen at the same moment source, property, and duplicate status are resolved. The second is a realistic [Buildium field mapping and access checks](/integrations/buildium/) plan, because the assignment logic only helps if the chosen owner and next step write back to a system the team actually works from.
 
 ## Why Buildium lead ownership breaks in practice
 

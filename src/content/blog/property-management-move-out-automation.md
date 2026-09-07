@@ -3,12 +3,12 @@ slug: "property-management-move-out-automation"
 order: 26
 pillar: "Resident Retention"
 keyword: "property management move out automation"
-title: "Property Management Move-Out Automation: Coordinate Notice, Turns, and Re-Leasing"
+title: "Property Management Move-Out Automation: Responsibilities and Handoffs"
 seoTitle: "Move-Out Automation for Property Managers"
-meta: "Learn how move-out automation helps property managers coordinate notice intake, turn work, owner updates, vendor tasks, and re-leasing handoffs."
+meta: "Use a move-out responsibility table to connect resident notice, inspection, vendor work, deposit review, final communication, and make-ready status."
 publishedAt: "2026-06-09"
-updatedAt: "2026-06-09"
-h1: "Stop letting move-outs turn into a manual coordination mess"
+updatedAt: "2026-09-07"
+h1: "Connect notice, inspection, turns, and deposit review"
 problem: "When notice-to-vacate workflows live across email threads, spreadsheets, call notes, and sticky reminders, property managers lose days between resident notice, turn scheduling, owner communication, and re-leasing prep."
 stakes:
   - "Late or incomplete move-out intake creates vacancy loss before the turn work even starts."
@@ -45,6 +45,7 @@ related:
   - "property-management-security-deposit-return-automation"
   - "reduce-administrative-workload-property-management"
 socialImage: "/blog/social-assets/property-management-move-out-automation.png"
+bodyOnly: true
 ---
 
 When notice-to-vacate workflows live across email threads, spreadsheets, call notes, and sticky reminders, property managers lose days between resident notice, turn scheduling, owner communication, and re-leasing prep.
@@ -52,6 +53,23 @@ When notice-to-vacate workflows live across email threads, spreadsheets, call no
 That is the short version. The longer version is where the money leaks: one renter waits too long, one resident repeats the same details twice, one vendor gets partial context, or one owner asks for an update the team already should have sent. None of those moments feels like a systems problem in isolation. Together, they become the operating drag that makes a property team feel busier than it should.
 
 A good automation plan does not start with a tool demo. It starts with the handoff. Who receives the request? What does the team need to know before acting? What should happen automatically? When should the workflow stop and ask a human to step in? If this is the issue your team is trying to fix, it usually sits next to [Property Management Make-Ready Automation](/blog/property-management-make-ready-automation/), [Property Management Maintenance Status Update Automation](/blog/property-management-maintenance-status-update-automation/), [Property Management Move-In Automation](/blog/property-management-move-in-automation/).
+
+## Move-out responsibility table
+
+Maintain one move-out record with links to the turn and deposit cases. Dates should distinguish a reported plan from a verified event. Receiving a notice can start planning, but it does not by itself confirm possession or authorize a charge.
+
+| Handoff | Accountable role and required input | Completion record and next owner |
+| --- | --- | --- |
+| Notice received | Leasing coordinator checks the resident/unit reference, stated date, and required staff review. | Reviewed notice and planned dates go to the move-out coordinator. |
+| Access and inspection | Move-out coordinator confirms the authorized access/possession process and inspection assignment. | Inspector attaches dated condition evidence and unresolved questions. |
+| Vendor work | Maintenance coordinator receives the approved scope and required spending authorization. | Accepted assignment, completion evidence, and failed checks return to the inspector. |
+| Deposit review | Authorized manager receives the verified balance, inspection evidence, proposed itemization, and applicable requirements. | Approved version or an owned hold; accounting receives only the authorized next action. |
+| Final communication | Designated sender checks the approved content, recipient, channel, and required timing. | Delivery result and replies return to the case; failures remain open. |
+| Rent-ready handoff | Property manager reviews completed turn checks and the availability source. | Signed-off readiness goes to leasing; forecast dates stay distinct from confirmed readiness. |
+
+A missing invoice should create an owned deposit exception, not silently stop the entire turn. A failed inspection should block the affected readiness decision without erasing completed work. Give each exception a reason, owner, next action, and review time so the team can see what is waiting and why.
+
+Use the [make-ready checklist](/blog/property-management-make-ready-automation/) for task dependencies and the [deposit return evidence checklist](/blog/property-management-security-deposit-return-automation/) for the review file. For implementation, see [maintenance completion workflows](/use-cases/maintenance-request-to-completion/) and [security deposit automation](/services/security-deposit-automation/).
 
 ## Why this becomes expensive
 

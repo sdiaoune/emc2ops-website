@@ -7,7 +7,7 @@ title: "Property Management Leasing Call Routing Automation: Stop Letting Prospe
 seoTitle: "Leasing Call Routing for Property Managers"
 meta: "Route leasing calls by property, portfolio, language, after-hours status, and lead intent so prospects reach the right workflow without bottlenecks."
 publishedAt: "2026-06-22"
-updatedAt: "2026-06-22"
+updatedAt: "2026-09-07"
 h1: "Routing leasing calls like an operating system instead of a phone tree"
 problem: "Many property teams answer the phone, but still lose qualified renters because calls land with the wrong person, the wrong property, or no usable follow-up workflow."
 stakes:
@@ -65,6 +65,8 @@ Many property teams think they have a leasing response problem when they actuall
 The phone gets answered. The caller reaches a human or a voicemail tree. A few notes get taken. But the prospect still ends up in the wrong place: onsite staff gets a question about another asset, a centralized rep cannot see the unit availability context, or an after-hours caller gets told to wait until morning with no follow-up task behind it. From the caller's perspective, it feels like slow service. From the operator's perspective, it creates the same drag as a missed lead.
 
 That is why this issue sits downstream from [The True Cost of Unanswered Leasing Calls for Property Managers](/blog/missed-leasing-calls-property-management/) and upstream from [AI Leasing Follow-Up for Property Management: Stop Letting Warm Leads Go Cold](/blog/ai-leasing-follow-up-property-management/). If the initial call lands in the wrong workflow, every later step gets weaker.
+
+Before assigning a call to a team, document the source and property mapping in the [apartment call-tracking guide](/blog/apartment-call-tracking/). The [lead-tracking implementation](/use-cases/apartment-lead-tracking/) connects those call events to a confirmed identity, staff owner, and next action.
 
 ## Why bad call routing becomes expensive
 

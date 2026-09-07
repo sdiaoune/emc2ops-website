@@ -64,6 +64,8 @@ Most apartment communities do not have a lead volume problem first. They have a 
 
 A renter may call from Google Business Profile, submit an ILS form, reply to an old email, text the property, and request a tour from the website. If each touch creates a separate task or sits in a separate inbox, the leasing team cannot see the real conversation. That is how good renters get slow replies, duplicate messages, and inconsistent next steps.
 
+For the phone channel, use the [apartment call-tracking setup](/blog/apartment-call-tracking/) to define source mappings, call outcomes, and the difference between a repeat call and a new lead.
+
 ## The direct answer
 
 The solution to apartment lead tracking is a single intake workflow that sits in front of the CRM. Every source should enter the same path, get matched against existing renter records, receive a clear status, trigger the right next action, and write the outcome back to the system of record.

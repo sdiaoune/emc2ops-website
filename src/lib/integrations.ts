@@ -3,6 +3,7 @@ import { auditHref, type AuditCta, type BeforeAfter, type InstallableItem } from
 
 export interface IntegrationPage {
   slug: string;
+  updatedAt?: string;
   name: string;
   logo: string;
   title: string;
@@ -35,6 +36,7 @@ export interface IntegrationPage {
 export const integrationPages: IntegrationPage[] = [
   {
     slug: "appfolio",
+    updatedAt: "2026-09-07",
     implementationExample: {
       "title": "Choose an AppFolio connection from the handoff you need",
       "intro": "AppFolio Stack provides integration partnerships and documented APIs. Access to a named operation depends on the approved integration and customer configuration. These examples describe connection choices to verify; EMC2Ops does not claim AppFolio partnership or unrestricted API access.",
@@ -202,6 +204,7 @@ export const integrationPages: IntegrationPage[] = [
   },
   {
     slug: "buildium",
+    updatedAt: "2026-09-07",
     implementationExample: {
       "title": "Example mapping: a maintenance intake reaches the right Buildium record",
       "intro": "This illustrative mapping is a scoping worksheet, not a promise that every field or write operation is available in your account. Buildium offers an Open API with self-service API keys. Verify each required read and write operation in the current documentation and your account before choosing the connection.",
@@ -377,6 +380,43 @@ export const integrationPages: IntegrationPage[] = [
   },
   {
     slug: "leadsimple",
+    updatedAt: "2026-09-07",
+    implementationExample: {
+      "title": "Example handoff: an owner inquiry becomes an owned LeadSimple task",
+      "intro": "This is an illustrative scope to verify against your account. LeadSimple documents REST API access for account admins and manual or imported lead workflows. Confirm the specific supported operation before choosing a direct update.",
+      "rows": [
+        [
+          "Inquiry",
+          "Preserve the original form, email, or call source, confirmed contact, and service/property interest.",
+          "Verify the permitted source and required fields."
+        ],
+        [
+          "Pipeline and owner",
+          "Match the appropriate owner-acquisition pipeline, current stage, and responsible staff member.",
+          "Check actual account stages and the documented destination operation."
+        ],
+        [
+          "Next task",
+          "Record the requested appointment or next question and a due time.",
+          "Confirm the task exists after a supported update; otherwise use an assigned staff handoff."
+        ]
+      ],
+      "checks": [
+        "Use an approved test lead to confirm field access, pipeline mapping, identity matching, and the saved result.",
+        "Hold an uncertain match or failed update for review. A workflow connection is not proof that the intended task was created.",
+        "Keep owner-service follow-up separate from renter tour or application messages."
+      ],
+      "sources": [
+        {
+          "label": "LeadSimple REST API access and documentation",
+          "href": "https://training.leadsimple.com/en/articles/14803573-find-or-rotate-your-rest-api-key"
+        },
+        {
+          "label": "LeadSimple lead creation and import guides",
+          "href": "https://training.leadsimple.com/en/collections/10312002-creating-importing-syncing-leads"
+        }
+      ]
+    },
     name: "LeadSimple",
     logo: "/assets/integrations/leadsimple.png",
     title: "LeadSimple automation for property managers",
@@ -508,6 +548,7 @@ export function integrationSchema(integration: IntegrationPage) {
         "@id": `${url}#webpage`,
         url,
         name: integration.title,
+        ...(integration.updatedAt ? { dateModified: integration.updatedAt } : {}),
         description: integration.description,
         isPartOf: { "@id": `${siteUrl}/#website` },
         about: {

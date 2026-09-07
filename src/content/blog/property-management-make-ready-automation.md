@@ -3,12 +3,12 @@ slug: "property-management-make-ready-automation"
 order: 35
 pillar: "Maintenance Operations"
 keyword: "property management make ready automation"
-title: "Property Management Make-Ready Automation: Stop Chasing Unit Turns Across Texts and Whiteboards"
-seoTitle: "Property Management Make-Ready Automation"
-meta: "Learn how property managers can automate make-ready coordination, turn status, vendor handoff, and leasing readiness without manual chasing."
+title: "Property Management Make-Ready Automation: Checklist and Handoffs"
+seoTitle: "Property Management Make-Ready Checklist"
+meta: "Use a property management make-ready checklist with task dependencies, named owners, completion evidence, and escalation rules for unit turns."
 publishedAt: "2026-06-09"
-updatedAt: "2026-06-09"
-h1: "Stop turning every make-ready into a manual status hunt"
+updatedAt: "2026-09-07"
+h1: "A make-ready checklist from inspection to rent-ready"
 problem: "Make-ready coordination breaks when turn status lives across texts, whiteboards, vendor calls, inspection notes, and staff memory instead of one workflow that knows what is done, what is blocked, and when the unit can lease again."
 stakes:
   - "Teams managing 50+ units lose days of vacancy when no one can quickly confirm cleaning, maintenance, inspection, key readiness, and remarketing status for each turn."
@@ -43,6 +43,7 @@ related:
   - "owner-updates-property-management-automation"
   - "property-management-vendor-no-show-automation"
 socialImage: "/blog/social-assets/property-management-make-ready-automation.png"
+bodyOnly: true
 ---
 
 Make-ready work is where vacancy time quietly expands.
@@ -50,6 +51,24 @@ Make-ready work is where vacancy time quietly expands.
 One unit is waiting on paint. Another passed cleaning but still needs final maintenance sign-off. A third looks available in the leasing system even though no one has confirmed keys, photos, or utility readiness. If staff have to chase each update through texts, calls, and side notes, the turn timeline becomes harder to trust with every handoff.
 
 For operators managing 50 or more units, make-ready automation matters because it decides how quickly a unit gets back into circulation. If that workflow is unclear, vacancy days grow while leasing and operations keep interrupting each other for the same answers.
+
+## Inspection-to-rent-ready checklist
+
+Use one turn record per unit. The checklist below is a starting template; property staff define the inspection criteria and approve the final readiness decision. A vendor's message that work is finished is evidence to review, not an automatic release to leasing.
+
+| Step | Dependency and accountable owner | Evidence and escalation |
+| --- | --- | --- |
+| Confirm possession and access | Move-out coordinator verifies the approved handoff before work is scheduled. | Record access status and inspection appointment; unresolved possession or access goes to the property manager. |
+| Inspect and define scope | Inspector records the condition before repair work hides it. | Dated room-level notes and photos; unclear condition goes to review rather than an inferred charge. |
+| Approve work | Property manager reviews inspection findings and the required budget approvals. | Approved scope and spending reference; hold work that exceeds authority. |
+| Schedule vendors | Turn coordinator assigns approved work in dependency order. | Vendor acceptance and appointment; missing acceptance triggers a named coordinator task. |
+| Complete repairs, then clean | Assigned vendors finish the work before the final clean where the tasks conflict. | Completion notes and photos; defects or missing evidence reopen the relevant task. |
+| Complete final inspection | Designated inspector checks the finished work and required property checklist. | Recorded pass or failed items with owners; a failed check blocks readiness. |
+| Release to leasing | Authorized manager confirms readiness and the approved availability source. | Keys/access, utilities as applicable, listing photos, and readiness sign-off; stale listing data stays in the exception queue. |
+
+Keep **planned ready date**, **current forecast**, and **verified ready date** separate. A forecast helps schedule work; only the signed-off state should release the unit through your approved leasing process. If a repair is delayed, identify its dependent tasks and update the forecast without marking those tasks complete.
+
+For the preceding handoff, use the [move-out workflow](/blog/property-management-move-out-automation/). Keep charge decisions in the [deposit review process](/use-cases/security-deposit-automation/) rather than treating every turn expense as a resident deduction. The [maintenance request-to-completion implementation](/use-cases/maintenance-request-to-completion/) connects the vendor and completion records.
 
 ## Why make-ready coordination creates drag
 

@@ -154,11 +154,30 @@ export const servicePages: ServicePage[] = [
 },
 {
   "slug": "security-deposit-automation",
+    operatorBrief: {
+      "title": "What reviewers see in a deposit evidence case",
+      "intro": "The existing product preview illustrates a fictional case. The implementation connects that review model to your authorized records; it does not certify charges, determine legal deadlines, or move money by default.",
+      "scenarios": [
+        {
+          "title": "Evidence is traceable to the case",
+          "description": "The reviewer sees the property/unit reference, inspection dates, evidence links, proposed itemization, and source balance. Missing or conflicting condition evidence stays labeled as unresolved."
+        },
+        {
+          "title": "Approval belongs to a version",
+          "description": "Store the reviewed values, decision, reviewer, and approval time. New evidence or changed charges return the affected version to review before downstream preparation continues."
+        },
+        {
+          "title": "Handoff is distinct from completion",
+          "description": "Disposition preparation, approved delivery, payment assignment, and confirmed payment have separate statuses. A failed send or missing payment confirmation remains an owned exception."
+        }
+      ],
+      "boundary": "Authorized staff decide charges, applicable requirements, release approval, and payment authorization. The workflow makes the evidence and pending decisions visible."
+    },
   "eyebrow": "Security deposit automation",
   "title": "Security deposit automation, built and maintained for your team",
   "seoTitle": "Security Deposit Automation Services",
   "description": "Connect deposit evidence, charge review, approval, disposition preparation, and refund tracking with a custom EMC2Ops implementation for property managers.",
-  "updatedAt": "2026-09-06",
+  "updatedAt": "2026-09-07",
   "summary": "EMC2Ops builds the connections and review process behind security deposit operations. Bring your move-out records, approved policies, and current systems; we configure evidence collection, staff approval, disposition preparation, and recorded handoffs.",
   "auditFocus": "The service covers implementation: data mapping, evidence links, review rules, access controls, testing, and maintenance. Your authorized staff decide allowable charges, approve the disposition, and authorize payment.",
   "auditCta": {
@@ -261,7 +280,11 @@ export const servicePages: ServicePage[] = [
       "description": "Keep approved messages and replies connected to the case."
     }
   ],
-  "relatedPosts": []
+  "relatedPosts": [
+      "property-management-security-deposit-return-automation",
+      "property-management-move-out-automation",
+      "property-management-make-ready-automation"
+    ]
 },
   {
     slug: "missed-call-recovery",
@@ -981,6 +1004,7 @@ export const servicePages: ServicePage[] = [
   },
   {
     slug: "ai-front-desk-property-management",
+    updatedAt: "2026-09-07",
     eyebrow: "AI front desk",
     title: "AI front desk for property management companies",
     seoTitle: "AI Front Desk for Property Managers",
@@ -991,28 +1015,23 @@ export const servicePages: ServicePage[] = [
     auditFocus:
       "We choose the first front-desk workflow, then map voice or SMS triggers, captured context, staff handoff rules, CRM writebacks, and monitoring.",
     operatorBrief: {
-      title: "What happens in a real front-desk conversation",
-      intro:
-        "An AI front desk earns its place when the conversation leaves the next person with a usable record. A fast answer alone is not enough. The workflow needs to know what happened, which property is involved, what the visitor is trying to do, who owns the exception, and which event ends automation.",
-      scenarios: [
+      "title": "What happens in a real front-desk conversation",
+      "intro": "The existing PM Ops screenshot demonstrates fictional workflow data. For your implementation, each enabled channel must produce an identifiable event, a usable record, and an accountable next owner.",
+      "scenarios": [
         {
-          title: "A renter calls after the leasing office closes",
-          description:
-            "The front desk can identify the community, collect move timing and unit interest, offer approved tour availability, and create the guest-card or CRM task. Pricing exceptions, accommodation requests, and questions about screening criteria go to staff with the conversation context attached.",
+          "title": "Captured: call facts and renter intent",
+          "description": "A fictional Cedar Court caller asks about a two-bedroom tour. Capture the call ID, received time, source/property, confirmed contact, requested move date, unit preference, and next question. Recording or transcription is separately scoped; metadata and staff dispositions can also support the record."
         },
         {
-          title: "A resident reports water on the floor",
-          description:
-            "The system should switch out of the leasing path, verify the unit and contact information, collect concise maintenance facts, and activate the property’s documented escalation rule. It should never improvise safety instructions or decide that an emergency is routine.",
+          "title": "Routed: an owned conversation",
+          "description": "The leasing queue receives the summary, current stage, requested action, and source record. A maintenance report moves to the documented maintenance route; emergencies, sensitive questions, and approvals reach the designated staff path. For a resident reporting water on the floor, collect the unit and concise facts, activate the documented escalation rule, and avoid improvised safety instructions."
         },
         {
-          title: "An owner asks why a repair is delayed",
-          description:
-            "The front desk can acknowledge the request and surface the recorded status, but a relationship-sensitive explanation may need the portfolio manager. The handoff should include the open work order, last vendor update, pending approval, and promised response time.",
-        },
+          "title": "Recorded: SMS and CRM outcomes",
+          "description": "An approved follow-up text uses the confirmed contact and current permission state. Store provider acceptance, delivery, reply, and saved CRM activity separately. A booked tour needs a confirmed calendar event; a failed write leaves a visible review task. An owner asking about a delayed repair reaches the portfolio manager with the work order, last vendor update, pending approval, and promised response time."
+        }
       ],
-      boundary:
-        "The right first release is one narrow conversation with a defined record and handoff—not a universal bot. EMC2Ops measures completion, exceptions, staff takeover, and writeback quality before adding another channel or audience.",
+      "boundary": "People retain screening, accommodations, emergency assessment, financial decisions, and policy exceptions. Staff takeover stops conflicting messages across the enabled channels."
     },
     auditCta: {
       label: "Book my AI front desk audit",
@@ -1073,10 +1092,12 @@ export const servicePages: ServicePage[] = [
       "Keep CRM records, tasks, and alerts current without manual retyping.",
     ],
     workflow: [
-      "Map the current communication path and system of record.",
-      "Pick the first high-volume workflow with measurable upside.",
-      "Install AI voice, SMS, routing, and CRM logic around your rules.",
-      "Monitor live conversations and improve prompts, routing, and reporting.",
+      "Capture the provider event ID, channel, property, contact reference, stated intent, and permission state. Treat uncertain matches as review tasks.",
+      "Answer from approved current sources and collect the fields needed for the specific leasing, resident, owner, or vendor handoff.",
+      "Route the conversation to the designated staff owner with a concise summary, source references, pending question, and acknowledgement requirement.",
+      "If an approved SMS follow-up is needed after a voice call, link it to the same confirmed record and recheck suppression, staff takeover, and the current stage before sending.",
+      "Write the supported summary, status, and task to the CRM; confirm the saved record rather than treating a sent request as completion.",
+      "Monitor failed deliveries, denied writes, duplicate events, and unacknowledged escalations. Keep an owned retry or manual-review path without duplicate messages."
     ],
     metrics: ["response speed", "workflow volume", "manual work removed", "booked next steps"],
     faqs: [
@@ -1101,7 +1122,12 @@ export const servicePages: ServicePage[] = [
         description: "Connect AI front desk intake to practical leasing follow-up and CRM updates.",
       },
     ],
-    relatedPosts: ["ai-front-desk-loop-not-chatbot", "property-management-ai-automation-vs-chatbots"],
+    relatedPosts: [
+      "ai-leasing-assistant",
+      "ai-front-desk-loop-not-chatbot",
+      "missed-call-text-back-property-management",
+      "property-management-ai-automation-vs-chatbots"
+    ],
   },
 ];
 

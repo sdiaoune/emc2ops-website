@@ -20,8 +20,8 @@ for (const slug of ["apartment-lead-tracking", "automate-property-management-lea
   });
 }
 
-test("other blog posts retain the existing generated workflow sections", () => {
-  const html = page("blog/property-management-make-ready-automation");
+test("other blog posts retain unique supplemental workflow facts", () => {
+  const html = page("blog/appfolio-claude-property-management-workflows");
   assert.match(html, /Where the operational cost shows up/);
   assert.match(html, /id="workflow"/);
 });

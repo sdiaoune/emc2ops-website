@@ -10,9 +10,13 @@ import { useCasePages, useCasesIndexSchema, useCaseUrl } from "../../lib/useCase
 import { productScreenshotForPath } from "../../lib/productScreenshots";
 import "../../styles/service.css";
 
+const prioritySlugs = ["apartment-lead-tracking", "real-estate-crm-follow-up-mess", "maintenance-request-to-completion", "security-deposit-automation"];
+const rank = (slug: string) => { const index = prioritySlugs.indexOf(slug); return index < 0 ? prioritySlugs.length : index; };
+const orderedUseCases = [...useCasePages].sort((a, b) => rank(a.slug) - rank(b.slug));
+
 const title = "Property Management Automation Use Cases | EMC2Ops";
 const description =
-  "Explore property management automation for security deposits, leasing intake, lead follow-up, cross-team communication, lead-to-lease, and CRM cleanup.";
+  "Choose a property management workflow for leasing capture, CRM cleanup, maintenance completion, or deposit review, with clear inputs and staff handoffs.";
 ---
 
 <SiteLayout
@@ -55,10 +59,18 @@ const description =
         renters or residents wait too long, or the CRM stops reflecting what actually happened.
       </p>
       <div class="decision-grid">
-        <a href="/use-cases/maintenance-request-to-completion/"><strong>Maintenance requests stall before verified completion</strong><span>Connect request intake, approvals, vendor coordination, updates, and staff-confirmed closure.</span></a>
         <a href="/use-cases/apartment-lead-tracking/">
           <strong>Lead source and ownership are unclear</strong>
-          <span>Start with apartment lead tracking and multifamily source-to-tour visibility.</span>
+          <span>See how source, confirmed identity, property, owner, and next action connect on one leasing record.</span>
+        </a>
+        <a href="/use-cases/real-estate-crm-follow-up-mess/">
+          <strong>The CRM feels messy no matter which tool you use</strong>
+          <span>Review duplicates, stage definitions, overdue tasks, and ownership before restarting follow-up.</span>
+        </a>
+        <a href="/use-cases/maintenance-request-to-completion/"><strong>Maintenance requests stall before verified completion</strong><span>Connect request intake, approvals, vendor coordination, updates, and staff-confirmed closure.</span></a>
+        <a href="/use-cases/security-deposit-automation/">
+          <strong>Deposit cases are rebuilt from photos, ledgers, and spreadsheets</strong>
+          <span>Start with evidence-backed security deposit review, approvals, disposition output, and refund tracking.</span>
         </a>
         <a href="/use-cases/real-estate-lead-follow-up-automation/">
           <strong>Leads go cold after the first touch</strong>
@@ -76,26 +88,18 @@ const description =
           <strong>Resident, owner, and vendor updates live in separate threads</strong>
           <span>Coordinate audience-specific messages, approvals, replies, and status from one operating record.</span>
         </a>
-        <a href="/use-cases/security-deposit-automation/">
-          <strong>Deposit cases are rebuilt from photos, ledgers, and spreadsheets</strong>
-          <span>Start with evidence-backed security deposit review, approvals, disposition output, and refund tracking.</span>
-        </a>
-        <a href="/use-cases/real-estate-crm-follow-up-mess/">
-          <strong>The CRM feels messy no matter which tool you use</strong>
-          <span>Start with CRM cleanup around stages, tasks, duplicate rules, and ownership.</span>
-        </a>
       </div>
     </section>
 
     <section id="use-cases" class="wrap service-grid-section">
       <div class="service-grid">
         {
-          useCasePages.map((useCase) => (
+          orderedUseCases.map((useCase) => (
             <article class="service-card">
               <span>{useCase.primaryKeyword}</span>
               <h2><a href={useCaseUrl(useCase)}>{useCase.title}</a></h2>
               <p>{useCase.auditFocus}</p>
-              <a class="read-more" href={useCaseUrl(useCase)}>View use case</a>
+              <a class="read-more" href={useCaseUrl(useCase)}>See the {useCase.primaryKeyword} workflow</a>
               <a class="read-more muted-more" href={auditHref(useCase.slug, "use-case")}>{useCase.auditCta.label}</a>
             </article>
           ))

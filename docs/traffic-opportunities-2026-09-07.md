@@ -35,6 +35,8 @@ The production guard still checks homepage text and structure, styles, live site
 
 ## Subsequent backlog
 
+The second release implements these opportunities; see the [11–29 implementation record](traffic-opportunities-11-29-2026-09-07.md) for changes, preservation checks, and external profile limitations.
+
 | # | Opportunity | Evidence and next action |
 | --- | --- | --- |
 | 11 | Apartment call-tracking guide | Query: 123 impressions, position 25.04. Create a distinct source-attribution and call-outcome guide. |

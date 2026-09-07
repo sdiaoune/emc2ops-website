@@ -360,6 +360,7 @@ export const useCasePages: UseCasePage[] = [
   },
   {
     slug: "real-estate-lead-follow-up-automation",
+    updatedAt: "2026-09-07",
     primaryKeyword: "real estate lead follow up automation",
     clusterKeywords: [
       "automated real estate lead follow up",
@@ -372,12 +373,12 @@ export const useCasePages: UseCasePage[] = [
     title: "Real estate lead follow-up automation",
     seoTitle: "Real Estate Lead Follow-Up Automation for Property Managers",
     description:
-      "Automate real estate and rental lead follow-up across SMS, email, reminders, CRM tasks, and human handoff rules.",
+      "Install property management follow-up for renter and owner inquiries, with separate stages, approved messages, CRM ownership, and clear stop conditions.",
     h1: "Real estate lead follow-up automation for rental and property management teams",
     summary:
-      "EMC2Ops builds follow-up workflows that respond quickly, ask the right qualifying questions, stop when a human takes over, and keep every lead stage visible.",
+      "EMC2Ops implements follow-up for property-management leasing inquiries and prospective owner clients. Each audience gets its own stages, messages, staff owner, and stop rules in the tools your team already uses.",
     auditFocus:
-      "We map your lead sources, follow-up windows, message goals, CRM stages, stop rules, and human handoff paths.",
+      "We deliver the source and stage map, approved sequence rules, field mappings, suppression checks, exception queue, and acceptance tests. Bring a renter inquiry and an owner-service inquiry so the scope reflects both journeys.",
     auditCta: {
       label: "Book my lead follow-up audit",
       title: "Want lead follow-up that moves renters to the next step?",
@@ -396,22 +397,43 @@ export const useCasePages: UseCasePage[] = [
       "Update CRM notes, tasks, stages, and ownership after each meaningful reply or timeout.",
     ],
     example: {
-      title: "Example: stale renter lead recovery",
-      steps: [
-        "A qualified renter asks about availability but does not book a tour.",
-        "The workflow waits until the next defined follow-up window and sends a short SMS with one clear next step.",
-        "If the renter replies, staff get context and the automation stops.",
-        "If the renter does not reply, the CRM receives a stale-lead task and final sequence status.",
-      ],
+      "title": "Two illustrative inquiries, two separate follow-up paths",
+      "steps": [
+        "A fictional renter asks about a Cedar Court tour. The leasing path records property interest, move timing, current stage, and the assigned leasing owner. A confirmed booking stops inquiry reminders.",
+        "A fictional property owner asks about management services. The owner-acquisition path records the property/service need and assigns the business-development owner; it does not send apartment availability or renter application prompts.",
+        "Both paths check the latest reply, appointment, permission state, and staff takeover immediately before sending. A new event cancels an obsolete queued message.",
+        "The engagement delivers tested field mappings, messages, stop conditions, and operating instructions. Staff can trace the next action and any failed update in the CRM."
+      ]
     },
     template: {
-      title: "Follow-up sequence template",
-      rows: [
-        ["Trigger", "New inquiry, missed call, no-show, stale reply, or incomplete application.", "CRM status"],
-        ["Message goal", "Book, confirm, reschedule, complete application, or close the loop.", "Sequence rule"],
-        ["Stop rule", "Stop when staff reply, renter opts out, appointment is booked, or question needs review.", "Automation guardrail"],
-        ["CRM writeback", "Log reply, stage, next owner, task due date, and sequence outcome.", "CRM update"],
-      ],
+      "title": "Renter and owner inquiry implementation scope",
+      "rows": [
+        [
+          "Audience and source",
+          "Renter leasing inquiry or prospective owner-service inquiry; preserve the original channel and property reference.",
+          "Intake owner"
+        ],
+        [
+          "Renter journey",
+          "Inquiry → requested/confirmed tour → application handoff; keep screening decisions with authorized staff.",
+          "Leasing team"
+        ],
+        [
+          "Owner journey",
+          "Service inquiry → discovery appointment → scoped follow-up; keep proposals and commercial commitments under staff review.",
+          "Business-development owner"
+        ],
+        [
+          "Message approval",
+          "Approve purpose, permitted channel, timing, and stop conditions separately for each audience.",
+          "Responsible manager"
+        ],
+        [
+          "Acceptance evidence",
+          "Verify a normal inquiry, reply, booking, opt-out, staff takeover, and failed CRM update for each enabled path.",
+          "Implementation reviewer"
+        ]
+      ]
     },
     installables: [
       {
@@ -486,6 +508,7 @@ export const useCasePages: UseCasePage[] = [
   },
   {
     slug: "how-to-automate-property-management",
+    updatedAt: "2026-09-07",
     primaryKeyword: "how to automate property management",
     clusterKeywords: [
       "property management automation",
@@ -496,12 +519,12 @@ export const useCasePages: UseCasePage[] = [
     ],
     intent: "An operator wants a practical starting point for automation without rebuilding the whole business.",
     title: "How to automate property management",
-    seoTitle: "Property Management Automation Workflow Guide",
+    seoTitle: "Property Management Automation: Choose Your First Workflow",
     description:
       "Choose the first property management automation to launch across leasing, maintenance, CRM logging, owner updates, and vendor handoffs.",
-    h1: "How to automate property management without creating another mess",
+    h1: "Choose your first property management automation workflow",
     summary:
-      "The safest first property management workflow automation is a narrow first-workflow selection with a clear trigger, required context, human exception path, and system-of-record update.",
+      "Compare recurring work by frequency, staff effort, available system access, and exception risk. Choose a bounded workflow with an accountable owner and a result your team can verify.",
     auditFocus:
       "We score candidate workflows by volume, risk, measurability, system access, exception handling, and the quality of the final record.",
     auditCta: {
@@ -516,29 +539,55 @@ export const useCasePages: UseCasePage[] = [
       "Staff distrust automation when it creates duplicate work or noisy records.",
     ],
     workflow: [
-      "Pick one measurable bottleneck: missed calls, leasing follow-up, maintenance intake, CRM logging, owner updates, or vendor dispatch.",
-      "Define the trigger, required fields, owner, escalation rules, stop conditions, and final record that should exist.",
-      "Connect the communication channel to the CRM, inbox, calendar, task system, work order process, or owner update path.",
-      "Launch with conservative human review for emergencies, fair-housing-sensitive questions, approvals, and unclear routing.",
-      "Review early conversations weekly and improve prompts, timing, CRM writebacks, reporting, and exception handling.",
+      "List recurring leasing, maintenance, CRM, and owner-reporting tasks with a representative event count and observed staff effort.",
+      "Check system access and data quality before ranking potential impact. An unavailable required action is a dependency, not an assumed integration.",
+      "Define the trigger, owner, next action, stop events, and required human decisions for the most ready candidate.",
+      "Test ordinary work, missing data, duplicates, denied access, and staff takeover using approved records.",
+      "Pilot a bounded cohort and compare completed outcomes, review effort, corrections, and unresolved exceptions before expanding."
     ],
     example: {
-      title: "Example: first workflow selection",
-      steps: [
-        "The team lists the five highest-volume handoffs: missed calls, maintenance intake, owner updates, vendor dispatch, and CRM notes.",
-        "Each workflow is scored by volume, risk, measurability, and staff frustration.",
-        "The first launch is limited to one trigger and one system-of-record update.",
-        "After one week of live review, prompts, routing, and reporting are adjusted before expanding.",
-      ],
+      "title": "Illustrative prioritization: call notes or owner financial reports?",
+      "steps": [
+        "A fictional team reviews 60 weekly call notes taking four active minutes each: 240 minutes of observed handling time. It also prepares eight owner reports taking 25 minutes each: 200 minutes. These are example inputs, not customer savings.",
+        "The call-note workflow has a supported CRM write, a named reviewer, and a clear retry path. Owner reports rely on disputed balances and inconsistent cutoffs, so they need source cleanup before automated drafting.",
+        "The team pilots call-summary drafts for one property. Review, corrections, and failed-write handling still consume staff time; subtract those costs before estimating any net capacity recovered.",
+        "The release passes only when the agreed normal and exception cases produce the expected CRM record. The report workflow remains on the shortlist with a named source-data dependency."
+      ]
     },
     template: {
-      title: "Property management automation planning template",
-      rows: [
-        ["Trigger", "What event should start the workflow?", "Operations lead"],
-        ["Required context", "What fields must be collected before the team can act?", "Workflow owner"],
-        ["Exception path", "What should stop automation and alert a human?", "Manager"],
-        ["Final record", "What CRM, work order, task, or owner update should exist at the end?", "System owner"],
-      ],
+      "title": "First-workflow prioritization worksheet",
+      "rows": [
+        [
+          "Frequency",
+          "Count eligible events in a complete, representative week. Separate routine work from exceptions.",
+          "Workflow owner"
+        ],
+        [
+          "Staff effort",
+          "Time active handling on a sample. Weekly events × median minutes is a planning estimate, not promised savings.",
+          "Team lead"
+        ],
+        [
+          "Integration access",
+          "Identify source and destination fields, permitted actions, freshness, and proof of a successful update.",
+          "System administrator"
+        ],
+        [
+          "Exception risk",
+          "Name ambiguous, sensitive, approval-dependent, and failed-update cases and who handles each.",
+          "Responsible manager"
+        ],
+        [
+          "Readiness decision",
+          "Pilot a high-effort repeatable task only when access, ownership, and exception handling are ready. Resolve blockers first.",
+          "Operations lead"
+        ],
+        [
+          "Acceptance and measurement",
+          "Agree expected records and test cases. Compare handling time after including review, corrections, and monitoring.",
+          "Workflow owner"
+        ]
+      ]
     },
     installables: [
       {

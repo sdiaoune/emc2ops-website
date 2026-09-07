@@ -5,14 +5,18 @@ import NewsletterSignup from "../../components/NewsletterSignup.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import SiteHeader from "../../components/SiteHeader.astro";
 import SiteLayout from "../../layouts/SiteLayout.astro";
-import { absoluteUrl, blogIndexSchema, byOrder, cities, defaultSocialImage } from "../../lib/site";
+import { absoluteUrl, blogIndexSchema, byOrder, defaultSocialImage } from "../../lib/site";
 import "../../styles/blog.css";
 
 const posts = byOrder(await getCollection("blog"));
+const featuredSlugs = ["apartment-call-tracking", "apartment-lead-tracking", "automate-property-management-lead-follow-up", "property-management-make-ready-automation", "property-management-security-deposit-return-automation", "ai-leasing-assistant"];
+const featuredPosts = featuredSlugs.flatMap((slug) => posts.filter((post) => post.data.slug === slug));
+const remainingPosts = posts.filter((post) => !featuredSlugs.includes(post.data.slug));
+const displayedPosts = [...featuredPosts, ...remainingPosts];
 const pillars = [...new Set(posts.map((post) => post.data.pillar))];
 const title = "Property Management Automation Blog | EMC2Ops";
 const description =
-  "Practical SEO guides for property managers on missed-call recovery, leasing automation, maintenance intake, CRM workflows, owner updates, and SMS compliance.";
+  "Practical guides for property managers on leasing capture, follow-up, unit turns, deposit review, owner reporting, and choosing the first automation.";
 ---
 
 <SiteLayout
@@ -22,7 +26,7 @@ const description =
   type="website"
   image={absoluteUrl(defaultSocialImage)}
   imageAlt="Property Management Automation Blog | EMC2Ops social preview from EMC2Ops."
-  schema={blogIndexSchema(posts)}
+  schema={blogIndexSchema(displayedPosts)}
   pageClass="blog-index"
 >
   <SiteHeader />
@@ -46,11 +50,17 @@ const description =
     <section class="wrap programmatic">
       <h2>Use the guides to pick the first workflow.</h2>
       <p>
-        If your team misses leasing calls, chases stale prospects, retypes CRM notes, or manually
-        routes maintenance requests, start with the articles below. Each guide uses clean slugs,
-        structured article data, FAQ schema, internal links, and city-aware language for
-        high-growth rental markets including {cities}.
+        Start with the task your team repeats most: capturing leasing inquiries, following up after
+        tours, preparing a unit, or assembling evidence for review. The featured guides provide
+        checklists, examples, required records, and staff handoffs you can discuss with your team.
+        For choosing between workflows, use the <a href="/use-cases/how-to-automate-property-management/">automation prioritization guide</a>.
       </p>
+    </section>
+
+    <section id="featured-guides" class="wrap blog-list" aria-labelledby="featured-heading">
+      <h2 id="featured-heading">Start with these implementation guides</h2>
+      <p>Evergreen guides for the decisions and handoffs property teams manage every week.</p>
+      <div class="post-grid">{featuredPosts.map((post) => <BlogCard post={post} />)}</div>
     </section>
 
     <section class="wrap blog-newsletter">
@@ -67,7 +77,7 @@ const description =
           <div class="pillar">
             <h2>{pillar}</h2>
             <div class="post-grid">
-              {posts
+              {remainingPosts
                 .filter((post) => post.data.pillar === pillar)
                 .map((post) => <BlogCard post={post} />)}
             </div>

@@ -3,12 +3,12 @@ slug: "missed-call-text-back-property-management"
 order: 2
 pillar: "Missed Call Recovery"
 keyword: "missed-call text-back property management"
-title: "Missed Call Text-Back for Property Management: Why Voicemail Is Not Enough"
+title: "Missed-Call Text-Back for Property Management: Recovery Workflow"
 seoTitle: "Missed Call Text-Back for Property Managers"
-meta: "Learn what missed-call text-back property management workflows do, where after-hours leasing calls should route, and when automation should stop."
+meta: "See how a missed leasing call becomes an approved response, a staff-owned next step, and a CRM record with source history and clear stop conditions."
 publishedAt: "2026-06-06"
-updatedAt: "2026-07-01"
-h1: "Voicemail is dead: why immediate SMS text-back is the new leasing minimum"
+updatedAt: "2026-09-07"
+h1: "Recover missed leasing calls with a useful next step"
 problem: "Missed-call text-back property management workflows send an immediate branded SMS after an unanswered leasing call, collect renter intent, and route the next step into the CRM. It is a fit when missed calls happen during tours, after hours, lunch breaks, or peak lead volume; it is not a fit if there is no owner, opt-out process, or CRM handoff. EMC2Ops installs the trigger, SMS sequence, qualification fields, stop rules, escalation path, and CRM writeback."
 stakes:
   - "Voicemail creates delay and duplicate work."
@@ -61,6 +61,7 @@ related:
   - "property-management-sms-compliance-10dlc"
   - "missed-leasing-calls-property-management"
   - "property-management-crm-workflow-automation"
+bodyOnly: true
 ---
 
 Renters do not want to leave voicemail, wait for business hours, and repeat their situation later. They want a quick next step while the property is still top of mind.
@@ -68,6 +69,25 @@ Renters do not want to leave voicemail, wait for business hours, and repeat thei
 That is the short version. The longer version is where the money leaks: one renter waits too long, one resident repeats the same details twice, one vendor gets partial context, or one owner asks for an update the team already should have sent. None of those moments feels like a systems problem in isolation. Together, they become the operating drag that makes a property team feel busier than it should.
 
 A good automation plan does not start with a tool demo. It starts with the handoff. Who receives the request? What does the team need to know before acting? What should happen automatically? When should the workflow stop and ask a human to step in? If this is the issue your team is trying to fix, it usually sits next to [Property Management SMS Compliance](/blog/property-management-sms-compliance-10dlc/), [The True Cost of Unanswered Leasing Calls for Property Managers](/blog/missed-leasing-calls-property-management/), [Property Management CRM Workflow Automation](/blog/property-management-crm-workflow-automation/).
+
+## Illustrative call-to-response-to-CRM example
+
+A fictional renter calls Cedar Court's leasing number while the team is on tours. The phone provider records missed call CALL-208. First confirm that the event represents an unanswered leasing inquiry rather than a staff callback, spam event, or duplicate notification.
+
+1. **Capture the event.** Store the call ID, received time, dialed number, source mapping, property, and available contact reference. Preserve an unknown source instead of guessing.
+2. **Check the response path.** Confirm the approved messaging basis, channel, sending window, suppression state, and staff ownership. If text-back is not appropriate, create a callback task.
+3. **Send one useful acknowledgement.** Illustrative copy: “Thanks for calling Cedar Court. Our leasing team missed your call. Are you looking to schedule a tour or ask about a home?” Use the approved sender identification and opt-out handling for your program.
+4. **Match the reply.** The renter asks about a two-bedroom tour. After confirming identity and property, append the call and reply to the existing lead; keep the original source history.
+5. **Assign the next action.** The CRM shows Tour requested, owner Jordan, and a task to confirm availability. Only a confirmed booking changes the stage to Tour booked.
+6. **Stop the old sequence.** A reply, staff takeover, opt-out, confirmed booking, or sensitive question cancels the pending reminder. A failed delivery enters a review queue instead of an unlimited retry loop.
+
+A text accepted by the provider is not proof of a renter conversation. Report delivery, reply, confirmed tour, and CRM update as separate outcomes. Use the provider result and destination record to verify what actually completed.
+
+## Recovery and call tracking answer different questions
+
+[Apartment call tracking](/blog/apartment-call-tracking/) identifies where calls came from and what happened to them. Recovery handles the next action after a missed call. The same call record can support both, but a source report alone does not contact a renter or resolve an unowned task.
+
+The [missed-call recovery service](/services/missed-call-recovery/) covers the approved response, routing, stop rules, and record updates. Connect it to [apartment lead tracking](/use-cases/apartment-lead-tracking/) when calls, forms, ILS inquiries, and tours need to stay on one lead history.
 
 ## What is missed-call text-back for property management?
 

@@ -7,7 +7,7 @@ title: "Buildium Guest Card Creation Workflow: Stop Rebuilding Every Renter Reco
 seoTitle: "Buildium Guest Card Creation Workflow"
 meta: "Learn how property managers can automate Buildium-adjacent guest card creation with source capture, deduplication, owner routing, and safe writeback."
 publishedAt: "2026-07-06"
-updatedAt: "2026-07-06"
+updatedAt: "2026-09-07"
 h1: "Stop letting Buildium-related leasing leads wait while staff rebuild the guest card from scratch"
 problem: "Buildium-adjacent leasing teams lose response speed when calls, ILS forms, website inquiries, and text threads reach staff before one usable guest card exists with the right source, property, owner, and next action."
 stakes:
@@ -69,7 +69,7 @@ If your leasing team uses Buildium somewhere in the operating path, guest card c
 
 That is still how many teams work. A renter submits an ILS inquiry after dinner, calls the office ten minutes later, and replies to a missed-call text the next morning. The information exists, but not in one usable record. Staff have to decide whether the renter is new, which property they meant, who owns the lead, and what to write into the guest card before real follow-up can start.
 
-For operators managing 50 or more units, that is not minor admin drag. It is the first leasing handoff. The main page to keep in view is [apartment lead tracking automation](/use-cases/apartment-lead-tracking/) because guest card creation only works when source, identity, ownership, and next action are decided together. The second is a realistic [Buildium integration automation](/integrations/buildium/) plan, because the workflow only helps if the right guest-card summary reaches a system the team actually trusts.
+For operators managing 50 or more units, that is not minor admin drag. It is the first leasing handoff. The main page to keep in view is [apartment lead tracking automation](/use-cases/apartment-lead-tracking/) because guest card creation only works when source, identity, ownership, and next action are decided together. The second is a realistic [Buildium field mapping and access checks](/integrations/buildium/) plan, because the workflow only helps if the right guest-card summary reaches a system the team actually trusts.
 
 ## Why Buildium guest cards break in practice
 

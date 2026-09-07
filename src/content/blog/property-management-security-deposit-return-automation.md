@@ -3,12 +3,12 @@ slug: "property-management-security-deposit-return-automation"
 order: 52
 pillar: "Risk Mitigation"
 keyword: "property management security deposit return automation"
-title: "Property Management Security Deposit Return Automation: Stop Rebuilding Deposit Dispositions by Hand"
-seoTitle: "Property Management Security Deposit Return Automation"
-meta: "Automate security deposit return workflows, damage-charge review, owner visibility, and resident disposition notices without another spreadsheet scramble."
+title: "Security Deposit Return Automation: Evidence and Review Checklist"
+seoTitle: "Security Deposit Return Workflow and Evidence Checklist"
+meta: "Organize deposit return evidence, review missing or conflicting records, and prepare an approved disposition with clear staff responsibilities."
 publishedAt: "2026-06-18"
-updatedAt: "2026-06-18"
-h1: "Stop rebuilding every security deposit disposition from inboxes, photos, and memory"
+updatedAt: "2026-09-07"
+h1: "Security deposit return automation with an evidence checklist"
 problem: "Security deposit return work turns into a recurring admin scramble when move-out dates, inspection notes, photos, invoices, damage decisions, resident forwarding details, and notice deadlines live across inboxes, spreadsheets, and staff memory instead of one controlled workflow."
 stakes:
   - "Teams managing 50+ units lose hours every week reconciling inspection notes, vendor bills, cleaning charges, and forwarding-address details before anyone can finish a resident disposition letter."
@@ -44,6 +44,7 @@ related:
   - "reduce-administrative-workload-property-management"
   - "property-management-owner-approval-workflow"
 socialImage: "/blog/social-assets/property-management-security-deposit-return-automation.png"
+bodyOnly: true
 ---
 
 A security deposit return should not become a recurring spreadsheet project.
@@ -51,6 +52,26 @@ A security deposit return should not become a recurring spreadsheet project.
 The resident has moved out. Maintenance has notes. The turn inspection has photos. One vendor already invoiced. Another charge is still being questioned. The forwarding address may be sitting in a text thread. A week later, nobody is fully sure which deductions are final, whether the deadline is close, or whether the resident notice is ready to send.
 
 For operators managing 50 or more units, security deposit returns become a quiet administrative drain. They pull managers into repetitive reconciliation work, create inconsistent resident communication, and increase risk because the full disposition record never stays in one place.
+
+## Evidence checklist before disposition review
+
+Attach the source and capture time to each item. A complete checklist makes the file reviewable; it does not establish that a deduction is lawful. Your designated reviewer confirms the applicable requirements, deadline, and charge decisions for the property and case.
+
+| Evidence group | What the reviewer needs | Hold or escalation condition |
+| --- | --- | --- |
+| Case identity | Resident reference, property/unit, verified move-out event, and source record IDs. | The inspection and ledger refer to different cases or dates. |
+| Condition | Available move-in and move-out inspection records, dated photos, room/item labels, and notes. | Before-condition evidence is missing, unclear, or conflicts with another record. |
+| Proposed charges | Itemized proposal, supporting invoice or estimate, documented calculation, and reviewer decision. | A cost is unsupported, duplicated, disputed, or awaiting policy review. |
+| Balance and output | Verified deposit balance, approved itemization, forwarding details, and applicable notice requirements. | The ledger is stale or contact/delivery details remain unverified. |
+| Approval and completion | Approved version, reviewer, timestamp, delivery record, and separate payment confirmation. | Evidence changes after approval, delivery fails, or a refund task lacks payment confirmation. |
+
+## Illustrative example: missing evidence changes the next action
+
+In a fictional Cedar Court case, a move-out photo shows a damaged cabinet door. The file has a repair invoice but no usable move-in photo for that cabinet. The workflow links the invoice and photo, labels the original-condition evidence as missing, and assigns the case to the manager. It does not infer that the resident caused the damage.
+
+The manager reviews the available records and records the decision. If a new inspection document arrives later, the case returns to review and any affected approval must be reconsidered. The disposition is prepared from the approved version. A refund assigned to accounting remains **payment pending** until a verified payment record confirms completion. This example illustrates record handling, not a deduction recommendation or a promised customer result.
+
+See the [security deposit review walkthrough](/use-cases/security-deposit-automation/) for the evidence and approval model, and the [deposit automation implementation service](/services/security-deposit-automation/) for field mapping, integrations, tests, and handoff deliverables. Coordinate repairs through the [make-ready checklist](/blog/property-management-make-ready-automation/); repair completion and charge approval are separate decisions.
 
 ## Why security deposit returns break down
 

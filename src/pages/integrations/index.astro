@@ -12,7 +12,7 @@ import "../../styles/service.css";
 
 const title = "Property Management Automation Integrations | EMC2Ops";
 const description =
-  "Explore EMC2Ops integration workflows for AppFolio, Buildium, LeadSimple, and property management operations tools.";
+  "Compare API, middleware, and reviewed handoffs for AppFolio, Buildium, and LeadSimple, with workflow examples and the account access to verify.";
 ---
 
 <SiteLayout
@@ -71,6 +71,22 @@ const description =
           <span>Hold owner-facing, financial, approval, or policy-sensitive steps before sending or writing updates.</span>
         </a>
       </div>
+    </section>
+
+    <section class="wrap detail-section" aria-labelledby="connection-evidence-heading">
+      <h2 id="connection-evidence-heading">What each connection route needs</h2>
+      <div class="installable-grid">
+        <article class="installable-card"><h3>Direct API</h3><p>The exact read or write operation must exist and your account must permit it. Confirm field mapping, identity matching, response handling, and the saved destination record. A platform name alone does not establish access.</p></article>
+        <article class="installable-card"><h3>Middleware or webhook</h3><p>A supported event can connect tools through automation logic. Verify the sending event and receiving action separately; retries, duplicates, and denied operations need owned handling. Middleware does not grant additional PMS permissions.</p></article>
+        <article class="installable-card"><h3>Structured staff handoff</h3><p>An approved form, export, inbox record, or task can carry the source facts when direct access is unavailable. Name the person who performs the final update and require completion evidence.</p></article>
+      </div>
+      <h2>Review the platform-specific examples</h2>
+      <div class="related-links">
+        <a href="/integrations/buildium/"><strong>Buildium maintenance field mapping</strong><span>Property/unit matching, request context, staff ownership, and the operations to verify against Open API access.</span></a>
+        <a href="/integrations/appfolio/"><strong>AppFolio API, Stack, and reviewed handoffs</strong><span>Compare authorized integration access with surrounding-tool automation and staff-reviewed alternatives.</span></a>
+        <a href="/integrations/leadsimple/"><strong>LeadSimple owner-inquiry handoff</strong><span>Map source, pipeline, owner, and next task; confirm REST API access or a supported import/manual route.</span></a>
+      </div>
+      <p>Each example links to vendor documentation. Examples describe scope to verify; they do not imply a platform partnership or guaranteed access to your account.</p>
     </section>
 
     <section class="wrap service-grid-section">

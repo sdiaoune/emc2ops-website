@@ -7,7 +7,7 @@ title: "Buildium Missed Call Follow-Up Workflow: Stop Letting Leasing Calls Die 
 seoTitle: "Buildium Missed Call Follow-Up Workflow"
 meta: "Automate a Buildium-adjacent missed-call follow-up workflow with guest-card matching, owner routing, stop rules, and safe writeback."
 publishedAt: "2026-08-04"
-updatedAt: "2026-08-04"
+updatedAt: "2026-09-07"
 h1: "Stop letting Buildium-related missed leasing calls disappear before the guest card, owner, and next step exist"
 problem: "Buildium-adjacent leasing teams lose high-intent renters when missed calls trigger voicemail but not one controlled follow-up path with guest-card matching, owner assignment, approved messaging, and system writeback."
 stakes:
@@ -70,6 +70,8 @@ If your team uses Buildium somewhere in the leasing path, missed-call recovery s
 That is still how many portfolios operate. A renter calls after hours about a two-bedroom, leaves a partial voicemail, then submits an ILS form or texts back the next morning. The office now has intent, but not one controlled record. Staff have to decide whether the caller already exists, which property they meant, who owns the callback, and whether the next move is a text, live call, tour offer, or stop rule.
 
 For operators managing 50 or more units, that is not a phone etiquette issue. It is a front-end leasing workflow issue. The broader [Buildium integration automation](/integrations/buildium/) page matters because missed-call recovery only works if the writeback path is real. The first commercial page to reinforce is [AI leasing follow-up automation](/services/leasing-follow-up/) because an unanswered call is still a follow-up problem the moment the office misses it.
+
+Confirm the required source and destination operations using the [Buildium access and mapping example](/integrations/buildium/). The [missed-call recovery implementation](/services/missed-call-recovery/) defines the response, stop conditions, and CRM outcome around that verified connection.
 
 ## Why Buildium-related missed calls break in practice
 

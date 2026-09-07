@@ -238,7 +238,7 @@ export function blogIndexSchema(posts: BlogPost[] = []) {
         url: `${siteUrl}/blog/`,
         name: "Property Management Automation Blog",
         description:
-          "SEO guides for property managers on missed calls, leasing automation, maintenance intake, CRM workflow automation, and SMS compliance.",
+          "Practical guides for property managers on leasing capture, follow-up, unit turns, deposit review, owner reporting, and choosing the first automation.",
         isPartOf: { "@id": `${siteUrl}/#website` },
         about: ["property management automation", "AI front desk workflows", "leasing automation"],
         inLanguage: "en-US",

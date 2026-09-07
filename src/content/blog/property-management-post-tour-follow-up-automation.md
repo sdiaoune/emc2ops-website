@@ -7,7 +7,7 @@ title: "Property Management Post-Tour Follow-Up Automation: Stop Letting Good To
 seoTitle: "Property Management Post-Tour Follow-Up Automation"
 meta: "How property managers can automate post-tour follow-up, application nudges, CRM updates, and leasing handoffs after a showing without sounding robotic."
 publishedAt: "2026-06-26"
-updatedAt: "2026-06-26"
+updatedAt: "2026-09-07"
 h1: "Stop letting strong leasing tours disappear into manual follow-up gaps"
 problem: "Many leasing teams run a solid inquiry and tour-booking process, then lose momentum after the showing. When post-tour follow-up depends on memory, scattered notes, and generic check-ins, warm renters stall and vacant units sit longer than they should."
 stakes:
@@ -53,6 +53,8 @@ Leasing teams spend real effort getting a prospect to the property. The call get
 That is where a lot of vacancy time hides. The renter leaves interested, but not fully decided. The leasing agent is already rushing to the next showing or resident issue. Notes sit in a phone, a text thread, or a half-finished guest card. By the time someone sends a follow-up, the message is generic or late.
 
 For operators running 50 or more units, post-tour silence is not just a sales problem. It is an execution problem. If your team already invested in [property management tour scheduling automation](/blog/property-management-tour-scheduling-automation/), [missed call text-back for property management](/blog/missed-call-text-back-property-management/), or [AI leasing follow-up for property management](/blog/ai-leasing-follow-up-property-management/), the next operational gap to clean up is what happens after the tour ends.
+
+Use the [leasing follow-up implementation service](/services/leasing-follow-up/) to connect confirmed attendance, approved messages, stop events, and the final CRM task. If the handoff spans applications and move-in, review the [lead-to-lease stages](/use-cases/lead-to-lease-automation/).
 
 ## Why post-tour follow-up gets expensive fast
 
