@@ -33,11 +33,11 @@ export const servicePages: ServicePage[] = [
 {
   "slug": "custom-property-management-automation",
   "eyebrow": "Custom automation",
-  "title": "Custom automation built around your property management company",
+  "title": "Custom property management automation, built for your team",
   "seoTitle": "Custom Property Management Automation",
   "description": "EMC2Ops designs, builds, integrates, tests, and maintains custom property management automations around your existing processes and software.",
-  "updatedAt": "2026-09-06",
-  "summary": "Already know what you want to automate? Bring us the workflow. We design, build, integrate, test, and maintain the solution around your existing processes and software. No developers to hire, platform to learn, or DIY implementation.",
+  "updatedAt": "2026-09-13",
+  "summary": "EMC2Ops builds custom property management automation around your existing processes and software. Bring the workflow that slows your team down: leasing follow-up, maintenance handoffs, CRM updates, resident communication, or deposit review. We design, integrate, test, and maintain the agreed solution.",
   "auditFocus": "Define the trigger, input records, business rules, approvals, destination systems, and desired outcome. A custom engagement can connect several steps without replacing your property management system.",
   "auditCta": {
     "label": "Book a 15-minute consultation",
@@ -288,15 +288,35 @@ export const servicePages: ServicePage[] = [
 },
   {
     slug: "missed-call-recovery",
+    updatedAt: "2026-09-13",
     eyebrow: "Missed-call recovery",
-    title: "Missed-call recovery for property managers",
-    seoTitle: "Missed-Call Recovery for Property Managers",
+    title: "Apartment call tracking and missed-call recovery",
+    seoTitle: "Apartment Call Tracking & Missed-Call Recovery",
     description:
-      "Turn missed leasing calls into qualified conversations and booked showings with SMS follow-up, scheduling, staff routing, and CRM logging.",
+      "Connect apartment call tracking to missed-call texts, renter details, staff ownership, and confirmed tour outcomes in your existing CRM.",
     summary:
       "EMC2Ops installs apartment call tracking and the complete missed-call-to-showing workflow: detect the unanswered call, text the renter, capture leasing intent, offer an approved booking path, and record the confirmed next step.",
     auditFocus:
       "We map your unanswered-call trigger, first SMS, renter qualification fields, approved showing inventory, booking handoff, CRM writeback, stop rules, and staff escalation path.",
+    operatorBrief: {
+      "title": "What apartment call tracking should tell your team",
+      "intro": "Track the path from a phone event to a renter conversation and a verified next step. A call count alone cannot show which inquiry needs attention.",
+      "scenarios": [
+        {
+          "title": "Which property and source received the call",
+          "description": "Keep the provider call ID, timestamp, called number, property, and answered or missed status. Attribute a marketing source only when a verified tracking-number or source mapping supports it; leave unknown sources explicit."
+        },
+        {
+          "title": "Whether it is a new or returning renter",
+          "description": "Match the confirmed phone number and property context to the existing lead. Preserve the original inquiry source, append the call as an activity, and send uncertain identity matches for review."
+        },
+        {
+          "title": "What happened after the missed call",
+          "description": "Record a permitted text-back, provider acceptance, renter reply, assigned staff task, and confirmed tour as separate events. Measure recovered inquiries by two-way replies and booked tours by confirmed calendar records."
+        }
+      ],
+      "boundary": "Number provisioning, call recording, transcription, and advertising attribution are separately scoped against your provider’s capabilities and approved policies."
+    },
     auditCta: {
       label: "Book my missed-call audit",
       title: "Want missed leasing calls routed before they go cold?",
@@ -367,6 +387,14 @@ export const servicePages: ServicePage[] = [
     metrics: ["missed calls recovered", "time to first response", "qualified replies", "call-to-showing rate"],
     faqs: [
       {
+        question: "Does apartment call tracking identify every advertising source?",
+        answer: "Only where a verified mapping connects the called number or source event to that campaign. We scope the provider data and attribution rules first. Calls with no reliable source remain unknown; repeat calls stay attached to the original lead history.",
+      },
+      {
+        question: "Is missed-call recovery an answering service?",
+        answer: "Missed-call recovery starts after an unanswered phone event and follows up through an approved channel. An answering service handles the live call. EMC2Ops can scope AI call answering separately when you need both workflows.",
+      },
+      {
         question: "What automation should I install first if my leasing team misses calls?",
         answer:
           "Start with a missed-call-to-showing workflow: verify the missed call, send an approved text-back, capture renter intent, offer supported showing availability or assign staff, and write the confirmed outcome and stop state to the CRM.",
@@ -416,15 +444,35 @@ export const servicePages: ServicePage[] = [
   },
   {
     slug: "leasing-follow-up",
+    updatedAt: "2026-09-13",
     eyebrow: "Leasing follow-up",
-    title: "Leasing lead automation for property managers",
-    seoTitle: "Leasing Lead Automation for Property Managers",
+    title: "AI leasing assistant for renter follow-up",
+    seoTitle: "AI Leasing Assistant & Follow-Up Automation",
     description:
-      "Install leasing lead automation for missed inquiries, stale replies, no-shows, and incomplete applications with CRM updates and human stop rules.",
+      "An AI leasing assistant configured for renter inquiries, tour reminders, no-show follow-up, and CRM updates, with clear rules for staff takeover.",
     summary:
-      "EMC2Ops installs leasing lead automation that keeps renter follow-up moving after the first inquiry, missed call, tour, no-show, stale reply, or incomplete application.",
+      "EMC2Ops configures an AI leasing assistant to keep renter follow-up moving after an inquiry, missed call, tour, no-show, or incomplete application. This leasing lead automation works with your existing tools, approved messages, and staff handoff rules.",
     auditFocus:
       "We audit the first inquiry, tour, no-show, stale reply, application, and handoff stages so follow-up moves leads forward without over-messaging.",
+    operatorBrief: {
+      "title": "What your AI leasing assistant does between inquiry and tour",
+      "intro": "Each step uses the renter’s current stage and your approved information. We agree the messages, timing, booking access, and stop conditions before implementation.",
+      "scenarios": [
+        {
+          "title": "Answer and collect renter details",
+          "description": "Capture property interest, move date, budget, unit preference, and requested tour time. Use an approved source for answers. When pricing or availability cannot be confirmed, create a staff task with the question and conversation summary."
+        },
+        {
+          "title": "Follow up on the next action",
+          "description": "Leasing automation can send an approved reminder, offer a supported rebooking path after a no-show, or flag an incomplete application. A reply, booking, opt-out, or staff takeover changes or stops the sequence."
+        },
+        {
+          "title": "Keep the leasing record current",
+          "description": "Save the lead’s stage, staff owner, last meaningful response, and next task through an authorized connection. Record a confirmed tour separately from a tour request; send failed updates to an owned review queue."
+        }
+      ],
+      "boundary": "Staff retain screening, accommodation, pricing-exception, and application-approval decisions. The assistant gathers information and supports the next step."
+    },
     auditCta: {
       label: "Book my leasing follow-up audit",
       title: "Want leasing follow-up that knows when to stop?",
@@ -491,6 +539,14 @@ export const servicePages: ServicePage[] = [
     ],
     metrics: ["lead-to-showing rate", "reply rate", "no-show recovery", "stale leads reactivated"],
     faqs: [
+      {
+        question: "Is an AI leasing assistant the same as a virtual leasing assistant?",
+        answer: "Virtual leasing assistant can mean an automated assistant or a remote staff member. EMC2Ops implements the automated workflow: approved responses, intake, follow-up, scheduling handoffs, and CRM updates. Your designated people handle questions and decisions outside that scope.",
+      },
+      {
+        question: "Does this replace our leasing software?",
+        answer: "The implementation connects supported features in your existing leasing software, phone system, forms, calendar, and CRM. It does not supply a complete lease-accounting or property management platform. We verify the required read and write access before promising a connection.",
+      },
       {
         question: "Can the sequence use SMS and email?",
         answer: "Yes. The channel mix depends on your tools, consent language, and where the prospect entered the funnel.",
@@ -673,15 +729,35 @@ export const servicePages: ServicePage[] = [
   },
   {
     slug: "crm-workflow-automation",
+    updatedAt: "2026-09-13",
     eyebrow: "CRM workflow automation",
-    title: "CRM workflow automation for property managers",
-    seoTitle: "Property Management CRM Automation",
+    title: "Property management CRM setup and automation",
+    seoTitle: "Property Management CRM Setup & Automation",
     description:
-      "Sync calls, texts, notes, tasks, statuses, and summaries into your property management CRM without manual copy-paste.",
+      "Improve your property management CRM with leasing stages, lead routing, duplicate checks, follow-up tasks, and authorized call, text, and email updates.",
     summary:
-      "EMC2Ops connects communication workflows to your CRM so teams can see what happened, what changed, and who owns the next step.",
+      "EMC2Ops provides property management CRM setup and workflow automation for the tools your team already uses. We connect renter inquiries, calls, texts, and tasks so each record shows the current stage, responsible person, and next action.",
     auditFocus:
       "We inspect how conversations become CRM records, where duplicate records appear, what fields matter, and which tasks or stages should update automatically.",
+    operatorBrief: {
+      "title": "Make your leasing CRM useful for the next shift",
+      "intro": "A leasing CRM needs more than a contact list. Agree what each stage means, who owns the renter, and what should happen when a call or message changes the record.",
+      "scenarios": [
+        {
+          "title": "Property management CRM setup",
+          "description": "Map inquiry, contacted, tour requested, tour confirmed, application started, and closed stages to your process. Define required fields, a staff owner, a next-action date, and the evidence needed to move a record."
+        },
+        {
+          "title": "Multifamily CRM routing",
+          "description": "For a portfolio, keep property interest and the assigned leasing team attached to each inquiry. Match repeat contacts before creating another record; send uncertain matches to review and preserve the original lead source."
+        },
+        {
+          "title": "Apartment CRM follow-up",
+          "description": "Connect supported call, text, email, and calendar events to concise notes and tasks. Stop conflicting reminders when staff take over, a tour is confirmed, or the renter opts out. Keep failed updates visible until someone resolves them."
+        }
+      ],
+      "boundary": "This is an implementation service for your existing CRM. Supported integrations, field changes, and access are confirmed during scoping."
+    },
     auditCta: {
       label: "Book my CRM workflow audit",
       title: "Want your CRM to show the real next step?",
@@ -749,8 +825,16 @@ export const servicePages: ServicePage[] = [
     metrics: ["CRM completeness", "manual updates avoided", "task creation accuracy", "duplicate records reduced"],
     faqs: [
       {
+        question: "Can you improve a multifamily CRM without changing platforms?",
+        answer: "Often, yes. We first review the stages, property assignments, duplicate rules, and follow-up tasks in the existing platform. If your account supports the required changes and connections, the work can stay there. Missing access may require an approved import, reviewed task, or separately scoped alternative.",
+      },
+      {
+        question: "What should an apartment CRM record contain?",
+        answer: "At minimum, record the lead source, contact reference, property interest, current leasing stage, assigned staff member, last action, next task, and due time. Add message permission and stop status for automated outreach, plus a confirmed event reference when a tour is booked.",
+      },
+      {
         question: "Which CRMs can EMC2Ops connect?",
-        answer: "Most systems can be supported through native integrations, APIs, webhooks, Zapier, Make, n8n, or custom workflow logic.",
+        answer: "We verify your platform, account permissions, and the exact fields or actions required. Supported APIs, webhooks, middleware, approved imports, or staff-reviewed handoffs may provide the connection. A tool name alone does not establish access.",
       },
       {
         question: "Can the workflow avoid noisy notes?",
@@ -1004,16 +1088,16 @@ export const servicePages: ServicePage[] = [
   },
   {
     slug: "ai-front-desk-property-management",
-    updatedAt: "2026-09-07",
+    updatedAt: "2026-09-13",
     eyebrow: "AI front desk",
-    title: "AI front desk for property management companies",
-    seoTitle: "AI Front Desk for Property Managers",
+    title: "AI property management answering service with staff handoffs",
+    seoTitle: "AI Property Management Answering Service",
     description:
-      "Install AI voice, SMS, routing, and CRM workflows for leasing, tenant intake, maintenance, owners, and vendors.",
+      "Custom AI property management answering service setup for leasing calls, resident intake, staff routing, and CRM updates using your approved rules.",
     summary:
-      "EMC2Ops builds a practical AI front desk around the workflows your property team already runs every day.",
+      "EMC2Ops builds an AI property management answering service around your phone system and operating rules. The AI front desk answers approved questions, collects caller details, and routes leasing inquiries, resident requests, and follow-up tasks to the right staff member.",
     auditFocus:
-      "We choose the first front-desk workflow, then map voice or SMS triggers, captured context, staff handoff rules, CRM writebacks, and monitoring.",
+      "We scope the calls to answer, coverage hours, approved information, transfer destinations, and records to update. Your proposal defines the voice provider, usage costs, integration access, monitoring, and the staff fallback when an automated path cannot finish.",
     operatorBrief: {
       "title": "What happens in a real front-desk conversation",
       "intro": "The existing PM Ops screenshot demonstrates fictional workflow data. For your implementation, each enabled channel must produce an identifiable event, a usable record, and an accountable next owner.",
@@ -1102,6 +1186,22 @@ export const servicePages: ServicePage[] = [
     metrics: ["response speed", "workflow volume", "manual work removed", "booked next steps"],
     faqs: [
       {
+        question: "Can this work as an apartment answering service after hours?",
+        answer: "Yes, when your phone provider and agreed configuration support after-hours routing. We define which leasing questions the AI may answer, where resident requests go, and who receives escalations. Coverage depends on the configured services and a reachable staff fallback; we do not provide a staffed call center.",
+      },
+      {
+        question: "What does a leasing answering service need before launch?",
+        answer: "Bring the property numbers, call types, coverage schedule, approved answers, tour-booking process, and staff escalation contacts. We test ordinary calls, missing information, unanswered transfers, duplicate events, and failed record updates before the agreed launch.",
+      },
+      {
+        question: "Can we keep our existing answering service or phone number?",
+        answer: "We first check your provider’s forwarding and integration options. An AI front desk can handle defined intake steps or pass summaries to your current team or answering provider when supported. Keeping a number, transferring calls, and connecting records must be verified for your setup.",
+      },
+      {
+        question: "How is an AI answering service priced?",
+        answer: "EMC2Ops scopes implementation, testing, and maintenance for your workflow. Voice minutes, phone numbers, messaging, and other provider charges depend on the chosen services and usage. The written proposal separates those costs and defines the included work.",
+      },
+      {
         question: "Is this a chatbot subscription?",
         answer: "No. EMC2Ops installs operating workflows across voice, SMS, routing, CRM updates, and reporting.",
       },
@@ -1111,6 +1211,7 @@ export const servicePages: ServicePage[] = [
       },
     ],
     relatedUseCases: [
+      {"label": "Compare AI answering and a staffed call center", "href": "/compare/ai-front-desk-vs-call-center/", "description": "Compare coverage, staff handoffs, and which conversations need a person."},
       {
         label: "How to automate property management",
         href: "/use-cases/how-to-automate-property-management/",

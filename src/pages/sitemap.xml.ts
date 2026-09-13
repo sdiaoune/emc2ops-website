@@ -25,7 +25,7 @@ export async function GET() {
     ...servicePages.map((service) => ({ url: serviceUrl(service), lastmod: service.updatedAt || siteUpdatedAt })),
     { url: "/use-cases/", lastmod: "2026-09-07" },
     ...useCasePages.map((useCase) => ({ url: useCaseUrl(useCase), lastmod: useCase.updatedAt || siteUpdatedAt })),
-    { url: "/integrations/", lastmod: "2026-09-07" },
+    { url: "/integrations/", lastmod: "2026-09-13" },
     ...integrationPages.map((integration) => ({ url: integrationUrl(integration), lastmod: integration.updatedAt || siteUpdatedAt })),
     { url: "/blog/", lastmod: "2026-09-07" },
     ...posts.map((post) => ({ url: `/blog/${post.data.slug}/`, lastmod: postUpdatedAt(post) })),

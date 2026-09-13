@@ -8,7 +8,7 @@ const builtSitemap = fs.readFileSync(path.join(__dirname, "..", "dist", "sitemap
 test("missed-call service defines the route from unanswered call to showing", async ({ page }) => {
   await page.goto("/services/missed-call-recovery/");
 
-  await expect(page.locator("h1")).toHaveText("Missed-call recovery for property managers");
+  await expect(page.locator("h1")).toHaveText("Apartment call tracking and missed-call recovery");
   await expect(page.locator("#workflow .step-list li")).toHaveCount(6);
   await expect(page.locator("main")).toContainText("Offer only approved showing availability");
   await expect(page.locator("main")).toContainText("call-to-showing rate");

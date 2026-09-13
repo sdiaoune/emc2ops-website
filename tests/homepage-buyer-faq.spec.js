@@ -153,9 +153,10 @@ test("homepage metadata and discovery freshness agree without redating unrelated
   expect(sitemapDates.get(`${siteUrl}/`)).toBe(homepageMetadata.updatedAt);
   expect(sitemapDates.get(`${siteUrl}/about/`)).toBe(homepageMetadata.updatedAt);
   // The traffic release updates these hubs independently of the protected homepage.
-  for (const route of ["services", "use-cases", "integrations", "blog"]) {
+  for (const route of ["services", "use-cases", "blog"]) {
     expect(sitemapDates.get(`${siteUrl}/${route}/`)).toBe("2026-09-07");
   }
+  expect(sitemapDates.get(`${siteUrl}/integrations/`)).toBe("2026-09-13");
   expect(sitemapDates.get(`${siteUrl}/privacy/`)).toBe(siteUpdatedAt);
 });
 

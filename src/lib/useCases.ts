@@ -195,7 +195,7 @@ export const useCasePages: UseCasePage[] = [
 },
   {
     slug: "apartment-lead-tracking",
-    updatedAt: "2026-09-07",
+    updatedAt: "2026-09-13",
     primaryKeyword: "apartment lead tracking",
     clusterKeywords: [
       "apartment lead management",
@@ -211,7 +211,7 @@ export const useCasePages: UseCasePage[] = [
       "Track apartment and multifamily leads from calls, forms, and ILS inquiries to tours. See the fields, ownership rules, and CRM workflow EMC2Ops installs.",
     h1: "Apartment lead tracking for calls, forms, texts, and tours",
     summary:
-      "See every renter inquiry from source to booked tour—even when it arrives through calls, forms, ILS, or text. EMC2Ops installs the tracking, deduplication, follow-up, routing, and CRM updates for you.",
+      "Apartment lead management starts with one record for each renter inquiry. EMC2Ops connects calls, forms, ILS alerts, texts, and tours so multifamily lead tracking shows the source, property, assigned staff member, and next action across your portfolio.",
     auditFocus:
       "We review each renter lead source, duplicate rules, qualification fields, ownership handoffs, follow-up triggers, and CRM writeback path.",
     auditCta: {
@@ -332,15 +332,23 @@ export const useCasePages: UseCasePage[] = [
       "You are not ready to define ownership and duplicate rules.",
     ],
     relatedServices: [
-      { label: "Missed-call recovery", href: "/services/missed-call-recovery/" },
-      { label: "AI leasing follow-up automation", href: "/services/leasing-follow-up/" },
-      { label: "CRM workflow automation", href: "/services/crm-workflow-automation/" },
+      { label: "Apartment call tracking and recovery", href: "/services/missed-call-recovery/" },
+      { label: "AI leasing assistant and follow-up", href: "/services/leasing-follow-up/" },
+      { label: "Property management CRM setup", href: "/services/crm-workflow-automation/" },
     ],
     relatedGuides: [
       { label: "Apartment Lead Tracking: How to Stop Losing Renters", href: "/blog/apartment-lead-tracking/" },
       { label: "Property Management Lead Deduplication and Routing", href: "/blog/property-management-lead-deduplication-routing/" },
     ],
     faqs: [
+      {
+        question: "What is the difference between apartment lead tracking and lead management?",
+        answer: "Tracking records where an inquiry came from and what happened. Apartment lead management adds ownership, qualification questions, follow-up timing, and the next task. Together they help staff act on the record instead of maintaining a separate reminder list.",
+      },
+      {
+        question: "How does multifamily lead management work across properties?",
+        answer: "Keep each renter’s contact history connected while recording the specific property interest, available tour path, and assigned leasing team. A property transfer should carry the source and conversation context, update ownership, and stop the old team’s conflicting follow-up.",
+      },
       {
         question: "What is apartment lead tracking?",
         answer:
@@ -360,23 +368,25 @@ export const useCasePages: UseCasePage[] = [
   },
   {
     slug: "real-estate-lead-follow-up-automation",
-    updatedAt: "2026-09-07",
+    updatedAt: "2026-09-13",
     primaryKeyword: "real estate lead follow up automation",
     clusterKeywords: [
       "automated real estate lead follow up",
       "rental lead follow up automation",
+      "real estate lead management",
+      "leasing lead management",
       "property management lead follow up",
       "leasing follow up automation",
       "real estate text follow up",
     ],
     intent: "A team wants automated follow-up that protects speed-to-lead without sounding careless.",
     title: "Real estate lead follow-up automation",
-    seoTitle: "Real Estate Lead Follow-Up Automation for Property Managers",
+    seoTitle: "Real Estate Lead Management & Follow-Up",
     description:
-      "Install property management follow-up for renter and owner inquiries, with separate stages, approved messages, CRM ownership, and clear stop conditions.",
-    h1: "Real estate lead follow-up automation for rental and property management teams",
+      "Real estate lead management for rental and owner inquiries: capture context, assign staff, automate follow-up, and keep each next task visible.",
+    h1: "Real estate lead management and follow-up for property managers",
     summary:
-      "EMC2Ops implements follow-up for property-management leasing inquiries and prospective owner clients. Each audience gets its own stages, messages, staff owner, and stop rules in the tools your team already uses.",
+      "EMC2Ops builds real estate lead management and follow-up workflows for rental inquiries and prospective property-owner clients. Each audience gets its own stages, approved messages, assigned staff member, and next task in the tools your team already uses.",
     auditFocus:
       "We deliver the source and stage map, approved sequence rules, field mappings, suppression checks, exception queue, and acceptance tests. Bring a renter inquiry and an owner-service inquiry so the scope reflects both journeys.",
     auditCta: {
@@ -494,6 +504,14 @@ export const useCasePages: UseCasePage[] = [
       { label: "AI Leasing Follow-Up for Property Management", href: "/blog/ai-leasing-follow-up-property-management/" },
     ],
     faqs: [
+      {
+        question: "What does leasing lead management include?",
+        answer: "Leasing lead management connects the inquiry source, renter details, assigned property team, current stage, and next action. The workflow follows up on a defined task and updates or stops when the renter replies, books, applies, opts out, or reaches staff review.",
+      },
+      {
+        question: "Is this for real estate sales leads or rental inquiries?",
+        answer: "This page covers rental inquiries and prospective owners seeking property management services, with separate workflows for each. Buyer, seller, brokerage, or investor-acquisition workflows require their own scope. The service does not supply a brokerage CRM or a source of new leads.",
+      },
       {
         question: "What should real estate lead follow-up automation send first?",
         answer:

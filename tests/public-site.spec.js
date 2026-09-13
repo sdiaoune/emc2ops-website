@@ -540,7 +540,7 @@ test("services, use-case, and integration detail pages render conversion section
       path: "/services/leasing-follow-up/",
       workflow: "leasing-follow-up",
       source: "service",
-      h1: "Leasing lead automation for property managers",
+      h1: "AI leasing assistant for renter follow-up",
       extraText: "What EMC2Ops installs",
     },
     {
@@ -599,7 +599,7 @@ test("decision hubs use buyer-facing language and valid internal links", async (
   const pages = [
     { path: "/services/", h1: "Custom automation services. Built for your workflow." },
     { path: "/use-cases/", h1: "See how your property management workflow can work." },
-    { path: "/integrations/", h1: "Automation workflows for the systems property teams already use." },
+    { path: "/integrations/", h1: "Property management software integration for your existing tools." },
   ];
 
   for (const pageInfo of pages) {

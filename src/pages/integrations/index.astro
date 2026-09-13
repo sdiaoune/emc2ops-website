@@ -10,9 +10,9 @@ import { integrationPages, integrationUrl } from "../../lib/integrations";
 import { productScreenshotForPath } from "../../lib/productScreenshots";
 import "../../styles/service.css";
 
-const title = "Property Management Automation Integrations | EMC2Ops";
+const title = "Property Management Software Integration | EMC2Ops";
 const description =
-  "Compare API, middleware, and reviewed handoffs for AppFolio, Buildium, and LeadSimple, with workflow examples and the account access to verify.";
+  "Property management software integration services for leasing, CRM, and maintenance workflows. Compare supported connections, access needs, and staff handoffs.";
 ---
 
 <SiteLayout
@@ -21,7 +21,7 @@ const description =
   canonical={absoluteUrl("/integrations/")}
   image={absoluteUrl(defaultSocialImage)}
   imageAlt="EMC2Ops property management automation integrations."
-  schema={standardPageSchema({ path: "/integrations/", name: "Property management automation integrations", description, type: "CollectionPage" })}
+  schema={standardPageSchema({ path: "/integrations/", name: "Property management software integration", updatedAt: "2026-09-13", description, type: "CollectionPage" })}
   pageClass="service-page"
 >
   <SiteHeader />
@@ -29,11 +29,11 @@ const description =
     <section class="service-hero">
       <div class="wrap">
         <p class="eyebrow">Integrations</p>
-        <h1>Automation workflows for the systems property teams already use.</h1>
+        <h1>Property management software integration for your existing tools.</h1>
         <p class="dek">
-          Integration work is not always a direct API write. EMC2Ops scopes the safest route for
-          each workflow: API, middleware, inbox parsing, structured forms, review queues, or a
-          hybrid handoff.
+          EMC2Ops scopes property management software integration around the records your team needs
+          to move: renter inquiries, tour outcomes, maintenance requests, and CRM tasks. We verify
+          each connection and define an owned staff handoff when direct access is unavailable.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="/book-demo/#workflow=buildium&source=integrations-index">Book my integration audit</a>
@@ -87,6 +87,16 @@ const description =
         <a href="/integrations/leadsimple/"><strong>LeadSimple owner-inquiry handoff</strong><span>Map source, pipeline, owner, and next task; confirm REST API access or a supported import/manual route.</span></a>
       </div>
       <p>Each example links to vendor documentation. Examples describe scope to verify; they do not imply a platform partnership or guaranteed access to your account.</p>
+    </section>
+
+    <section class="wrap detail-section" aria-labelledby="other-platforms-heading">
+      <h2 id="other-platforms-heading">Scoping a Yardi integration or Entrata integration</h2>
+      <p>Bring the platform, product edition, workflow, and fields you need to connect. For a Yardi integration or Entrata integration, we first verify your account permissions, approved provider options, and whether the required read or write operation is available.</p>
+      <p>These are requests we can assess, not advertised prebuilt EMC2Ops connectors or vendor partnerships. If direct access cannot be confirmed, the proposal may use an authorized export, inbox, form, or staff-reviewed task. An automated handoff is only complete when the destination record or responsible person confirms it.</p>
+      <div class="related-links">
+        <a href="/services/crm-workflow-automation/"><strong>Property management CRM setup</strong><span>Define the fields, stages, owners, and follow-up rules before connecting records.</span></a>
+        <a href="/services/leasing-follow-up/"><strong>AI leasing assistant implementation</strong><span>Connect approved renter responses and reminders to supported calendar and CRM actions.</span></a>
+      </div>
     </section>
 
     <section class="wrap service-grid-section">

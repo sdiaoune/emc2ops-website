@@ -415,12 +415,14 @@ export function standardPageSchema({
   description,
   type = "WebPage",
   parent,
+  updatedAt = siteUpdatedAt,
 }: {
   path: string;
   name: string;
   description: string;
   type?: "WebPage" | "CollectionPage" | "ContactPage";
   parent?: { name: string; path: string };
+  updatedAt?: string;
 }) {
   const url = absoluteUrl(path);
   const breadcrumbs = [
@@ -447,7 +449,7 @@ export function standardPageSchema({
         url,
         name,
         description,
-        dateModified: siteUpdatedAt,
+        dateModified: updatedAt,
         inLanguage: "en-US",
         isPartOf: { "@id": `${siteUrl}/#website` },
         publisher: { "@id": `${siteUrl}/#organization` },

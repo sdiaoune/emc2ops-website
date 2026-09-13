@@ -36,7 +36,7 @@ export interface IntegrationPage {
 export const integrationPages: IntegrationPage[] = [
   {
     slug: "appfolio",
-    updatedAt: "2026-09-07",
+    updatedAt: "2026-09-13",
     implementationExample: {
       "title": "Choose an AppFolio connection from the handoff you need",
       "intro": "AppFolio Stack provides integration partnerships and documented APIs. Access to a named operation depends on the approved integration and customer configuration. These examples describe connection choices to verify; EMC2Ops does not claim AppFolio partnership or unrestricted API access.",
@@ -92,7 +92,7 @@ export const integrationPages: IntegrationPage[] = [
     description:
       "Scope an AppFolio workflow integration for leasing, maintenance, communication, CRM tasks, and safe API, middleware, inbox, or review handoffs.",
     summary:
-      "EMC2Ops maps each AppFolio workflow integration to the available connection path, required fields, fallback route, and human review gates.",
+      "EMC2Ops scopes your AppFolio integration around a specific leasing, maintenance, or communication handoff. We map each AppFolio workflow integration to the authorized connection path, required fields, fallback route, and human review gates.",
     auditFocus:
       "We review which AppFolio-adjacent workflows can use API, middleware, webhooks, inbox parsing, forms, or human review based on your account access and target fields.",
     auditCta: {
