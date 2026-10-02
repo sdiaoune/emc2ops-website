@@ -389,9 +389,9 @@ export function aboutPageSchema() {
         "@id": `${url}#webpage`,
         url,
         name: "About EMC2Ops",
-        dateModified: homepageMetadata.updatedAt,
+        dateModified: "2026-09-06",
         description:
-          homepageMetadata.description,
+          "Custom automations for property management companies. EMC2Ops designs, builds, integrates, tests, and maintains workflows around your processes and software.",
         isPartOf: { "@id": `${siteUrl}/#website` },
         about: { "@id": `${siteUrl}/#organization` },
         inLanguage: "en-US",

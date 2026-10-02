@@ -20,7 +20,7 @@ test("mobile header menu opens, closes, and routes to core pages", async ({ page
   await expect(mobileNav).toBeVisible();
   await expect(toggle).toHaveAttribute("aria-expanded", "true");
   await expect(mobileNav.getByRole("link", { name: "Services" })).toBeVisible();
-  await expect(mobileNav.getByRole("link", { name: "Book a 15-minute consultation" })).toBeVisible();
+  await expect(mobileNav.getByRole("link", { name: "Review my missed-call pilot" })).toBeVisible();
 
   await page.keyboard.press("Escape");
   await expect(mobileNav).toBeHidden();
@@ -46,6 +46,7 @@ test("mobile header menu opens, closes, and routes to core pages", async ({ page
 test("mobile menu stays anchored when opened after scrolling", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
+  await page.locator("[data-product-screenshot-route] img").scrollIntoViewIfNeeded();
   await page.locator("[data-product-screenshot-route] img").evaluate((image) => image.decode());
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollHeight)).toBeGreaterThan(2000);
   await page.evaluate(() => window.scrollTo(0, 1400));

@@ -5,12 +5,13 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 
-import { verifyBlogDeployBaseline } from "../scripts/verify-blog-deploy-baseline.mjs";
+import { homepageReviewFingerprint, verifyBlogDeployBaseline } from "../scripts/verify-blog-deploy-baseline.mjs";
 
-const page = ({ hero = "Protected hero", results = "Protected results", extra = "Local article list", css = "/_astro/home.css" } = {}) => `<!doctype html>
+const page = ({ hero = "Protected hero", offer = "Pilot offer", results = "Protected results", extra = "Local article list", css = "/_astro/home.css" } = {}) => `<!doctype html>
 <html><head><link rel="stylesheet" href="${css}"></head><body>
   <section class="hero"><h1>${hero}</h1></section>
   <aside class="customer-results"><p>${results}</p></aside>
+  <section class="pilot-offer"><h2>${offer}</h2></section>
   <section class="latest-posts">${extra}</section>
 </body></html>`;
 
@@ -100,6 +101,53 @@ test("allows blog-only changes outside protected homepage regions", async () => 
   }, async ({ distDir, origin }) => {
     const result = await verifyBlogDeployBaseline({ distDir, origin });
     assert.deepEqual(result, { protectedRegions: 2, stylesheets: 1, securityDepositMarkers: 6 });
+  });
+});
+
+test("pinned preview accepts the exact reviewed homepage while the default gate still blocks it", async () => {
+  await withFixture({
+    livePage: page(), localPage: page({ hero: "Reviewed missed-call hero" }),
+    liveCss: ".hero { padding: 64px; }", localCss: ".hero { padding: 56px; }",
+  }, async ({ distDir, origin }) => {
+    const homepageReviewBaseline = await homepageReviewFingerprint({ distDir, origin });
+    await assert.doesNotReject(verifyBlogDeployBaseline({ distDir, origin, homepageReviewBaseline }));
+    await assert.rejects(verifyBlogDeployBaseline({ distDir, origin }), /homepage hero differs from production/);
+  });
+});
+
+for (const change of ["hero", "offer", "stylesheets", "results"]) {
+  test(`pinned preview rejects unreviewed ${change} changes`, async () => {
+    await withFixture({
+      livePage: page(), localPage: page(),
+      liveCss: ".hero { padding: 64px; }", localCss: ".hero { padding: 56px; }",
+    }, async ({ distDir, origin }) => {
+      const homepageReviewBaseline = await homepageReviewFingerprint({ distDir, origin });
+      if (change === "stylesheets") await writeFile(path.join(distDir, "_astro/home.css"), ".hero { display: none; }");
+      else await writeFile(path.join(distDir, "index.html"), page({ [change]: "Unreviewed change" }));
+      await assert.rejects(verifyBlogDeployBaseline({ distDir, origin, homepageReviewBaseline }), /differs from (the pinned review baseline|production)/);
+    });
+  });
+}
+
+test("pinned preview cannot omit a production URL", async () => {
+  await withFixture({
+    livePage: page(), localPage: page(),
+    liveCss: ".hero {}", localCss: ".hero {}",
+    liveSitemap: sitemap(["/", "/blog/new-production-article/"]),
+  }, async ({ distDir, origin }) => {
+    const homepageReviewBaseline = await homepageReviewFingerprint({ distDir, origin });
+    await assert.rejects(verifyBlogDeployBaseline({ distDir, origin, homepageReviewBaseline }), /production URLs would disappear/);
+  });
+});
+
+test("pinned preview cannot lose deposit authority content", async () => {
+  await withFixture({
+    livePage: page(), localPage: page(),
+    liveCss: ".hero {}", localCss: ".hero {}",
+    localSecurityDepositPage: securityDepositPage({ omit: "AI must not infer the original condition" }),
+  }, async ({ distDir, origin }) => {
+    const homepageReviewBaseline = await homepageReviewFingerprint({ distDir, origin });
+    await assert.rejects(verifyBlogDeployBaseline({ distDir, origin, homepageReviewBaseline }), /lost protected security-deposit content/);
   });
 });
 

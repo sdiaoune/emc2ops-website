@@ -2,11 +2,11 @@ const { expect, test } = require('@playwright/test');
 
 const servicePath = '/services/missed-call-recovery/';
 
-test('homepage surfaces the focused pilot without replacing the main positioning', async ({ page }) => {
+test('homepage leads with missed-call recovery and a bounded pilot', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('h1')).toHaveText('Custom automations for property management companies.');
+  await expect(page.locator('h1')).toHaveText('Turn missed leasing calls into renter conversations.');
   const pilot = page.locator('#missed-call-pilot');
-  await expect(pilot).toContainText('Start with one missed-call workflow');
+  await expect(pilot).toContainText('One number. One recovery workflow.');
   await expect(pilot.getByRole('link', { name: 'Explore missed-call text-back' })).toHaveAttribute('href', servicePath);
   await expect(page.locator('#overview').getByRole('link', { name: 'See the pilot scope and fit' })).toHaveAttribute('href', servicePath);
 });
@@ -40,7 +40,7 @@ for (const width of [390, 1024, 1280]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1)).toBe(false);
     await page.goBack();
     await expect(page).toHaveURL(homepageUrl);
-    await expect(page.locator('h1')).toHaveText('Custom automations for property management companies.');
+    await expect(page.locator('h1')).toHaveText('Turn missed leasing calls into renter conversations.');
     await expect(page.locator('#sales-chatbot-panel')).toBeHidden();
     if (width < 901) await expect(page.locator('[data-mobile-menu-panel]')).toBeHidden();
   });

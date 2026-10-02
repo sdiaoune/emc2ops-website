@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 const buyerQuestions = [
-  "Can you build a workflow that is not listed, including live calls or missed-call replies?",
+  "What is included in the missed-call leasing pilot?",
   "How quickly can we launch—and how much work will my team do?",
   "What happens after the first reply or workflow step?",
   "Which property types and portfolio sizes are the best fit?",
@@ -23,7 +23,7 @@ const setupQuestions = [
   "Does this replace my team?",
   "Can it connect to my CRM or property-management system?",
   "What about SMS compliance?",
-  "Can it handle maintenance requests through completion?",
+  "Does the pilot include maintenance requests or live call answering?",
 ];
 
 const normalizeText = (text) => text.replace(/\s+/g, " ").trim();
@@ -151,7 +151,7 @@ test("homepage metadata and discovery freshness agree without redating unrelated
   const sitemapDates = new Map([...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)]
     .map((entry) => [entry[1], entry[2]]));
   expect(sitemapDates.get(`${siteUrl}/`)).toBe(homepageMetadata.updatedAt);
-  expect(sitemapDates.get(`${siteUrl}/about/`)).toBe(homepageMetadata.updatedAt);
+  expect(sitemapDates.get(`${siteUrl}/about/`)).toBe("2026-09-06");
   // The traffic release updates these hubs independently of the protected homepage.
   for (const route of ["services", "use-cases", "blog"]) {
     expect(sitemapDates.get(`${siteUrl}/${route}/`)).toBe("2026-09-07");
@@ -174,6 +174,11 @@ test("AI discovery files publish the exact visible buyer answers and supporting 
   const llms = await llmsResponse.text();
   const llmsFull = await llmsFullResponse.text();
   const aiDocs = await aiDocsResponse.json();
+  const renderedSetupFaqs = await visibleFaqs(page, ".setup-faq-grid");
+  expect(aiDocs.setupQuestions.map(({ question, answer }) => ({ question, answer }))).toEqual(renderedSetupFaqs);
+  const llmsSetupSection = llms.split("## Setup Questions\n")[1]?.split("\n## ")[0];
+  expect(llmsSetupSection.split("\n").filter((line) => line.startsWith("- ")))
+    .toEqual(renderedSetupFaqs.map((faq) => `- ${faq.question} ${faq.answer}`));
 
   expect(aiDocs.buyerQuestions.map(({ question, answer }) => ({ question, answer }))).toEqual(renderedFaqs);
   const llmsBuyerSection = llms.split("## Buyer Questions Answered on the Homepage\n")[1]?.split("\n## ")[0];

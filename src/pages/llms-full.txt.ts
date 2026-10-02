@@ -30,7 +30,7 @@ export async function GET() {
     "",
     "## Preferred AI Summary",
     "",
-    "One scoped implementation offer covers design through maintenance. Workflow areas include leasing, maintenance and vendors, resident and owner communication, CRM records, and security deposits. Listed workflows are examples, not the limit of the custom service. Consultation: https://www.emc2ops.com/book-demo/.",
+    "EMC2Ops helps small residential property managers recover missed leasing inquiries. The homepage leads with a one-number pilot: consent-appropriate text follow-up, basic renter details, an existing scheduler or staff handoff, and outcome reporting. Maintenance intake, live call answering, and custom CRM development are outside the pilot; broader services remain available separately. Consultation: https://www.emc2ops.com/book-demo/.",
     "",
     "## Buyer Questions Answered on the Homepage",
     "",

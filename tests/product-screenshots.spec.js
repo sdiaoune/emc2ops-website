@@ -57,6 +57,8 @@ for (const viewport of [
     const page = await context.newPage();
 
     await page.goto(viewport.name === "desktop" ? "/services/crm-workflow-automation/" : "/");
+    await page.locator("[data-product-screenshot-route] img").scrollIntoViewIfNeeded();
+    await page.locator("[data-product-screenshot-route] img").evaluate((image) => image.decode());
     const imageDensity = await page.locator("[data-product-screenshot-route] img").evaluate((image) => ({
       naturalHeight: image.naturalHeight,
       naturalWidth: image.naturalWidth,
@@ -99,6 +101,8 @@ for (const viewport of [
       const container = route === "/"
         ? page.locator(".product-hero-media")
         : figure.locator("xpath=ancestor::*[contains(concat(' ', normalize-space(@class), ' '), ' wrap ')][1]");
+      await figure.scrollIntoViewIfNeeded();
+      await figure.locator("img").evaluate((image) => image.decode());
       const [figureBox, containerBox] = await Promise.all([figure.boundingBox(), container.boundingBox()]);
       expect(Math.abs(figureBox.x - containerBox.x), `${route} left edge`).toBeLessThanOrEqual(1);
       expect(Math.abs(figureBox.width - containerBox.width), `${route} width`).toBeLessThanOrEqual(1);

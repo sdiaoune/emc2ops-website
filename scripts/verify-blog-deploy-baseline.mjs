@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 import { readFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -8,6 +10,14 @@ const protectedRegions = [
   { className: "hero", label: "homepage hero", tagName: "section" },
   { className: "customer-results", label: "customer results strip", tagName: "aside" },
 ];
+
+const homepageReviewRegions = [
+  protectedRegions[0],
+  { className: "pilot-offer", label: "missed-call pilot offer", tagName: "section" },
+];
+const reviewBranch = "review/missed-call-pilot-20261001";
+const repository = "https://github.com/sdiaoune/emc2ops-website.git";
+const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 
 const protectedSecurityDepositMarkers = [
   "What is security deposit automation?",
@@ -169,9 +179,25 @@ async function localStylesheets(html, distDir, origin) {
   return values;
 }
 
+// A reviewed homepage release pins exact rendered content and CSS. It does not
+// exempt the release from production URL or security-deposit preservation.
+export async function homepageReviewFingerprint({ distDir, origin = "https://www.emc2ops.com" }) {
+  const html = await readFile(path.join(distDir, "index.html"), "utf8");
+  return {
+    releaseType: "isolated-preview",
+    repository,
+    branch: reviewBranch,
+    regions: Object.fromEntries(homepageReviewRegions.map((region) => [
+      region.className, sha256(normalizeMarkup(elementWithClass(html, region))),
+    ])),
+    stylesheets: (await localStylesheets(html, distDir, origin)).map(sha256),
+  };
+}
+
 export async function verifyBlogDeployBaseline({
   distDir = path.resolve("dist"),
   origin = "https://www.emc2ops.com",
+  homepageReviewBaseline,
 } = {}) {
   const localHomepage = await readFile(path.join(distDir, "index.html"), "utf8");
   const liveHomepage = await fetchedText(new URL("/", origin));
@@ -231,6 +257,7 @@ export async function verifyBlogDeployBaseline({
   }
 
   for (const region of protectedRegions) {
+    if (homepageReviewBaseline && region.className === "hero") continue;
     const local = normalizeMarkup(elementWithClass(localHomepage, region));
     const live = normalizeMarkup(elementWithClass(liveHomepage, region));
     if (local !== live) {
@@ -242,7 +269,12 @@ export async function verifyBlogDeployBaseline({
     localStylesheets(localHomepage, distDir, origin),
     remoteStylesheets(liveHomepage, origin),
   ]);
-  if (JSON.stringify(localCss) !== JSON.stringify(liveCss)) {
+  if (homepageReviewBaseline) {
+    const expected = await homepageReviewFingerprint({ distDir, origin });
+    if (JSON.stringify(homepageReviewBaseline) !== JSON.stringify(expected)) {
+      throw new Error("Homepage preview blocked: rendered hero, pilot offer, or stylesheet bundle differs from the pinned review baseline.");
+    }
+  } else if (JSON.stringify(localCss) !== JSON.stringify(liveCss)) {
     throw new Error("Blog deployment blocked: homepage stylesheet bundle differs from production. Ship the site-wide style change separately before running a blog-only production deploy.");
   }
 
@@ -260,11 +292,24 @@ function option(name, fallback) {
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   try {
+    const baselineFile = option("--homepage-review-baseline", null);
+    let homepageReviewBaseline;
+    if (baselineFile) {
+      // This mode is for the founder-authorized review branch only. Routine
+      // main/blog releases retain the default comparison against production.
+      const branch = execFileSync("git", ["branch", "--show-current"], { encoding: "utf8" }).trim();
+      const remote = execFileSync("git", ["remote", "get-url", "origin"], { encoding: "utf8" }).trim();
+      if (branch !== reviewBranch || remote !== repository) {
+        throw new Error("Homepage preview blocked: review baseline mode requires the authorized repository and review branch.");
+      }
+      homepageReviewBaseline = JSON.parse(await readFile(path.resolve(baselineFile), "utf8"));
+    }
     const result = await verifyBlogDeployBaseline({
       distDir: path.resolve(option("--dist", "dist")),
       origin: option("--origin", "https://www.emc2ops.com"),
+      homepageReviewBaseline,
     });
-    console.log(`Blog deployment baseline verified: ${result.protectedRegions} protected regions, ${result.stylesheets} homepage stylesheet bundle(s), and ${result.securityDepositMarkers} security-deposit markers are preserved.`);
+    console.log(`${homepageReviewBaseline ? "Pinned homepage preview" : "Blog deployment"} baseline verified: ${result.protectedRegions} protected regions, ${result.stylesheets} homepage stylesheet bundle(s), and ${result.securityDepositMarkers} security-deposit markers are preserved. Production sitemap URLs are preserved.`);
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
     process.exitCode = 1;

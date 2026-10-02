@@ -8,10 +8,10 @@ const home = renderedPage();
 const pilot = renderedPage('services/missed-call-recovery');
 const visibleText = (html) => html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
 
-test('homepage adds a focused pilot entry point and keeps the current hero', () => {
-  assert.match(home, /id="home-heading"[^>]*>Custom automations for property management companies\./);
+test('homepage leads with a single missed-call promise and pilot', () => {
+  assert.match(home, /id="home-heading"[^>]*>Turn missed leasing calls into renter conversations\./);
   assert.match(home, /id="missed-call-pilot"/);
-  assert.match(visibleText(home), /Start with one missed-call workflow/);
+  assert.match(visibleText(home), /One number. One recovery workflow./);
   assert.match(home, /href="\/services\/missed-call-recovery\/"[^>]*>Explore missed-call text-back/);
   assert.match(home, /href="\/services\/missed-call-recovery\/"[^>]*>See the pilot scope and fit/);
 });

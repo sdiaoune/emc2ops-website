@@ -9,12 +9,12 @@ export type HomepageFaq = {
 
 export const homepageBuyerFaqs: HomepageFaq[] = [
   {
-    question: "Can you build a workflow that is not listed, including live calls or missed-call replies?",
+    question: "What is included in the missed-call leasing pilot?",
     answer:
-      "Yes. Bring the process, systems, and result you have in mind. We design and build custom automations, including live voice answering and missed-call text follow-up. Scoping confirms the access, rules, approvals, and support your solution needs.",
+      "The pilot covers one leasing number, consent-appropriate text follow-up, basic renter inquiry capture, an existing scheduler or staff handoff, and outcome reporting. We check provider access and test stop rules before launch. Maintenance intake, live call answering, and custom CRM development are excluded.",
     cta: {
-      label: "Explore custom implementation",
-      href: "/services/custom-property-management-automation/",
+      label: "Review the pilot scope",
+      href: "/services/missed-call-recovery/",
     },
   },
   {
@@ -38,7 +38,7 @@ export const homepageBuyerFaqs: HomepageFaq[] = [
   {
     question: "Which property types and portfolio sizes are the best fit?",
     answer:
-      "The best fit is a property management, apartment, or rental team with repeatable operational work and someone responsible for approvals. Door count alone does not determine fit. First confirm that property information is reliable and staff can handle exceptions.",
+      "The pilot fits small residential property managers with unanswered leasing calls, ineffective follow-up, and a staff member who can handle replies. Door count alone does not determine fit. If your existing provider already handles missed calls effectively, the pilot may add little value.",
     cta: {
       label: "Check the launch requirements",
       href: "/#implementation",
@@ -56,7 +56,7 @@ export const homepageBuyerFaqs: HomepageFaq[] = [
   {
     question: "Who handles exceptions after hours?",
     answer:
-      "Your designated on-call team handles urgent exceptions; the next-business-day team handles requests assigned to normal hours. The system records and routes each request. Automated 24/7 intake means collecting requests, not guaranteed staffed resolution or a replacement for emergency services.",
+      "Your designated staff receive the inquiry summary and handle questions the workflow cannot answer. Your team agrees when replies will be reviewed and who owns the next action. Automated inquiry capture does not promise staffed resolution, confirmed availability, or a booked tour after hours.",
     cta: {
       label: "Map an after-hours workflow",
       href: "/blog/after-hours-leasing-automation/",
@@ -85,7 +85,7 @@ export const homepageBuyerFaqs: HomepageFaq[] = [
     answer:
       "Pricing is quote-based. Your proposal separates the implementation, ongoing support, and any additional provider charges. It records included work, assumptions, and exclusions so you can evaluate the scope before approving it. Additional properties or processes are scoped separately.",
     cta: {
-      label: "Review the custom automation offer",
+      label: "Review the pilot scope and cost",
       href: "/#pricing",
     },
   },
@@ -112,9 +112,9 @@ export const homepageSetupFaqs: HomepageFaq[] = [
     },
   },
   {
-    question: "Can it handle maintenance requests through completion?",
+    question: "Does the pilot include maintenance requests or live call answering?",
     answer:
-      "Yes. We can connect intake, staff review, vendor coordination, status updates, completion evidence, and closure records. Your team approves dispatch and verifies completion. Automation does not diagnose faults, perform repairs, or replace emergency procedures.",
+      "No. This pilot follows up on missed leasing calls by text and hands inquiries to your scheduler or staff. Maintenance intake, live AI call answering, and custom CRM development are separate services. Existing guides remain available if you need to explore those workflows.",
   },
 ];
 

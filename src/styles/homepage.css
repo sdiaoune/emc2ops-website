@@ -232,3 +232,60 @@
   .homepage .customer-result { padding-inline: 8px; }
   .homepage .customer-result dt { font-size: 1.8rem; }
 }
+
+/* Missed-call leasing pilot: scoped to this homepage. */
+.homepage .hero { padding-block: 56px; }
+.homepage .hero-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
+.homepage .hero h1 { max-width: 560px; font-size: clamp(2.25rem, 4.1vw, 3.6rem); }
+.homepage .hero .eyebrow { margin-top: 0; font-size: .72rem; }
+.homepage .hero .lead { max-width: 520px; }
+.homepage .hero-takeaways { gap: 7px; margin: 22px 0; }
+.homepage .hero-takeaways li { font-size: .9rem; padding-left: 22px; }
+.homepage .hero-takeaways li::before { content: "✓"; }
+.homepage .hero-actions { gap: 14px; }
+.homepage .hero .consultation-note { max-width: 430px; }
+.homepage .recovery-example { margin: 0; min-width: 0; padding: 26px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); box-shadow: 0 12px 35px var(--shadow-soft); }
+.homepage .recovery-example-head { display: flex; gap: 9px; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 18px; }
+.homepage .example-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+.homepage .recovery-example-head h2 { font-size: 1rem; letter-spacing: -.01em; }
+.homepage .example-badge { margin-left: auto; color: var(--muted-strong); font-size: .65rem; border: 1px solid var(--line); border-radius: 4px; padding: 3px 6px; }
+.homepage .recovery-timeline { padding: 0; margin: 22px 0; list-style: none; display: grid; gap: 20px; }
+.homepage .recovery-timeline > li { display: grid; grid-template-columns: 27px 1fr; gap: 12px; position: relative; }
+.homepage .recovery-timeline > li:not(:last-child)::before { content: ""; position: absolute; left: 12px; width: 1px; top: 28px; bottom: -18px; background: var(--line); }
+.homepage .recovery-number { height: 26px; width: 26px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; font-size: .6rem; color: var(--accent); font-weight: 700; background: var(--panel); z-index: 1; }
+.homepage .recovery-timeline h3 { font-size: .85rem; padding-top: 3px; }
+.homepage .recovery-timeline p { font-size: .8rem; line-height: 1.55; margin-top: 5px; }
+.homepage .recovery-timeline .recovery-message { margin-top: 9px; padding: 12px 14px; background: var(--accent-soft); color: var(--foreground); border-radius: 0 8px 8px 8px; }
+.homepage .recovery-timeline .renter-message { background: var(--muted-surface); }
+.homepage .recovery-record { margin: 9px 0 0; display: grid; gap: 7px; border-left: 2px solid var(--accent); padding-left: 12px; }
+.homepage .recovery-record div { display: grid; grid-template-columns: 70px 1fr; gap: 8px; font-size: .75rem; line-height: 1.5; }
+.homepage .recovery-record dt { color: var(--muted-strong); }
+.homepage .recovery-record dd { margin: 0; font-weight: 600; }
+.homepage .recovery-example figcaption { margin-top: 0; padding-top: 16px; border-top: 1px solid var(--line); }
+.homepage .offer-number { display: block; font-size: .7rem; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted-strong); }
+.homepage .pilot-fit { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 36px; padding-top: 10px; }
+.homepage .pilot-fit p { font-size: .875rem; margin: 0; }
+.homepage .pilot-fit strong, .homepage .offer-scope strong { color: var(--foreground); }
+.homepage .demo-showcase .example-note { font-size: .78rem; }
+.homepage .pilot-launch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+.homepage .pilot-launch-grid ul { padding-left: 20px; display: grid; gap: 10px; color: var(--muted-strong); font-size: .9rem; line-height: 1.6; }
+.homepage .pilot-connection { border-top: 1px solid var(--line); padding-top: 24px; margin-top: 30px; max-width: 840px; }
+@media (max-width: 1000px) {
+  .homepage .hero-grid { gap: 30px; }
+  .homepage .recovery-example { padding: 20px; }
+}
+@media (max-width: 760px) {
+  .homepage .hero { padding-block: 34px; }
+  .homepage .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .homepage .hero h1 { font-size: clamp(2.1rem, 7vw, 3rem); }
+  .homepage .hero .lead { font-size: 1rem; margin-top: 18px; }
+  .homepage .hero-actions { align-items: flex-start; flex-direction: column; margin-top: 22px; }
+  .homepage .hero-actions .btn { font-size: .9rem; min-height: 46px; }
+  .homepage .pilot-fit, .homepage .pilot-launch-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 380px) {
+  .homepage .recovery-example { padding: 16px; }
+  .homepage .recovery-example-head { flex-wrap: wrap; }
+  .homepage .example-badge { margin-left: 17px; }
+  .homepage .recovery-record div { grid-template-columns: 1fr; gap: 2px; }
+}

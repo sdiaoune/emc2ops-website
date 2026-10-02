@@ -29,6 +29,10 @@ const resourceLinks = [
   { href: "/blog/", label: "Blog" },
 ];
 
+const isHomepage = Astro.url.pathname === "/";
+const bookingHref = isHomepage ? "/book-demo/#workflow=missed-call-recovery&source=homepage" : "/book-demo/";
+const bookingLabel = isHomepage ? "Review my missed-call pilot" : "Book a 15-minute consultation";
+
 const navLinks = variant === "landing" ? landingLinks : siteLinks;
 const mobileNavId = `mobile-primary-nav-${variant}`;
 ---
@@ -47,7 +51,7 @@ const mobileNavId = `mobile-primary-nav-${variant}`;
           {resourceLinks.map((link) => <a href={link.href}>{link.label}</a>)}
         </div>
       </details>
-      <a href="/book-demo/" class="btn btn-primary">Book a 15-minute consultation</a>
+      <a href={bookingHref} class="btn btn-primary">{bookingLabel}</a>
     </nav>
     <div class="nav-actions">
       <button class="theme-toggle" type="button" aria-label="Switch to dark theme" data-theme-toggle>
@@ -85,7 +89,7 @@ const mobileNavId = `mobile-primary-nav-${variant}`;
       {navLinks.map((link) => <a href={link.href} data-mobile-nav-link>{link.label}</a>)}
       {resourceLinks.map((link) => <a href={link.href} data-mobile-nav-link>{link.label}</a>)}
     </div>
-    <a class="mobile-menu-cta" href="/book-demo/" data-mobile-nav-link>Book a 15-minute consultation</a>
+    <a class="mobile-menu-cta" href={bookingHref} data-mobile-nav-link>{bookingLabel}</a>
   </nav>
 </header>
 

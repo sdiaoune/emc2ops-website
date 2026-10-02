@@ -43,15 +43,15 @@ test("home page loads and routes audit CTAs to the booking page", async ({ page 
   });
 
   await page.goto("/");
-  await expect(page.locator("h1")).toHaveText("Custom automations for property management companies.");
-  await expect(page.locator(".hero-actions .btn-primary")).toHaveAttribute("href", "/book-demo/#workflow=custom-property-management-automation&source=homepage");
-  await expect(page.locator(".hero-actions .btn-primary")).toContainText("Book a 15-minute consultation");
+  await expect(page.locator("h1")).toHaveText("Turn missed leasing calls into renter conversations.");
+  await expect(page.locator(".hero-actions .btn-primary")).toHaveAttribute("href", "/book-demo/#workflow=missed-call-recovery&source=homepage");
+  await expect(page.locator(".hero-actions .btn-primary")).toContainText("Review my missed-call pilot");
   const customerResults = page.locator(".customer-results");
   await expect(customerResults.locator(".customer-result")).toHaveCount(3);
   await expect(customerResults).toContainText("3,000+ Units served Across 200+ properties");
   await expect(customerResults).toContainText("300+ Security deposits processed per month");
   await expect(customerResults).toContainText("500+ Work order tickets processed per month");
-  await expect(page.locator(".hero + .customer-results")).toHaveCount(1);
+  await expect(page.locator(".hero + #missed-call-pilot")).toHaveCount(1);
   await expect(page.locator("#newsletter h2")).toContainText("Get property management automation ideas");
 
   await page.locator("#newsletter-form [name=email]").fill("newsletter@example.com");
@@ -89,7 +89,7 @@ test("home hero remains readable with visible actions and no overflow at all wid
       const heading = document.querySelector(".hero h1");
       const primaryCta = document.querySelector(".hero-actions .btn-primary");
       const secondaryCta = document.querySelector(".hero-actions .demo-link");
-      const media = document.querySelector(".product-hero-media");
+      const media = document.querySelector(".recovery-example");
 
       return {
         heroTop: Math.round(hero.getBoundingClientRect().top),
@@ -117,10 +117,8 @@ test("home hero remains readable with visible actions and no overflow at all wid
     expect(layout.horizontalOverflow).toBe(false);
 
     if (viewport.width <= 719) {
-      const heroImageSource = await page
-        .locator(".hero .product-screenshot img")
-        .evaluate((image) => image.currentSrc);
-      expect(heroImageSource).toContain("/assets/pm-ops/home-desktop.webp");
+      await expect(page.locator(".hero .recovery-timeline > li")).toHaveCount(4);
+      await expect(page.locator(".hero .recovery-example")).toContainText("Fictional renter data");
     }
   }
 });
@@ -840,6 +838,6 @@ test("site theme applies across routes with dark toggle and mobile navigation", 
   await page.goto("/");
   await page.getByRole("button", { name: "Open navigation menu" }).click();
   await expect(page.locator("[data-mobile-menu-panel]")).toBeVisible();
-  await expect(page.locator("[data-mobile-menu-panel]")).toContainText("Book a 15-minute consultation");
+  await expect(page.locator("[data-mobile-menu-panel]")).toContainText("Review my missed-call pilot");
   await expect(page.getByRole("button", { name: "Close navigation menu" })).toBeVisible();
 });

@@ -1,0 +1,14 @@
+{
+  "releaseType": "isolated-preview",
+  "repository": "https://github.com/sdiaoune/emc2ops-website.git",
+  "branch": "review/missed-call-pilot-20261001",
+  "regions": {
+    "hero": "8a8a88753081b588ec9097d92ca21423036799efc9e81f88df112160d51bb1c9",
+    "pilot-offer": "5e09c569874abaa73684355a6bde465ece2322b4ece18b6fd14634d8ecfca0ca"
+  },
+  "stylesheets": [
+    "09b576894ce93d68662144e9ce7fdb3d6db499e7ea8ff8b51c03f9b479047a8a",
+    "8665776bc11e0d4b818ee5f5719d5300e528bdba32700cf866b2525126b8c200",
+    "b763c519450e82e940d7c951305c9a7e79d24849b995af2000ca1fc30720cf21"
+  ]
+}

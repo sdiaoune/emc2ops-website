@@ -10,8 +10,8 @@ export async function GET() {
   const posts = byOrder(await getCollection("blog"));
   const urls = [
     { url: "/", lastmod: homepageMetadata.updatedAt },
-    { url: "/about/", lastmod: homepageMetadata.updatedAt },
-    { url: "/book-demo/", lastmod: homepageMetadata.updatedAt },
+    { url: "/about/", lastmod: "2026-09-06" },
+    { url: "/book-demo/", lastmod: "2026-09-06" },
     { url: "/customers/", lastmod: siteUpdatedAt },
     ...customerStories.map((story) => ({ url: customerStoryUrl(story), lastmod: story.updatedAt })),
     { url: "/resources/", lastmod: siteUpdatedAt },

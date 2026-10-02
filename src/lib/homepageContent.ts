@@ -1,6 +1,6 @@
 export const homepageMetadata = {
-  title: "EMC2Ops | Custom Property Management Automation",
+  title: "EMC2Ops | Missed-Call Leasing Recovery",
   description:
-    "Custom automations for property management companies. EMC2Ops designs, builds, integrates, tests, and maintains workflows around your processes and software.",
-  updatedAt: "2026-09-06",
+    "Recover missed leasing calls with consent-appropriate texts, renter details, and a handoff to your scheduler or staff. Start with one leasing number.",
+  updatedAt: "2026-10-02",
 };
