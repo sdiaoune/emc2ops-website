@@ -1,8 +1,9 @@
 # Missed-call homepage preview
 
-This release is authorized only for `review/missed-call-pilot-20261001` on
-`https://github.com/sdiaoune/emc2ops-website`. Main auto-deploys production and is
-not a destination for this release.
+The reviewed homepage is commit `a04350282bddec4fad54ddb3a93565ace5810e5f` on
+`review/missed-call-pilot-20261001` in `https://github.com/sdiaoune/emc2ops-website`.
+The founder explicitly approved that reviewed homepage for production on October
+2, 2026 at 05:24 UTC. Main auto-deploys production through Vercel Git integration.
 
 The homepage now leads with missed-call leasing recovery for small residential
 property managers without effective existing coverage. The fixed pilot covers
@@ -38,3 +39,21 @@ Tests exercise the default gate and the pinned preview gate, including rejected
 hero, offer, CSS, operating-scale, URL-loss, and deposit-content regressions. The
 baseline is updated only as part of an explicitly authorized homepage review,
 after build and visual QA. Never use this review mode for a main/blog release.
+
+## Approved production publication
+
+For this approved release, start from freshly fetched main and reconcile any
+newer blog posts or user changes with the reviewed branch. Use a normal merge
+or fast-forward, never a force push. Before pushing main, run:
+
+```sh
+npm run blog:deploy-guard -- --approved-homepage-commit a04350282bddec4fad54ddb3a93565ace5810e5f
+```
+
+This mode accepts only main in the verified repository and a candidate descended
+from the explicitly approved commit. It reads the baseline directly from that
+immutable Git commit, so an edited working-tree manifest cannot expand the scope.
+Rendered hero, pilot offer, and stylesheet hashes must still match the reviewed
+version exactly. Every production URL and all deposit/operating-scale checks
+remain mandatory. The ordinary blog guard and Mac blog automation are unchanged;
+after publication, ordinary blog releases compare against the new live homepage.

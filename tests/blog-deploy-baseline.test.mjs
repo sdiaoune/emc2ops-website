@@ -5,7 +5,27 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 
-import { homepageReviewFingerprint, verifyBlogDeployBaseline } from "../scripts/verify-blog-deploy-baseline.mjs";
+import { homepageReviewFingerprint, validateApprovedHomepageProductionRelease, verifyBlogDeployBaseline } from "../scripts/verify-blog-deploy-baseline.mjs";
+
+const approvedRelease = {
+  branch: "main", remote: "https://github.com/sdiaoune/emc2ops-website.git",
+  commit: "a04350282bddec4fad54ddb3a93565ace5810e5f", isAncestor: true,
+};
+
+test("production homepage authorization accepts the approved descendant on main", () => {
+  assert.doesNotThrow(() => validateApprovedHomepageProductionRelease(approvedRelease));
+});
+
+for (const [label, change] of [
+  ["a review branch", { branch: "review/missed-call-pilot-20261001" }],
+  ["an unrelated repository", { remote: "https://github.com/example/another-site.git" }],
+  ["an unapproved commit", { commit: "96cf520267b957c6258f295b6c32f6eaff92ced0" }],
+  ["a candidate omitting the approved commit", { isAncestor: false }],
+]) {
+  test(`production homepage authorization rejects ${label}`, () => {
+    assert.throws(() => validateApprovedHomepageProductionRelease({ ...approvedRelease, ...change }), /Homepage production release blocked/);
+  });
+}
 
 const page = ({ hero = "Protected hero", offer = "Pilot offer", results = "Protected results", extra = "Local article list", css = "/_astro/home.css" } = {}) => `<!doctype html>
 <html><head><link rel="stylesheet" href="${css}"></head><body>

@@ -17,7 +17,30 @@ const homepageReviewRegions = [
 ];
 const reviewBranch = "review/missed-call-pilot-20261001";
 const repository = "https://github.com/sdiaoune/emc2ops-website.git";
+// Founder approved this reviewed homepage for production on October 2, 2026.
+// Production release mode reads its immutable manifest, never a working-tree override.
+const approvedProductionHomepageCommit = "a04350282bddec4fad54ddb3a93565ace5810e5f";
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
+
+export function validateApprovedHomepageProductionRelease({ branch, remote, commit, isAncestor }) {
+  if (branch !== "main" || remote !== repository || commit !== approvedProductionHomepageCommit || !isAncestor) {
+    throw new Error("Homepage production release blocked: requires main in the verified repository, the explicitly approved homepage commit, and a candidate descended from that commit.");
+  }
+}
+
+function approvedHomepageProductionBaseline(commit) {
+  const branch = execFileSync("git", ["branch", "--show-current"], { encoding: "utf8" }).trim();
+  const remote = execFileSync("git", ["remote", "get-url", "origin"], { encoding: "utf8" }).trim();
+  let isAncestor = false;
+  if (commit === approvedProductionHomepageCommit) {
+    try {
+      execFileSync("git", ["merge-base", "--is-ancestor", commit, "HEAD"], { stdio: "ignore" });
+      isAncestor = true;
+    } catch { /* A stale or unrelated candidate must fail authorization. */ }
+  }
+  validateApprovedHomepageProductionRelease({ branch, remote, commit, isAncestor });
+  return JSON.parse(execFileSync("git", ["show", `${commit}:docs/homepage-review-baseline.json`], { encoding: "utf8" }));
+}
 
 const protectedSecurityDepositMarkers = [
   "What is security deposit automation?",
@@ -293,8 +316,14 @@ function option(name, fallback) {
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   try {
     const baselineFile = option("--homepage-review-baseline", null);
+    const approvedCommit = option("--approved-homepage-commit", null);
+    if (baselineFile && approvedCommit) {
+      throw new Error("Homepage release blocked: choose the review baseline or the approved production commit, never both.");
+    }
     let homepageReviewBaseline;
-    if (baselineFile) {
+    if (approvedCommit) {
+      homepageReviewBaseline = approvedHomepageProductionBaseline(approvedCommit);
+    } else if (baselineFile) {
       // This mode is for the founder-authorized review branch only. Routine
       // main/blog releases retain the default comparison against production.
       const branch = execFileSync("git", ["branch", "--show-current"], { encoding: "utf8" }).trim();
@@ -309,7 +338,8 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       origin: option("--origin", "https://www.emc2ops.com"),
       homepageReviewBaseline,
     });
-    console.log(`${homepageReviewBaseline ? "Pinned homepage preview" : "Blog deployment"} baseline verified: ${result.protectedRegions} protected regions, ${result.stylesheets} homepage stylesheet bundle(s), and ${result.securityDepositMarkers} security-deposit markers are preserved. Production sitemap URLs are preserved.`);
+    const releaseLabel = approvedCommit ? "Approved homepage production release" : homepageReviewBaseline ? "Pinned homepage preview" : "Blog deployment";
+    console.log(`${releaseLabel} baseline verified: ${result.protectedRegions} protected regions, ${result.stylesheets} homepage stylesheet bundle(s), and ${result.securityDepositMarkers} security-deposit markers are preserved. Production sitemap URLs are preserved.`);
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
     process.exitCode = 1;
