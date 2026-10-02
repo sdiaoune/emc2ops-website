@@ -66,6 +66,17 @@ const recoverySteps = [
       <div class="wrap scale-caption">Operating-scale figures, not measured increases in conversions or time saved.</div>
     </aside>
 
+    <section id="missed-call-pilot" class="home-section" aria-labelledby="pilot-heading">
+      <div class="wrap">
+        <div class="section-intro">
+          <p class="eyebrow">Focused pilot</p>
+          <h2 id="pilot-heading">Start with one missed-call workflow</h2>
+          <p>For small residential property management teams without effective missed-call follow-up: test one leasing number, permission-checked text-back, basic inquiry capture, and a handoff to your existing scheduler or team.</p>
+          <a class="text-link" href="/services/missed-call-recovery/">Explore missed-call text-back <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
     <section id="services" class="home-section" aria-labelledby="offer-heading">
       <span id="offer" class="anchor-alias"></span><span id="pricing" class="anchor-alias"></span>
       <div class="wrap offer-layout">
@@ -106,6 +117,7 @@ const recoverySteps = [
         <div class="section-intro">
           <h2 id="workflow-heading">One example: recovering a missed leasing call</h2>
           <p>Your phone provider reports the missed call; the configured process checks permission and sends the first text. Staff receive a summary and the next task.</p>
+          <a class="text-link" href="/services/missed-call-recovery/">See the pilot scope and fit <span aria-hidden="true">→</span></a>
         </div>
         <ol class="workflow-steps" role="list" aria-label="Five-step missed-call recovery process">
           {recoverySteps.map(([title, body]) => <li><h3>{title}</h3><p>{body}</p></li>)}

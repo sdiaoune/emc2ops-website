@@ -144,12 +144,8 @@ import "../styles/sales-chatbot.css";
     const sendButton = chatbot.querySelector("[data-chat-send]");
     const sessionKey = "emc2ops-sales-chat-v1";
     const visitorKey = "emc2ops-chat-visitor-v1";
-    const autoOpenKey = "emc2ops-chat-auto-opened-v1";
-    const autoOpenDelayMs = 5000;
     let pending = false;
     let history = [];
-    let autoOpenTimer;
-    let openedProactively = false;
 
     const track = (eventName, properties = {}) => {
       window.dataLayer = window.dataLayer || [];
@@ -226,29 +222,6 @@ import "../styles/sales-chatbot.css";
       if (value) scrollToLatest();
     };
 
-    const cancelAutoOpen = () => {
-      if (autoOpenTimer !== undefined) {
-        window.clearTimeout(autoOpenTimer);
-        autoOpenTimer = undefined;
-      }
-    };
-
-    const hasAutoOpened = () => {
-      try {
-        return window.sessionStorage.getItem(autoOpenKey) === "true";
-      } catch {
-        return false;
-      }
-    };
-
-    const rememberAutoOpen = () => {
-      try {
-        window.sessionStorage.setItem(autoOpenKey, "true");
-      } catch {
-        // The current page still avoids duplicate timers if storage is unavailable.
-      }
-    };
-
     const setOpen = (
       open,
       options: { focus?: boolean; source?: string; restoreFocus?: boolean } = {},
@@ -258,7 +231,6 @@ import "../styles/sales-chatbot.css";
       launcher.hidden = open;
       launcher.setAttribute("aria-expanded", String(open));
       if (open) {
-        openedProactively = options.source === "proactive_delay";
         track("sales_chat_open", {
           page_path: window.location.pathname,
           source: typeof options.source === "string" ? options.source : "manual",
@@ -270,20 +242,9 @@ import "../styles/sales-chatbot.css";
           });
         }
       } else {
-        openedProactively = false;
         launcher.hidden = false;
         if (options.restoreFocus !== false) launcher.focus({ preventScroll: true });
       }
-    };
-
-    const yieldToPageInteraction = (reason) => {
-      const isOpen = panel instanceof HTMLElement && !panel.hidden && openedProactively;
-      const isPending = autoOpenTimer !== undefined;
-      if (!isOpen && !isPending) return;
-      cancelAutoOpen();
-      rememberAutoOpen();
-      if (isOpen) setOpen(false, { restoreFocus: false });
-      track("sales_chat_proactive_dismissed", { reason });
     };
 
     const sendQuestion = async (text) => {
@@ -352,13 +313,9 @@ import "../styles/sales-chatbot.css";
     }
 
     launcher?.addEventListener("click", () => {
-      cancelAutoOpen();
-      rememberAutoOpen();
       setOpen(true, { source: "launcher" });
     });
     closeButton?.addEventListener("click", () => {
-      cancelAutoOpen();
-      rememberAutoOpen();
       setOpen(false);
     });
     resetButton?.addEventListener("click", resetConversation);
@@ -429,33 +386,12 @@ import "../styles/sales-chatbot.css";
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && panel instanceof HTMLElement && !panel.hidden) {
-        cancelAutoOpen();
-        rememberAutoOpen();
         setOpen(false);
-      } else if (["PageDown", "PageUp", "Home", "End", "ArrowDown", "ArrowUp"].includes(event.key)) {
-        yieldToPageInteraction("keyboard_scroll");
       }
     });
-
-    document.addEventListener("focusin", (event) => {
-      if (event.target instanceof Node && !chatbot.contains(event.target)) {
-        yieldToPageInteraction("page_interaction");
-      }
-    });
-    window.addEventListener("wheel", () => yieldToPageInteraction("page_scroll"), { passive: true });
-    window.addEventListener("touchstart", () => yieldToPageInteraction("page_scroll"), { passive: true });
 
     if (new URLSearchParams(window.location.search).get("chat") === "open") {
-      rememberAutoOpen();
       setOpen(true, { source: "query_parameter" });
-    } else if (!hasAutoOpened()) {
-      autoOpenTimer = window.setTimeout(() => {
-        autoOpenTimer = undefined;
-        rememberAutoOpen();
-        if (panel instanceof HTMLElement && panel.hidden) {
-          setOpen(true, { focus: false, source: "proactive_delay" });
-        }
-      }, autoOpenDelayMs);
     }
   }
 </script>

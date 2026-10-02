@@ -168,40 +168,32 @@ test("sales assistant routes intent, answers questions, and offers booking", asy
   await expect(page.locator('[data-chat-open]')).toBeVisible();
 });
 
-test("sales assistant opens proactively once per browsing session", async ({ page }) => {
-  await page.addInitScript(() => {
-    const nativeSetTimeout = window.setTimeout.bind(window);
-    window.setTimeout = (handler, timeout = 0, ...args) =>
-      nativeSetTimeout(handler, timeout === 5000 ? 50 : timeout, ...args);
-  });
-
+test("sales assistant stays collapsed while the visitor reads", async ({ page }) => {
+  await page.clock.install();
   await page.goto("/");
-  const panel = page.locator("#sales-chatbot-panel");
-  await expect(panel).toBeVisible({ timeout: 1500 });
-  await expect(panel.locator('[data-chat-action="workflow"]')).not.toBeFocused();
-
-  await panel.locator("[data-chat-close]").click();
-  await expect(panel).toBeHidden();
-
-  await page.goto("/about/");
-  await page.waitForTimeout(250);
+  await page.clock.runFor(6000);
   await expect(page.locator("#sales-chatbot-panel")).toBeHidden();
   await expect(page.locator("[data-chat-open]")).toBeVisible();
+  await expect(page.locator("[data-chat-open]")).toHaveAttribute("aria-expanded", "false");
+
+  await page.goto("/about/");
+  await page.clock.runFor(6000);
+  await expect(page.locator("#sales-chatbot-panel")).toBeHidden();
 });
 
-test("proactive sales assistant yields when the visitor continues scrolling", async ({ page }) => {
-  await page.addInitScript(() => {
-    const nativeSetTimeout = window.setTimeout.bind(window);
-    window.setTimeout = (handler, timeout = 0, ...args) =>
-      nativeSetTimeout(handler, timeout === 5000 ? 50 : timeout, ...args);
-  });
-
-  await page.goto("/blog/");
+test("sales assistant preserves explicit open links and manual close and reopen", async ({ page }) => {
+  await page.goto("/blog/?chat=open");
   const panel = page.locator("#sales-chatbot-panel");
-  await expect(panel).toBeVisible({ timeout: 1500 });
-  await page.mouse.wheel(0, 500);
+  const launcher = page.locator("[data-chat-open]");
+  await expect(panel).toBeVisible();
+  await page.keyboard.press("Escape");
   await expect(panel).toBeHidden();
-  await expect(page.locator("[data-chat-open]")).toBeVisible();
+  await expect(launcher).toBeFocused();
+  await launcher.click();
+  await expect(panel).toBeVisible();
+  await panel.locator("[data-chat-close]").click();
+  await expect(panel).toBeHidden();
+  await expect(launcher).toBeFocused();
 });
 
 test("booking page submits the audit form payload", async ({ page }) => {

@@ -288,134 +288,139 @@ export const servicePages: ServicePage[] = [
 },
   {
     slug: "missed-call-recovery",
-    updatedAt: "2026-09-13",
-    eyebrow: "Missed-call recovery",
-    title: "Apartment call tracking and missed-call recovery",
-    seoTitle: "Apartment Call Tracking & Missed-Call Recovery",
+    updatedAt: "2026-10-01",
+    eyebrow: "Missed-call text-back",
+    title: "Missed-call text-back for small property management teams",
+    seoTitle: "Missed-Call Text-Back for Property Managers",
     description:
-      "Connect apartment call tracking to missed-call texts, renter details, staff ownership, and confirmed tour outcomes in your existing CRM.",
+      "A focused missed-call text-back pilot for small residential property managers: capture renter interest and hand off to your existing scheduler or team.",
     summary:
-      "EMC2Ops installs apartment call tracking and the complete missed-call-to-showing workflow: detect the unanswered call, text the renter, capture leasing intent, offer an approved booking path, and record the confirmed next step.",
+      "When a leasing call goes unanswered, give the renter a clear next step. Start with a focused, paid pilot on one leasing phone number: permission-checked text-back, basic inquiry capture, and a handoff to your existing scheduler or leasing team.",
     auditFocus:
-      "We map your unanswered-call trigger, first SMS, renter qualification fields, approved showing inventory, booking handoff, CRM writeback, stop rules, and staff escalation path.",
+      "This is for small residential property management teams whose missed leasing calls still depend on delayed callbacks. We first check what your phone system and current software already do, then scope the gap worth testing.",
     operatorBrief: {
-      "title": "What apartment call tracking should tell your team",
-      "intro": "Track the path from a phone event to a renter conversation and a verified next step. A call count alone cannot show which inquiry needs attention.",
-      "scenarios": [
+      title: "What apartment call tracking should tell your team",
+      intro: "Track the path from a phone event to a renter conversation and a verified next step. A call count alone cannot show which inquiry needs attention.",
+      scenarios: [
         {
-          "title": "Which property and source received the call",
-          "description": "Keep the provider call ID, timestamp, called number, property, and answered or missed status. Attribute a marketing source only when a verified tracking-number or source mapping supports it; leave unknown sources explicit."
+          title: "Which leasing call was missed",
+          description: "Keep the provider call ID, timestamp, called number, property context, and unanswered status. Attribute a marketing source only when verified provider data supports it; leave unknown sources explicit.",
         },
         {
-          "title": "Whether it is a new or returning renter",
-          "description": "Match the confirmed phone number and property context to the existing lead. Preserve the original inquiry source, append the call as an activity, and send uncertain identity matches for review."
+          title: "Who owns the next step",
+          description: "Collect property interest, move date, unit preference, and the renter’s question or tour request. Route the summary to the agreed staff member or existing lead tool. Uncertain matches and unsupported requests stay with staff.",
         },
         {
-          "title": "What happened after the missed call",
-          "description": "Record a permitted text-back, provider acceptance, renter reply, assigned staff task, and confirmed tour as separate events. Measure recovered inquiries by two-way replies and booked tours by confirmed calendar records."
-        }
+          title: "What happened after the text",
+          description: "Record a permitted text-back, provider acceptance, delivery status where available, two-way replies, staff handoffs, and confirmed tours separately. Sending a text alone does not count as a recovered inquiry.",
+        },
       ],
-      "boundary": "Number provisioning, call recording, transcription, and advertising attribution are separately scoped against your provider’s capabilities and approved policies."
+      boundary: "Maintenance intake, live AI call answering, and custom CRM development are outside this pilot. Staff handle screening, accommodation requests, pricing exceptions, and uncertain availability. Broader product illustrations do not expand the agreed pilot scope.",
     },
     auditCta: {
-      label: "Book my missed-call audit",
-      title: "Want missed leasing calls routed before they go cold?",
-      body: "Bring your phone system, CRM, and current missed-call process. We will identify the first recoverable workflow and the safest handoff rules.",
+      label: "Check fit for a missed-call pilot",
+      title: "Is one missed-call workflow worth testing?",
+      body: "Bring your phone provider, current follow-up process, and existing scheduler or lead tool. We will check the gap, required access, and staff handoff before proposing a paid pilot. The written proposal confirms scope, price, usage costs, and the review period.",
     },
     installables: [
       {
-        title: "Missed-call trigger",
-        description: "A phone or call-routing event that starts follow-up only when a leasing call is actually missed.",
+        title: "One leasing phone number",
+        description: "Connect one agreed leasing line with a supported missed-call event. Confirm number access and required messaging setup before launch.",
       },
       {
-        title: "Renter detail capture",
-        description: "Move date, unit interest, budget, pets, tour intent, and property interest collected before staff step in.",
+        title: "Permission-checked text-back",
+        description: "Use approved branded wording and an opt-out path only when the required messaging consent is established. A missed call alone does not authorize a marketing sequence.",
       },
       {
-        title: "Text-back sequence",
-        description: "Short branded SMS prompts that recover the conversation without pretending to be a human agent.",
+        title: "Basic inquiry capture",
+        description: "Ask for property interest, move date, unit preference, and the question or tour request. Collect only the fields your team needs for the next step.",
       },
       {
-        title: "Showing and staff route",
-        description: "Approved showing options for schedule-ready renters, plus an owned staff task when pricing, fit, or availability needs judgment.",
+        title: "Existing scheduler or staff handoff",
+        description: "Use your existing scheduling link or send a readable summary to a named staff member. Any supported lead-tool update is confirmed during scoping; a new CRM is not required.",
       },
       {
-        title: "Stop rules",
-        description: "Suppression when a prospect replies, books, opts out, becomes unqualified, or a human takes over.",
+        title: "Stop and exception rules",
+        description: "Stop automated follow-up on opt-out or staff takeover. A reply or booking changes the next step; delivery failures, unclear requests, and unavailable connections route to staff.",
       },
       {
-        title: "Escalation path",
-        description: "Rules for high-intent renters, unclear questions, fair-housing-sensitive replies, and urgent staff review.",
+        title: "Pilot reporting",
+        description: "Review eligible missed calls, message status, two-way replies, staff-owned next steps, and confirmed tours where the scheduling record is available. Agree the baseline and review period before launch.",
       },
     ],
     beforeAfter: {
       before: [
-        "Missed calls create voicemail, sticky notes, and delayed callbacks.",
-        "Managers cannot tell which calls became real prospects.",
-        "CRM records depend on whoever remembers to type the update.",
+        "Missed leasing calls wait for someone to check voicemail and call back.",
+        "Basic renter details are scattered across notes and inboxes.",
+        "The team cannot easily see which inquiries received a reply or have an owner.",
       ],
       after: [
-        "Every missed leasing call receives a fast, branded next step.",
-        "Qualified replies reach an approved showing path or a clearly owned staff task.",
-        "The CRM shows whether the renter booked, needs follow-up, or reached a stop condition.",
+        "Eligible calls enter an approved text-back path; unsupported or unpermitted cases go to staff.",
+        "The agreed inquiry details reach your existing scheduler or a named leasing owner.",
+        "A pilot report separates texts sent, renter replies, staff handoffs, and confirmed tours.",
       ],
     },
     bestFit: [
-      "You miss renter calls during tours, lunch breaks, evenings, or weekends.",
-      "Your phone system and CRM do not share enough follow-up context.",
-      "You want a narrow first automation with measurable reply and booking impact.",
+      "A small residential property management team with missed leasing calls during tours, busy periods, or after hours.",
+      "Your existing tools do not already provide an effective text-back and owned follow-up process.",
+      "You can assign a staff owner, confirm messaging permission, and review a narrow pilot against your call data.",
     ],
     notFit: [
-      "You only need a phone tree or answering service with no CRM handoff.",
-      "Your team cannot define who should own a recovered prospect.",
-      "You are not ready to review opt-out, consent, and staff handoff rules.",
+      "Your existing setup already handles missed calls effectively; improve or use that coverage first.",
+      "You need a full AI receptionist, maintenance triage, a replacement CRM, or applicant screening in this pilot.",
+      "The phone provider cannot supply the required event, messaging permission is unresolved, or no staff owner is available.",
     ],
     outcomes: [
-      "Text prospects back automatically after missed calls.",
-      "Collect move date, unit interest, budget, pets, and showing intent.",
-      "Offer approved showing options or route a staff-owned next step.",
-      "Write the booking, owner, stage, summary, and stop state back to the CRM.",
+      "Give eligible missed leasing inquiries an approved text-back and a clear reply path.",
+      "Collect basic property interest and inquiry details for the next staff action.",
+      "Connect the renter to an existing scheduling link or a named leasing owner.",
+      "Measure replies and completed handoffs before deciding whether to expand.",
     ],
     workflow: [
-      "Confirm the leasing call was missed and check the number against existing lead, staff-takeover, and suppression records.",
-      "Send a branded text-back that identifies the property team and gives the renter one clear reply path.",
-      "Capture property interest, move date, unit fit, budget, pets, occupancy, and showing intent in structured fields.",
-      "Offer only approved showing availability when the renter is schedule-ready; otherwise assign the right leasing owner with context.",
-      "Confirm the selected showing and send the approved confirmation or reminder details.",
-      "Write the source, conversation summary, showing, owner, stage, task, and stop state to the CRM.",
+      "Confirm an unanswered event from the one agreed leasing number; check duplicates, existing conversations, staff takeover, and suppression records.",
+      "Check the required consent and messaging setup before sending an approved branded text. Route the call to staff when permission or delivery is unavailable.",
+      "Capture property interest, move date, unit preference, and the renter’s question or tour request using the approved prompts.",
+      "Use your existing scheduling link or assign a named leasing owner with the conversation summary. A requested time is not a confirmed appointment.",
+      "Stop or update follow-up when the renter replies, books, opts out, or staff take over. Send unclear requests and failed handoffs to the agreed staff queue.",
+      "Record the call, message status, reply, owner, next action, and stop state in the agreed reporting or lead tool; verify any confirmed tour against the scheduling record.",
     ],
-    metrics: ["missed calls recovered", "time to first response", "qualified replies", "call-to-showing rate"],
+    metrics: ["eligible missed calls", "time to first permitted response", "two-way replies", "staff-owned handoffs", "confirmed tours", "call-to-showing rate"],
     faqs: [
       {
-        question: "Does apartment call tracking identify every advertising source?",
-        answer: "Only where a verified mapping connects the called number or source event to that campaign. We scope the provider data and attribution rules first. Calls with no reliable source remain unknown; repeat calls stay attached to the original lead history.",
-      },
-      {
-        question: "Is missed-call recovery an answering service?",
-        answer: "Missed-call recovery starts after an unanswered phone event and follows up through an approved channel. An answering service handles the live call. EMC2Ops can scope AI call answering separately when you need both workflows.",
-      },
-      {
         question: "What automation should I install first if my leasing team misses calls?",
-        answer:
-          "Start with a missed-call-to-showing workflow: verify the missed call, send an approved text-back, capture renter intent, offer supported showing availability or assign staff, and write the confirmed outcome and stop state to the CRM.",
+        answer: "First check whether your existing software already handles the gap. If it does not, test one leasing number with a permitted text-back, basic inquiry capture, and an existing scheduling or staff handoff. Agree how to measure replies and completed next steps before expanding.",
+      },
+      {
+        question: "What is included in the paid pilot?",
+        answer: "The starting scope is one leasing phone number, approved text-back wording, basic inquiry fields, stop rules, an existing scheduler or named staff handoff, and pilot reporting. Your written proposal confirms the specific connection, price, usage costs, review period, and support boundaries before work begins.",
+      },
+      {
+        question: "What if our current software already does this?",
+        answer: "Use the capability you already have when it provides effective coverage. The fit check looks for a real gap in response, captured context, or staff ownership. Duplicating a working process is not the purpose of this pilot.",
+      },
+      {
+        question: "Does this require a new CRM or an answering service?",
+        answer: "No. The pilot starts after an unanswered call and uses your existing scheduler or a staff-owned handoff. Supported updates to an existing lead tool can be included in the agreed scope. Live AI call answering, custom CRM development, and maintenance intake are separate work.",
+      },
+      {
+        question: "What must be in place before sending texts?",
+        answer: "Your business must confirm the required consent, approved message purpose, opt-out handling, and provider or number-registration requirements. EMC2Ops configures and tests those approved rules; configuration is not a legal or carrier approval. Calls without established permission go to staff.",
       },
       {
         question: "How fast does missed-call recovery respond?",
-        answer:
-          "The workflow is designed to respond as soon as the connected phone provider supplies an eligible missed-call event. Actual timing depends on provider delivery, workflow configuration, and channel availability, so EMC2Ops measures the timestamps instead of promising a universal response time.",
+        answer: "Timing depends on when the phone provider supplies the eligible event and whether the messaging channel is available. The pilot measures the event, provider acceptance, and available delivery timestamps separately rather than promising a universal response time or result.",
       },
       {
         question: "Can it stop when a human responds?",
-        answer: "Yes. We design stop rules so automation does not fight the leasing team once a human takes over.",
+        answer: "The agreed workflow includes staff-takeover and opt-out rules. Before launch, we test how the connected tools signal a reply, booking, or takeover and how failed signals reach staff, so unattended follow-up does not keep running after the stop condition.",
       },
       {
-        question: "Can a recovered caller book a showing without staff copy-paste?",
-        answer: "Yes, when approved availability can be read from your scheduling process. The workflow records the booking and routes pricing, availability, accommodation, or other exceptions to staff.",
+        question: "Can a recovered caller book a showing?",
+        answer: "The renter can use your existing scheduling link when it provides approved availability. Where that connection is unavailable, staff receive the request and confirm the appointment. Only a verified scheduling record counts as a booked showing.",
       },
       {
-        question: "How does apartment call tracking work after a missed leasing call?",
-        answer:
-          "Apartment call tracking connects the phone event to the renter, property, source, qualification details, staff owner, follow-up status, and CRM outcome instead of leaving the call as an isolated voicemail.",
+        question: "Does apartment call tracking identify every advertising source?",
+        answer: "Only where a verified mapping connects the called number or source event to that campaign. Calls with no reliable source remain unknown. Number provisioning, recording, transcription, and broader advertising attribution are separately scoped.",
       },
     ],
     relatedUseCases: [

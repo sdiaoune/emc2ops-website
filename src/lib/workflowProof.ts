@@ -31,14 +31,14 @@ const proofByPath: Record<string, WorkflowProof> = {
       {
         label: "Recovered lead",
         definition:
-          "One unique missed leasing inquiry that completes a verified two-way reply or another approved recovery action within the measurement window.",
-        evidence: "Missed-call event, unique prospect record, inbound reply or completed action, and CRM timestamps.",
+          "One unique missed leasing inquiry that completes a verified two-way reply within the agreed measurement window.",
+        evidence: "Missed-call event, unique prospect record, inbound reply, and reporting timestamps.",
       },
       {
-        label: "Qualified lead",
+        label: "Inquiry details captured",
         definition:
-          "One unique prospect who supplies the required intake fields and reaches a staff-approved routing state. Sensitive questions remain human-reviewed.",
-        evidence: "Approved qualification rules, captured fields, CRM status, and decision or review log.",
+          "One unique inquiry with the agreed basic fields and a named staff owner or scheduling next step. This does not establish applicant eligibility.",
+        evidence: "Approved field list, captured inquiry details, owner, next action, and handoff record.",
       },
       {
         label: "Booked showing",

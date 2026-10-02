@@ -72,6 +72,11 @@ test("sends bounded conversation context to the Responses API", async () => {
   assert.deepEqual(payload.reasoning, { effort: "none" });
   assert.equal(payload.input[0].role, "user");
   assert.match(payload.instructions, /done-for-you AI front desk/);
+  assert.match(payload.instructions, /one leasing phone number/);
+  assert.match(payload.instructions, /already handles missed calls effectively/);
+  assert.match(payload.instructions, /Required messaging consent/);
+  assert.match(payload.instructions, /Maintenance intake, live AI call answering, and custom CRM development are outside this pilot/);
+  assert.doesNotMatch(payload.instructions, /immediate branded SMS/);
   assert.match(payload.instructions, /\/services\/missed-call-recovery\//);
   assert.doesNotMatch(payload.instructions, /Untrusted title/);
   assert.match(payload.safety_identifier, /^[a-f0-9]{64}$/);
