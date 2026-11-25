@@ -3,16 +3,16 @@ import FunnelIcon from "../../components/FunnelIcon.astro";
 import MaintenanceTimeEstimate from "../../components/MaintenanceTimeEstimate.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import SiteHeader from "../../components/SiteHeader.astro";
-import { estimatedHoursSaved, estimatedMinutesPerOrder, study } from "../../data/maintenanceWorkOrders";
+import { estimatedHoursSaved, estimatedMinutesPerOrder, projectDetails, study } from "../../data/maintenanceWorkOrders";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import { absoluteUrl, standardPageSchema } from "../../lib/site";
 import "../../styles/maintenance-study.css";
 
-const title = `One repair queue for ${study.properties} properties`;
-const description = `See how one queue tracked ${study.orders} maintenance work orders across ${study.properties} properties. At ${estimatedMinutesPerOrder} minutes per order, estimated admin time saved totals ${estimatedHoursSaved} hours.`;
+const title = `${study.orders} repairs across ${study.properties} properties, one queue`;
 const media = "/assets/case-studies/maintenance-work-orders";
 const { statuses, priorities } = study;
 const assignmentRate = (100 * study.assigned / study.orders).toFixed(1);
+const description = `One queue tracked ${study.orders} maintenance work orders across ${study.properties} properties. ${assignmentRate}% had an assignee. Follow a repair from intake to billing.`;
 const billedOrWaiting = statuses.awaitingInvoice + statuses.paidArchive;
 const urgent = priorities.high + priorities.emergency;
 const peak = Math.max(...study.monthlyOrders.map(({ count }) => count));
@@ -32,7 +32,7 @@ const priorityRows = [
 ---
 
 <SiteLayout
-  title={`${title} | Work-Order Case Study | EMC2Ops`}
+  title={`${title} | Case Study | EMC2Ops`}
   description={description}
   canonical={absoluteUrl(study.path)}
   type="article"
@@ -49,12 +49,13 @@ const priorityRows = [
       <section class="study-hero" aria-labelledby="study-title">
         <div class="hero-copy">
           <h1 id="study-title">{title}</h1>
-          <p>EMC2Ops built a shared queue where managers assign repairs, technicians log visits, and billing picks up completed jobs. The team recorded {study.orders} work orders from April through November 2026.</p>
+          <p>Built in {projectDetails.buildDays ?? "[TODO]"} days with Claude Code and Codex. Used daily by {projectDetails.dailyUserRoles ?? "[TODO — confirm daily user roles]"} since April 2026.</p>
           <div class="study-actions">
             <a class="btn btn-primary workflow-link" href="#workflow">Explore the workflow <FunnelIcon name="arrow" size={17} /></a>
-            <a href="#time-saved">See the time savings</a>
+            <a href="#time-saved">See estimated time savings</a>
           </div>
         </div>
+        <p class="hero-assignment"><strong>{assignmentRate}%</strong> of orders assigned</p>
         <figure>
           <picture>
             <source media="(max-width: 540px)" srcset={`${media}/work-order-mobile.webp`} width="700" height="748" />
@@ -64,10 +65,26 @@ const priorityRows = [
         </figure>
       </section>
 
+      {projectDetails.testimonial?.quote && projectDetails.testimonial.anonymizedTitle && (
+        <figure class="study-testimonial">
+          <blockquote>{projectDetails.testimonial.quote}</blockquote>
+          <figcaption>{projectDetails.testimonial.anonymizedTitle}</figcaption>
+        </figure>
+      )}
+
+      <section class="study-demo" aria-labelledby="demo-heading">
+        <h2 id="demo-heading">Workflow demo</h2>
+        {projectDetails.demoEmbedUrl ? (
+          <iframe src={projectDetails.demoEmbedUrl} title="Maintenance work-order screen recording" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        ) : (
+          <p>TODO — add the 60–90 second screen recording.</p>
+        )}
+      </section>
+
       <dl class="study-stats" aria-label="Work-order snapshot">
         <div><dt>Work orders recorded</dt><dd>{study.orders}</dd></div>
-        <div><dt>Estimated admin time saved</dt><dd>{estimatedHoursSaved} h</dd></div>
-        <div><dt>Had an assignee</dt><dd>{assignmentRate}%</dd></div>
+        <div><dt>Properties with work orders</dt><dd>{study.properties}</dd></div>
+        <div><dt>High-priority or emergency orders</dt><dd>{urgent}</dd></div>
         <div><dt>Awaiting invoice or marked paid</dt><dd>{billedOrWaiting}</dd></div>
       </dl>
 
@@ -94,7 +111,9 @@ const priorityRows = [
                 <div><dt>{label}</dt><dd><span class="status-track" aria-hidden="true"><i style={`width:${count / study.orders * 100}%`}></i></span><b>{count}</b></dd></div>
               ))}
             </dl>
-            <p class="chart-note">Each bar shows the share of all {study.orders} orders in that status. Staff recorded a reason for all {study.cancellationsWithReason} cancellations.</p>
+            <p class="chart-note">“New” is the default status on the intake form. The queue tracks assignment separately. Of the {statuses.new} orders marked New on November 25, {study.newWithAssignee} had an assignee and {study.newWithNote} already had a written note.</p>
+            <p class="chart-note">TODO — confirm why the team kept these orders in New.</p>
+            <p class="chart-note">Staff recorded a reason for all {study.cancellationsWithReason} cancellations.</p>
           </div>
         </div>
 
@@ -115,7 +134,8 @@ const priorityRows = [
               <li><strong>{study.notes} notes</strong> on {study.ordersWithNotes} orders</li>
               <li><strong>{study.images} image attachments</strong> on {study.ordersWithImages} orders</li>
             </ul>
-            <p class="chart-note">Across the {study.ordersWithNotes} orders with notes, the median time from opening the order to entering its first note was {(study.medianHoursToFirstNote / 24).toFixed(1)} days. A technician could have visited earlier.</p>
+            <p class="chart-note">Among the {study.ordersWithNotes} orders with a written note, the median time to first note was <strong>{(study.medianHoursToFirstNote / 24).toFixed(1)} days</strong>.</p>
+            <p class="chart-note">The clock starts when the work order is created and stops when someone saves the first written note. A technician may have visited or finished the repair earlier. This is our baseline for the next phase.</p>
           </div>
         </div>
       </section>
@@ -138,9 +158,30 @@ const priorityRows = [
           <figcaption>Illustrative field update · fictional details</figcaption>
         </figure>
       </section>
+
+      <section class="study-section methods study-build" aria-labelledby="build-heading">
+        <h2 id="build-heading">How it was built</h2>
+        <dl>
+          <div><dt>Tools</dt><dd>Claude Code and Codex</dd></div>
+          <div><dt>Build time</dt><dd>{projectDetails.buildDays === undefined ? "TODO — confirm the build time in days." : `${projectDetails.buildDays} days`}</dd></div>
+          <div><dt>Agent skills I wrote</dt><dd>TODO — name two or three skills written for this build and describe what each one did.</dd></div>
+          <div><dt>Fixes recorded in the build history</dt><dd><ul>
+            <li>The dashboard passed menu icons from the server to the browser. The fix moved the icon definitions into the navigation component that renders them.</li>
+            <li>A global link style overrode the selected menu item’s text color. Removing that rule let the selected item use its own color.</li>
+          </ul></dd></div>
+          <div><dt>Where the agents went wrong and how I fixed it</dt><dd>TODO — confirm which issues came from agent output and describe two or three corrections.</dd></div>
+        </dl>
+      </section>
     </div>
 
     <MaintenanceTimeEstimate />
+
+    <section class="wrap study-section study-triage" aria-labelledby="triage-heading">
+      <span class="eyebrow">In progress</span>
+      <h2 id="triage-heading">What's next: AI triage</h2>
+      <p class="section-intro">We're testing Claude and GPT on predicting each order's priority and technician from the problem description, scored against the managers' real choices on these {study.orders} orders. Results coming {projectDetails.triageResultsMonth ?? "[TODO — month]"}.</p>
+      <p class="chart-note">All {study.orders} orders have a recorded priority. {study.assigned} have a recorded assignee for the technician comparison.</p>
+    </section>
 
     <section class="wrap study-section methods" aria-labelledby="methods-heading">
       <h2 id="methods-heading">How we counted</h2>

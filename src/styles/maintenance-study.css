@@ -33,7 +33,21 @@
   gap: clamp(32px, 4.8vw, 78px);
   align-items: center;
 }
-.study-hero { padding-block: clamp(32px, 4vw, 66px) 44px; }
+.study-hero {
+  padding-block: clamp(32px, 4vw, 66px) 44px;
+  grid-template-areas: "copy assignment" "copy illustration";
+  row-gap: 14px;
+}
+.hero-copy { grid-area: copy; align-self: start; }
+.study-hero figure { grid-area: illustration; }
+.hero-assignment {
+  grid-area: assignment; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .6rem;
+  color: var(--muted-strong); font-size: 1rem; font-weight: 600;
+}
+.hero-assignment strong {
+  color: var(--primary); font-size: clamp(2rem, 3.1vw, 3rem); font-weight: 725;
+  line-height: 1.08; letter-spacing: -.055em; font-variant-numeric: tabular-nums;
+}
 .maintenance-study h1 {
   font-size: clamp(3.35rem, 4.95vw, 4.8rem);
   line-height: 1.02;
@@ -56,6 +70,11 @@
 .maintenance-study picture, .maintenance-study figure img { display: block; width: 100%; }
 .maintenance-study figure img { height: auto; }
 .maintenance-study figcaption { margin-top: 8px; color: var(--muted); font-size: .82rem; }
+.study-demo, .study-testimonial { border-top: 1px solid var(--study-rule); padding-block: 22px; }
+.maintenance-study .study-demo h2 { font-size: clamp(1.16rem, 1.55vw, 1.45rem); }
+.maintenance-study .study-demo p { margin-top: 6px; color: var(--muted-strong); }
+.study-demo iframe { display: block; width: min(100%, 52rem); aspect-ratio: 16 / 9; height: auto; margin-top: 16px; border: 0; }
+.study-testimonial blockquote { margin: 0; max-width: 65ch; font-size: 1.2rem; }
 .study-stats {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -128,7 +147,7 @@
 .priority-legend dd { font-weight: 650; }
 .maintenance-study .activity-counts { list-style: none; margin-top: 17px; display: grid; gap: 6px; font-size: 1.04rem; }
 .activity-counts strong { font-weight: 660; }
-.workflow-layout { border-top: 1px solid var(--study-rule); }
+.workflow-layout, .study-build { border-top: 1px solid var(--study-rule); }
 .maintenance-study .workflow-steps { list-style: none; margin-top: 28px; counter-reset: stage; }
 .workflow-steps li { position: relative; display: flex; gap: 15px; align-items: flex-start; counter-increment: stage; }
 .workflow-steps li:not(:last-child) { padding-bottom: 21px; }
@@ -151,6 +170,9 @@
 .maintenance-study .methods dl { display: grid; gap: 17px; margin-top: 24px; max-width: 89ch; }
 .methods dt { font-weight: 700; }
 .methods dd { color: var(--muted-strong); line-height: 1.65; }
+.maintenance-study .study-build ul { padding-inline-start: 1.25rem; list-style: disc; }
+.study-triage { border-bottom: 1px solid var(--study-rule); }
+.study-triage .eyebrow { margin-bottom: 12px; }
 .study-text-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 29px; text-decoration: underline; text-underline-offset: .22em; }
 @media (max-width: 850px) {
   .study-hero, .workflow-layout, .estimate-layout { gap: 26px; }
@@ -160,7 +182,17 @@
 @media (max-width: 720px) {
   .study-hero, .workflow-layout, .estimate-layout, .study-charts, .study-details { grid-template-columns: 1fr; }
   .study-crumb { padding-top: 23px; }
-  .study-hero { padding: 27px 0 28px; }
+  .study-hero {
+    padding: 27px 0 28px;
+    grid-template-areas: "headline" "assignment" "subhead" "actions" "illustration";
+    row-gap: 0;
+  }
+  .hero-copy { display: contents; }
+  .study-hero h1 { grid-area: headline; }
+  .study-hero .hero-assignment { margin-top: 12px; }
+  .hero-copy > p { grid-area: subhead; }
+  .study-actions { grid-area: actions; }
+  .study-hero figure { margin-top: 26px; }
   .maintenance-study h1 { max-width: 17ch; }
   .hero-copy p { margin: 14px 0 19px; }
   .study-charts, .study-details { row-gap: 27px; }

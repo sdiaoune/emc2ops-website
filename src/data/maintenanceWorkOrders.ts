@@ -8,6 +8,8 @@ export const study = {
   excludedTests: 1,
   properties: 25,
   assigned: 142,
+  newWithAssignee: 62,
+  newWithNote: 23,
   urgentAssigned: 43,
   statuses: { new: 65, inProgress: 2, awaitingInvoice: 34, paidArchive: 40, cancelled: 6 },
   priorities: { low: 3, medium: 100, high: 39, emergency: 5 },
@@ -29,6 +31,17 @@ export const study = {
   medianHoursToFirstNote: 309.619,
   cancellationsWithReason: 6,
 } as const;
+
+export const projectDetails: {
+  buildDays?: number;
+  dailyUserRoles?: string;
+  timingSampleSize?: number;
+  triageResultsMonth?: string;
+  demoEmbedUrl?: string;
+  testimonial?: { quote: string; anonymizedTitle: string };
+} = {
+  // TODO: Add the manager's supplied verbatim quote and anonymized title together.
+};
 
 // Fixed project estimate for administrative coordination. Supabase supplies the order count.
 export const estimatedMinutesPerOrder = 30;
