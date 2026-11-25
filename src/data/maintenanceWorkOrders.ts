@@ -30,9 +30,7 @@ export const study = {
   cancellationsWithReason: 6,
 } as const;
 
-export function formatDuration(totalMinutes: number) {
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-  if (hours === 0) return `${minutes} min`;
-  return minutes === 0 ? `${hours} h` : `${hours} h ${minutes} min`;
-}
+// Fixed project estimate for administrative coordination. Supabase supplies the order count.
+export const estimatedMinutesPerOrder = 30;
+export const estimatedMinutesSaved = study.orders * estimatedMinutesPerOrder;
+export const estimatedHoursSaved = estimatedMinutesSaved / 60;

@@ -3,13 +3,13 @@ import FunnelIcon from "../../components/FunnelIcon.astro";
 import MaintenanceTimeEstimate from "../../components/MaintenanceTimeEstimate.astro";
 import SiteFooter from "../../components/SiteFooter.astro";
 import SiteHeader from "../../components/SiteHeader.astro";
-import { study } from "../../data/maintenanceWorkOrders";
+import { estimatedHoursSaved, estimatedMinutesPerOrder, study } from "../../data/maintenanceWorkOrders";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 import { absoluteUrl, standardPageSchema } from "../../lib/site";
 import "../../styles/maintenance-study.css";
 
 const title = `One repair queue for ${study.properties} properties`;
-const description = `Explore ${study.orders} work orders across ${study.properties} properties, from dispatch to invoice handoff. See portfolio metrics, field updates, and an adjustable time-savings estimate.`;
+const description = `See how one queue tracked ${study.orders} maintenance work orders across ${study.properties} properties. At ${estimatedMinutesPerOrder} minutes per order, estimated admin time saved totals ${estimatedHoursSaved} hours.`;
 const media = "/assets/case-studies/maintenance-work-orders";
 const { statuses, priorities } = study;
 const assignmentRate = (100 * study.assigned / study.orders).toFixed(1);
@@ -36,8 +36,10 @@ const priorityRows = [
   description={description}
   canonical={absoluteUrl(study.path)}
   type="article"
-  image={absoluteUrl(`${media}/overview.png`)}
-  imageAlt="One repair queue for 25 properties. EMC2Ops work-order case study with an illustrative repair record."
+  image={absoluteUrl(`${media}/maintenance-time-saved-linkedin.jpg`)}
+  imageDimensions={{ width: 1200, height: 627 }}
+  twitterImage={absoluteUrl(`${media}/maintenance-time-saved-x.jpg`)}
+  imageAlt={`EMC2Ops maintenance case study. Estimated admin time saved is ${estimatedHoursSaved} hours at ${estimatedMinutesPerOrder} minutes per order across ${study.orders} work orders and ${study.properties} properties. Illustrative photo of a technician documenting a repair.`}
   schema={standardPageSchema({ path: study.path, name: title, description, updatedAt: study.updatedAt, parent: { name: "Resources", path: "/resources/" } })}
 >
   <SiteHeader />
@@ -50,7 +52,7 @@ const priorityRows = [
           <p>EMC2Ops built a shared queue where managers assign repairs, technicians log visits, and billing picks up completed jobs. The team recorded {study.orders} work orders from April through November 2026.</p>
           <div class="study-actions">
             <a class="btn btn-primary workflow-link" href="#workflow">Explore the workflow <FunnelIcon name="arrow" size={17} /></a>
-            <a href="#time-saved">Estimate time saved</a>
+            <a href="#time-saved">See the time savings</a>
           </div>
         </div>
         <figure>
@@ -64,6 +66,7 @@ const priorityRows = [
 
       <dl class="study-stats" aria-label="Work-order snapshot">
         <div><dt>Work orders recorded</dt><dd>{study.orders}</dd></div>
+        <div><dt>Estimated admin time saved</dt><dd>{estimatedHoursSaved} h</dd></div>
         <div><dt>Had an assignee</dt><dd>{assignmentRate}%</dd></div>
         <div><dt>Awaiting invoice or marked paid</dt><dd>{billedOrWaiting}</dd></div>
       </dl>

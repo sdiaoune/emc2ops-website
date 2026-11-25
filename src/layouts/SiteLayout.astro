@@ -12,6 +12,8 @@ interface Props {
   type?: "website" | "article";
   image: string;
   imageAlt: string;
+  imageDimensions?: { width: number; height: number };
+  twitterImage?: string;
   themeColor?: string;
   schema?: unknown;
   pageClass?: string;
@@ -25,6 +27,8 @@ const {
   type = "website",
   image,
   imageAlt,
+  imageDimensions,
+  twitterImage,
   themeColor,
   schema,
   pageClass = "",
@@ -64,6 +68,8 @@ const enableAnalytics = process.env.VERCEL === "1" || import.meta.env.PUBLIC_ENA
       type={type}
       image={image}
       imageAlt={imageAlt}
+      imageDimensions={imageDimensions}
+      twitterImage={twitterImage}
       themeColor={themeColor}
       schema={schema}
       author={author}

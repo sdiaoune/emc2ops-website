@@ -58,7 +58,7 @@
 .maintenance-study figcaption { margin-top: 8px; color: var(--muted); font-size: .82rem; }
 .study-stats {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   padding: 25px 0 27px;
   gap: 25px;
   border-block: 1px solid var(--study-rule);
@@ -142,18 +142,12 @@
 .estimate-band { background: var(--section-muted-bg); }
 .estimate-layout > div:first-child p { margin-top: 16px; }
 .estimate-panel { padding: clamp(20px, 2.7vw, 38px); border: 1px solid var(--study-rule); background: var(--card); }
-.estimate-label { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.estimate-label label { font-size: 1.04rem; font-weight: 660; }
-.estimate-label > span { flex: none; color: var(--muted-strong); font-size: .95rem; font-variant-numeric: tabular-nums; }
-.estimate-panel input { display: block; width: 100%; height: 32px; margin: 14px 0 0; accent-color: var(--primary); cursor: pointer; }
-.range-scale { display: flex; justify-content: space-between; font-size: .8rem; color: var(--muted); }
-.estimate-result { border-top: 1px solid var(--study-rule); margin-top: 19px; padding-top: 17px; }
-.estimate-result output {
+.maintenance-study .estimate-total {
   display: block; font-size: clamp(2.4rem, 3.7vw, 3.45rem); font-weight: 725; color: var(--primary);
   line-height: 1.15; letter-spacing: -.045em; font-variant-numeric: tabular-nums;
 }
-.estimate-result > p { font-size: 1rem; }
-.estimate-result p.formula { margin-top: 8px; font-variant-numeric: tabular-nums; }
+.estimate-total strong { font-weight: inherit; }
+.estimate-panel .formula { border-top: 1px solid var(--study-rule); padding-top: 14px; font-variant-numeric: tabular-nums; }
 .maintenance-study .methods dl { display: grid; gap: 17px; margin-top: 24px; max-width: 89ch; }
 .methods dt { font-weight: 700; }
 .methods dd { color: var(--muted-strong); line-height: 1.65; }
@@ -171,7 +165,7 @@
   .hero-copy p { margin: 14px 0 19px; }
   .study-charts, .study-details { row-gap: 27px; }
   .study-charts > div + div::before, .study-details > div + div::before { display: none; }
-  .study-stats { gap: 15px; padding-block: 18px; }
+  .study-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 21px 15px; padding-block: 18px; }
   .study-stats dt { font-size: .87rem; line-height: 1.35; }
   .study-stats dd { font-size: clamp(1.9rem, 6.5vw, 2.7rem); }
   .status-chart > div { grid-template-columns: 8rem 1fr; }
