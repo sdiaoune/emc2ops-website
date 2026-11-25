@@ -1,4 +1,5 @@
 import { getCollection } from "astro:content";
+import { study as maintenanceStudy } from "../data/maintenanceWorkOrders";
 import { homepageMetadata } from "../lib/homepageContent";
 import { integrationPages, integrationUrl } from "../lib/integrations";
 import { customerStories, customerStoryUrl } from "../lib/customerStories";
@@ -14,7 +15,8 @@ export async function GET() {
     { url: "/book-demo/", lastmod: "2026-09-06" },
     { url: "/customers/", lastmod: siteUpdatedAt },
     ...customerStories.map((story) => ({ url: customerStoryUrl(story), lastmod: story.updatedAt })),
-    { url: "/resources/", lastmod: siteUpdatedAt },
+    { url: "/resources/", lastmod: maintenanceStudy.updatedAt },
+    { url: maintenanceStudy.path, lastmod: maintenanceStudy.updatedAt },
     { url: "/resources/missed-call-workflow-audit/", lastmod: siteUpdatedAt },
     { url: "/resources/missed-call-recovery-roi-calculator/", lastmod: siteUpdatedAt },
     { url: "/compare/", lastmod: siteUpdatedAt },

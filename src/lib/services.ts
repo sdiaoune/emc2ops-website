@@ -591,7 +591,7 @@ export const servicePages: ServicePage[] = [
   },
   {
     slug: "maintenance-intake-automation",
-    updatedAt: "2026-09-06",
+    updatedAt: "2026-11-25",
     eyebrow: "Maintenance intake",
     title: "Maintenance intake automation for property managers",
     seoTitle: "Maintenance Intake Automation",
@@ -714,6 +714,7 @@ export const servicePages: ServicePage[] = [
     ],
     relatedUseCases: [
       { label: "Maintenance request to completion", href: "/use-cases/maintenance-request-to-completion/", description: "Follow the complete journey through vendor coordination, completion evidence, and approved closure." },
+      { label: "Maintenance work-order case study", href: "/resources/maintenance-work-order-case-study/", description: "See how one shared queue handled assignment, field notes, and invoice handoffs across 25 properties." },
       {
         label: "Resident, owner, and vendor communication automation",
         href: "/use-cases/resident-owner-vendor-communication-automation/",

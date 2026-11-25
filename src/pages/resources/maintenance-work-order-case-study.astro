@@ -1,0 +1,153 @@
+---
+import FunnelIcon from "../../components/FunnelIcon.astro";
+import MaintenanceTimeEstimate from "../../components/MaintenanceTimeEstimate.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import SiteHeader from "../../components/SiteHeader.astro";
+import { study } from "../../data/maintenanceWorkOrders";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { absoluteUrl, standardPageSchema } from "../../lib/site";
+import "../../styles/maintenance-study.css";
+
+const title = `One repair queue for ${study.properties} properties`;
+const description = `Explore ${study.orders} work orders across ${study.properties} properties, from dispatch to invoice handoff. See portfolio metrics, field updates, and an adjustable time-savings estimate.`;
+const media = "/assets/case-studies/maintenance-work-orders";
+const { statuses, priorities } = study;
+const assignmentRate = (100 * study.assigned / study.orders).toFixed(1);
+const billedOrWaiting = statuses.awaitingInvoice + statuses.paidArchive;
+const urgent = priorities.high + priorities.emergency;
+const peak = Math.max(...study.monthlyOrders.map(({ count }) => count));
+const statusRows = [
+  { label: "New", count: statuses.new },
+  { label: "In progress", count: statuses.inProgress },
+  { label: "Awaiting invoice", count: statuses.awaitingInvoice },
+  { label: "Paid / archive", count: statuses.paidArchive },
+  { label: "Cancelled", count: statuses.cancelled },
+];
+const priorityRows = [
+  { label: "Low", key: "low", count: priorities.low },
+  { label: "Medium", key: "medium", count: priorities.medium },
+  { label: "High", key: "high", count: priorities.high },
+  { label: "Emergency", key: "emergency", count: priorities.emergency },
+];
+---
+
+<SiteLayout
+  title={`${title} | Work-Order Case Study | EMC2Ops`}
+  description={description}
+  canonical={absoluteUrl(study.path)}
+  type="article"
+  image={absoluteUrl(`${media}/overview.png`)}
+  imageAlt="One repair queue for 25 properties. EMC2Ops work-order case study with an illustrative repair record."
+  schema={standardPageSchema({ path: study.path, name: title, description, updatedAt: study.updatedAt, parent: { name: "Resources", path: "/resources/" } })}
+>
+  <SiteHeader />
+  <main class="maintenance-study">
+    <div class="wrap">
+      <nav class="study-crumb" aria-label="Breadcrumb"><a href="/resources/">Resources</a><span aria-hidden="true">/</span><span aria-current="page">Project case study</span></nav>
+      <section class="study-hero" aria-labelledby="study-title">
+        <div class="hero-copy">
+          <h1 id="study-title">{title}</h1>
+          <p>EMC2Ops built a shared queue where managers assign repairs, technicians log visits, and billing picks up completed jobs. The team recorded {study.orders} work orders from April through November 2026.</p>
+          <div class="study-actions">
+            <a class="btn btn-primary workflow-link" href="#workflow">Explore the workflow <FunnelIcon name="arrow" size={17} /></a>
+            <a href="#time-saved">Estimate time saved</a>
+          </div>
+        </div>
+        <figure>
+          <picture>
+            <source media="(max-width: 540px)" srcset={`${media}/work-order-mobile.webp`} width="700" height="748" />
+            <img src={`${media}/work-order.webp`} width="1232" height="834" fetchpriority="high" alt="Example work order for a high-priority kitchen tap leak. A maintenance technician is assigned and has added an in-progress note." />
+          </picture>
+          <figcaption>Illustrative work order · fictional details</figcaption>
+        </figure>
+      </section>
+
+      <dl class="study-stats" aria-label="Work-order snapshot">
+        <div><dt>Work orders recorded</dt><dd>{study.orders}</dd></div>
+        <div><dt>Had an assignee</dt><dd>{assignmentRate}%</dd></div>
+        <div><dt>Awaiting invoice or marked paid</dt><dd>{billedOrWaiting}</dd></div>
+      </dl>
+
+      <section class="study-section workload" aria-labelledby="workload-heading">
+        <h2 id="workload-heading">Workload across the portfolio</h2>
+        <p class="section-intro">Work orders opened from April 1 through November 24, 2026. Of the {study.orders} orders, {study.assigned} had an assignee and {study.orders - study.assigned} were unassigned.</p>
+        <div class="study-charts">
+          <div>
+            <h3>Orders opened by month</h3>
+            <ul class="month-chart">
+              {study.monthlyOrders.map(({ month, count }) => (
+                <li>
+                  <span class="month-name"><abbr title={month}>{month.slice(0, 3)}</abbr></span><span class="sr-only"> {count} orders</span>
+                  <div aria-hidden="true" class="month-column"><b>{count}</b><i style={`--height:${count / peak * 100}%`}></i></div>
+                </li>
+              ))}
+            </ul>
+            <p class="chart-note">September and October each had {peak} new orders. November includes the first 24 days.</p>
+          </div>
+          <div>
+            <h3>Status at the snapshot</h3>
+            <dl class="status-chart">
+              {statusRows.map(({ label, count }) => (
+                <div><dt>{label}</dt><dd><span class="status-track" aria-hidden="true"><i style={`width:${count / study.orders * 100}%`}></i></span><b>{count}</b></dd></div>
+              ))}
+            </dl>
+            <p class="chart-note">Each bar shows the share of all {study.orders} orders in that status. Staff recorded a reason for all {study.cancellationsWithReason} cancellations.</p>
+          </div>
+        </div>
+
+        <div class="study-details">
+          <div>
+            <h3>Priority recorded</h3>
+            <div class="priority-strip" aria-hidden="true">
+              {priorityRows.map(({ key, count }) => <i data-priority={key} style={`flex-grow:${count}`}></i>)}
+            </div>
+            <dl class="priority-legend">
+              {priorityRows.map(({ key, label, count }) => <div><dt><i data-priority={key} aria-hidden="true"></i>{label}</dt><dd>{count}</dd></div>)}
+            </dl>
+            <p class="chart-note">{study.urgentAssigned} of {urgent} high-priority or emergency orders had an assignee.</p>
+          </div>
+          <div>
+            <h3>Notes and photos</h3>
+            <ul class="activity-counts">
+              <li><strong>{study.notes} notes</strong> on {study.ordersWithNotes} orders</li>
+              <li><strong>{study.images} image attachments</strong> on {study.ordersWithImages} orders</li>
+            </ul>
+            <p class="chart-note">Across the {study.ordersWithNotes} orders with notes, the median time from opening the order to entering its first note was {(study.medianHoursToFirstNote / 24).toFixed(1)} days. A technician could have visited earlier.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow" class="study-section workflow-layout" aria-labelledby="workflow-heading">
+        <div>
+          <h2 id="workflow-heading">Follow one work order</h2>
+          <p class="section-intro">A kitchen tap starts leaking. The office and the technician use the same record from the first report through the invoice handoff.</p>
+          <ol class="workflow-steps">
+            <li><div><h3>Assign the repair</h3><p>The manager records the property, unit, problem, and priority. Assigning an active technician puts the repair in their My Jobs list.</p></div></li>
+            <li><div><h3>Document the visit</h3><p>The technician replaces the seal, records the pressure check, and attaches a photo. The note and file stay with the work order.</p></div></li>
+            <li><div><h3>Hand off for billing</h3><p>The technician marks the repair complete. The office filters jobs waiting for an invoice, and an administrator moves the order to the paid archive after payment.</p></div></li>
+          </ol>
+        </div>
+        <figure>
+          <picture>
+            <source media="(max-width: 540px)" srcset={`${media}/field-update-mobile.webp`} width="700" height="808" />
+            <img src={`${media}/field-update.webp`} width="1232" height="818" loading="lazy" alt="Illustrative My Jobs view. The kitchen tap repair is complete and waiting for an invoice, with a technician note and one photo attachment." />
+          </picture>
+          <figcaption>Illustrative field update · fictional details</figcaption>
+        </figure>
+      </section>
+    </div>
+
+    <MaintenanceTimeEstimate />
+
+    <section class="wrap study-section methods" aria-labelledby="methods-heading">
+      <h2 id="methods-heading">How we counted</h2>
+      <dl>
+        <div><dt>Source and period</dt><dd>We counted distinct work orders created April 1–November 24, 2026 (UTC) in Supabase and read their status, priority, and assignee on November 25. Of {study.orders + study.excludedTests} source records, we excluded one explicitly labeled test and its related activity.</dd></div>
+        <div><dt>Portfolio and status</dt><dd>The {study.properties} properties are distinct property records with at least one included order. Each order appears once in the status breakdown. The {billedOrWaiting} at the billing stage comprise {statuses.awaitingInvoice} completed repairs waiting for an invoice and {statuses.paidArchive} marked paid and archived. Payment amounts are outside this dataset.</dd></div>
+        <div><dt>Updates and timing</dt><dd>Notes and image attachments were counted separately through November 24. {study.ordersWithBoth} orders had both. First-note timing covers orders with a note and measures when someone entered it. Staff handling time and repair duration were outside the measurement.</dd></div>
+      </dl>
+      <a class="study-text-link" href="/book-demo/#workflow=maintenance-intake&source=maintenance-case-study">Discuss your maintenance workflow <FunnelIcon name="arrow" size={18} /></a>
+    </section>
+  </main>
+  <SiteFooter />
+</SiteLayout>

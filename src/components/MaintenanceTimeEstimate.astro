@@ -1,0 +1,52 @@
+---
+import { formatDuration, study } from "../data/maintenanceWorkOrders";
+
+const minutesPerOrder = 5;
+const totalMinutes = study.orders * minutesPerOrder;
+---
+<section class="estimate-band" aria-labelledby="estimate-heading" id="time-saved">
+  <div class="wrap estimate-layout">
+    <div>
+      <h2 id="estimate-heading">Estimate time saved</h2>
+      <p>How much office time could one fewer status check or duplicate entry save? Choose the average minutes avoided per order. The project records contain no before-and-after staff time logs.</p>
+    </div>
+    <div class="estimate-panel" data-estimate data-orders={study.orders}>
+      <div class="estimate-label">
+        <label for="minutes-per-order">Minutes saved per work order</label>
+        <span aria-hidden="true"><b data-minutes>{minutesPerOrder}</b> min</span>
+      </div>
+      <input id="minutes-per-order" type="range" min="0" max="20" step="1" value={minutesPerOrder} disabled />
+      <div class="range-scale" aria-hidden="true"><span>0</span><span>5</span><span>10</span><span>15</span><span>20</span></div>
+      <div class="estimate-result">
+        <output for="minutes-per-order" aria-label="Estimated time saved across the study" aria-live="polite">{formatDuration(totalMinutes)}</output>
+        <p>Estimated across {study.orders} work orders</p>
+        <p class="formula" data-formula>{study.orders} orders × {minutesPerOrder} minutes = {totalMinutes} minutes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { formatDuration } from "../data/maintenanceWorkOrders";
+
+  const panel = document.querySelector<HTMLElement>("[data-estimate]")!;
+  const input = panel.querySelector<HTMLInputElement>("input")!;
+  const minutesLabel = panel.querySelector<HTMLElement>("[data-minutes]")!;
+  const duration = panel.querySelector<HTMLOutputElement>("output")!;
+  const formula = panel.querySelector<HTMLElement>("[data-formula]")!;
+  const orders = Number(panel.dataset.orders);
+
+  function updateEstimate() {
+    const minutes = input.valueAsNumber;
+    const total = orders * minutes;
+    const unit = minutes === 1 ? "minute" : "minutes";
+    minutesLabel.textContent = String(minutes);
+    input.setAttribute("aria-valuetext", `${minutes} ${unit} per work order`);
+    duration.value = formatDuration(total);
+    formula.textContent = `${orders} orders × ${minutes} ${unit} = ${total.toLocaleString("en-US")} minutes`;
+  }
+
+  input.disabled = false;
+  input.addEventListener("input", updateEstimate);
+  updateEstimate();
+</script>
