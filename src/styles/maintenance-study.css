@@ -62,6 +62,7 @@
   color: var(--muted-strong);
 }
 .hero-copy p { margin-block: 22px 25px; }
+.hero-copy h1 + .study-actions { margin-top: clamp(18px, 2.2vw, 25px); }
 .study-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 20px; }
 .study-actions a + a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 650; color: var(--primary); text-decoration: underline; text-underline-offset: .22em; }
 .maintenance-study .workflow-link { gap: 10px; padding-inline: 20px; }
@@ -72,7 +73,6 @@
 .maintenance-study figcaption { margin-top: 8px; color: var(--muted); font-size: .82rem; }
 .study-demo, .study-testimonial { border-top: 1px solid var(--study-rule); padding-block: 22px; }
 .maintenance-study .study-demo h2 { font-size: clamp(1.16rem, 1.55vw, 1.45rem); }
-.maintenance-study .study-demo p { margin-top: 6px; color: var(--muted-strong); }
 .study-demo iframe { display: block; width: min(100%, 52rem); aspect-ratio: 16 / 9; height: auto; margin-top: 16px; border: 0; }
 .study-testimonial blockquote { margin: 0; max-width: 65ch; font-size: 1.2rem; }
 .study-stats {

@@ -6,7 +6,9 @@ import { estimatedHoursSaved, estimatedMinutesPerOrder, estimatedMinutesSaved, p
     <div>
       <h2 id="estimate-heading">Estimated time savings</h2>
       <p>Office staff can check an assignment, read a technician’s notes, and prepare an invoice from the same record. For this work, we estimate a fixed {estimatedMinutesPerOrder} minutes saved per work order.</p>
-      <p>Next: timing {projectDetails.timingSampleSize ?? "[TODO]"} real orders before and after to replace this estimate.</p>
+      {projectDetails.timingSampleSize !== undefined && (
+        <p>Next: timing {projectDetails.timingSampleSize} real orders before and after to replace this estimate.</p>
+      )}
     </div>
     <div class="estimate-panel">
       <p class="estimate-total"><strong>{estimatedHoursSaved} hours</strong></p>

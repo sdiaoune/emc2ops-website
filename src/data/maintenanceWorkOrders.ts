@@ -35,12 +35,26 @@ export const study = {
 export const projectDetails: {
   buildDays?: number;
   dailyUserRoles?: string;
+  agentSkills?: string[];
+  agentMistakesAndFixes?: string[];
+  newStatusReason?: string;
   timingSampleSize?: number;
+  triageStarted?: boolean;
   triageResultsMonth?: string;
   demoEmbedUrl?: string;
   testimonial?: { quote: string; anonymizedTitle: string };
 } = {
-  // TODO: Add the manager's supplied verbatim quote and anonymized title together.
+  // TODO: Fill in the owner's answers here as they arrive.
+  // buildDays: [N] days to build.
+  // dailyUserRoles: [roles] confirmed to use the queue daily since April 2026.
+  // agentSkills: [two or three skills the owner wrote, one line each].
+  // agentMistakesAndFixes: [two or three agent mistakes, each paired with its fix].
+  // newStatusReason: [the team's reason for leaving orders in New].
+  // timingSampleSize: [N] real orders to time before and after.
+  // triageStarted: true when the owner confirms the AI triage test has started.
+  // triageResultsMonth: [month] the owner expects results.
+  // demoEmbedUrl: [embed URL for the 60–90 second recording].
+  // testimonial: [verbatim manager quote and anonymized title, supplied together].
 };
 
 // Fixed project estimate for administrative coordination. Supabase supplies the order count.
